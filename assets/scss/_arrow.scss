@@ -1,0 +1,114 @@
+$filled_arrow_direction_details: (
+  top: horizontal,
+  right: vertical,
+  bottom: horizontal,
+  left: vertical
+);
+@mixin create_filled_arrow($options) {
+  $direction: map-get($options, direction);
+  $tip_length: map-get($options, tip_length);
+  $broadness: map-get($options, broadness);
+  $color: map-get($options, color);
+  $transparent_border: $broadness / 2 solid transparent;
+  border-#{get_position_opposite($direction)}: $tip_length solid $color;
+  $transparent_border_directions: map-get(
+    $basic_direction_details,
+    map-get($filled_arrow_direction_details, $direction)
+  );
+  @each $border_direction in $transparent_border_directions {
+    border-#{$border_direction}: $transparent_border;
+  }
+}
+@mixin set_filled_arrow_color($direction, $color) {
+  border-#{get_position_opposite($direction)}-color: $color;
+}
+$unfilled_arrow_direction_details: (
+  top: 45,
+  right: 45 + 90,
+  bottom: 45 + 90 * 2,
+  left: 45 + 90 * 3
+);
+@mixin create_unfilled_arrow($options) {
+  $direction: map-get($options, direction);
+  $size: map-get($options, size);
+  $border_width: map-get($options, border_width);
+  $color: map-get($options, color);
+  width: $size;
+  height: $size;
+  border-top: $border_width solid $color;
+  border-left: $border_width solid $color;
+  transform: rotate(
+    #{map-get($unfilled_arrow_direction_details, $direction)}deg
+  );
+  box-sizing: border-box;
+}
+@mixin set_unfilled_arrow_color($color) {
+  border-top-color: $color;
+  border-left-color: $color;
+}
+$circle_arrow_default_other_options: (
+  position: relative,
+  circle_border_width: false
+);
+@mixin create_circle_arrow(
+  $inner_arrow_type,
+  $circle_size,
+  $inner_arrow_options,
+  $other_options: false
+) {
+  @if ($other_options == false) {
+    $other_options: ();
+  }
+  $other_options: map-merge(
+    $circle_arrow_default_other_options,
+    $other_options
+  );
+  $circle_border_width: map-get($other_options, circle_border_width);
+  $position: map-get($other_options, position);
+  $circle_border_width: if(
+    $circle_border_width == false,
+    map-get($inner_arrow_options, border_width),
+    $circle_border_width
+  );
+  display: flex;
+  position: $position;
+  width: $circle_size;
+  height: $circle_size;
+  border: $circle_border_width solid map-get($inner_arrow_options, color);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  @content;
+  &:before {
+    $inner_arrow_size: map-get(
+      $inner_arrow_options,
+      if($inner_arrow_type == filled, tip_length, size)
+    );
+    content: "";
+    display: block;
+    position: relative;
+    #{get_position_opposite(map-get($inner_arrow_options, direction))}: ceil(
+      map-get(
+          $inner_arrow_options,
+          if($inner_arrow_type == filled, tip_length, size)
+        ) / if($inner_arrow_type == filled, 32, -6)
+    );
+    @if ($inner_arrow_type == filled) {
+      @include create_filled_arrow($inner_arrow_options);
+    } @else {
+      @include create_unfilled_arrow($inner_arrow_options);
+    }
+    @content;
+  }
+}
+@mixin set_circle_arrow_color($inner_arrow_type, $color, $direction: false) {
+  border-color: $color;
+  &:before {
+    @if ($inner_arrow_type == filled) {
+      @include set_filled_arrow_color($direction, $color);
+    } @else {
+      @include set_unfilled_arrow_color($color);
+    }
+  }
+}

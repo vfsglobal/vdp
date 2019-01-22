@@ -1,0 +1,45 @@
+[data-column-details] {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    display: flex;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+}
+
+@mixin set_column($column, $margin_right, $center_items: false) {
+  @if ($center_items) {
+    justify-content: center;
+  }
+
+  > * {
+    width: (100 - (($column - 1) * $margin_right)) / $column;
+    &:not(:nth-child(#{$column}n)) {
+      margin-right: $margin_right;
+    }
+    &:last-child {
+      margin-right: 0%;
+    }
+    $last_row_first_child_selector: "&:nth-child(#{$column}n+1):nth-last-child(-n+#{$column})";
+    #{$last_row_first_child_selector},
+    #{$last_row_first_child_selector} ~ * {
+      margin-bottom: 0px !important;
+    }
+  }
+}
+[data-column-details="col6_details"] {
+  @include set_column(6, $box_spacing);
+}
+[data-column-details="full_col4_details"] {
+  @include set_column(4, 0%);
+}
+[data-column-details="col4_details"] {
+  @include set_column(4, $box_spacing, true);
+}
+[data-column-details="col4_details_big"] {
+  @include set_column(4, $box_big_spacing, true);
+}
+[data-column-details="col2_details"] {
+  @include set_column(2, $box_spacing);
+}

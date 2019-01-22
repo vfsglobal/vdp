@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'vdp-icons';
+  src:  url('vdp-icons.eot');
+  src:  url('vdp-icons.eot?#iefix') format('embedded-opentype'),
+    url('vdp-icons.ttf') format('truetype'),
+    url('vdp-icons.woff') format('woff'),
+    url('vdp-icons.svg#vdp-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'vdp-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-location:before {
+  content: "\e900";
+}
+.icon-legal-entities:before {
+  content: "\e901";
+}
+.icon-payroll-handled:before {
+  content: "\e902";
+}
+.icon-city:before {
+  content: "\e903";
+}
+.icon-quality:before {
+  content: "\e904";
+}
+.icon-payslip:before {
+  content: "\e905";
+}
+.icon-query-resolutions:before {
+  content: "\e906";
+}
+.icon-countries:before {
+  content: "\e907";
+}
+.icon-servicing-employees:before {
+  content: "\e908";
+}
+.icon-nationalities:before {
+  content: "\e909";
+}
+.icon-establishment:before {
+  content: "\e90a";
+}
+.icon-service-employee-benefits:before {
+  content: "\e90b";
+}
+.icon-service-vendor-management:before {
+  content: "\e90c";
+}
+.icon-service-shared-services-consulting:before {
+  content: "\e90d";
+}
+.icon-service-payroll:before {
+  content: "\e90e";
+}
+.icon-service-managed-hr-services:before {
+  content: "\e90f";
+}
+.icon-service-contact-centre:before {
+  content: "\e910";
+}
+.icon-phone:before {
+  content: "\f096";
+}
+.icon-twitter:before {
+  content: "\f09b";
+}
+.icon-facebook:before {
+  content: "\f09c";
+}
+.icon-email:before {
+  content: "\f0e2";
+}
+.icon-linkedin:before {
+  content: "\f0e3";
+}
+.icon-quote-right:before {
+  content: "\f10f";
+}
