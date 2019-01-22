@@ -1,5 +1,5 @@
 export const state = () => ({
-  no: "+91 8291774434"
+  no: "8291774434"
 });
 
 export const getters = {
