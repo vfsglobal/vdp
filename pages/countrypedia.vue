@@ -1,37 +1,59 @@
 <template>
-  <div class="countrypedia_container" :style="imageStyle">
-    <h2>Comming soon...</h2>
+  <div class="container">
+    <basic-section>
+      <div class="countrypedia_map_container">
+        <svg-map
+          :countries="countryList"
+          v-model="activeCountryIndex"
+        />
+        <div class="info">This map is only for representation purpose.</div>
+      </div>
+      <nuxt-child />
+    </basic-section>
   </div>
 </template>
 
 <script>
-import { pageDefault } from '~/components/mixins/general';
-import { createImageStyle } from '~/utils';
+import { pageDefault, generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
+
+import svgMap from '~/components/utils/svg-map.vue';
+
+import { mapState } from 'vuex';
 
 export default {
-  mixins: [pageDefault],
+  mixins: [pageDefault, generateURLAndListIndexSyncMixin({
+    listName: 'countryList',
+    activeIndexName: 'activeCountryIndex',
+    linkType: '/',
+    landingPagePath: '/countrypedia'
+  })],
+
+  components: {
+    svgMap
+  },
 
   computed: {
-    imageStyle() {
-      return createImageStyle('countrypedia.jpg', '/');
-    }
+    ...mapState('countrypedia', {
+      countryList: state => state.list
+    })
   }
 }
 </script>
 
 <style lang="scss">
-@import './assets/scss/globals';
+.countrypedia_map_container {
+  position: relative;
 
-.countrypedia_container {
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  > .svg_map_container {
+    width: 100%;
+    height: 500px;
+  }
 
-  > h2 {
-    font-size: 48px;
-    font-weight: bold;
-    color: $purple;
+  > .info {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    font-size: 12px;
   }
 }
 </style>

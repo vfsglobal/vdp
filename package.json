@@ -11,6 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.0.21",
+    "@amcharts/amcharts4-geodata": "^4.0.27",
     "cross-env": "^5.2.0",
     "nuxt": "^2.3.4",
     "owl.carousel2": "^2.2.1"
