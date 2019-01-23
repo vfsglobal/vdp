@@ -12,7 +12,7 @@
       <ul class="extra_content">
         <li>
           <icon-text icon="phone">
-            <strong v-html="telNoHTML" />
+            <strong v-html="contactNoHTML" />
           </icon-text>
         </li>
         <li>
@@ -47,10 +47,10 @@ export default {
 
   computed: {
     ...mapGetters({
-      telNoHTML: 'contact-details/tel-no/html'
+      contactNoHTML: 'contact-details/contactNoHTML'
     }),
 
-    ...mapState('contact-details/email', {
+    ...mapState('contact-details', {
       email: state => state.emailId
     })
   }

@@ -29,7 +29,7 @@
                     <h4>Call Us</h4>
                     <div
                       class="main_content"
-                      v-html="telNoHTML"
+                      v-html="contactNoHTML"
                     />
                   </div>
                 </li>
@@ -52,11 +52,11 @@ export default {
 
   computed: {
     ...mapState('contact-details', {
-      address: state => state.address.html,
-      email: state => state.email.emailId
+      address: state => state.addressHTML,
+      email: state => state.emailId
     }),
     ...mapGetters({
-      telNoHTML: 'contact-details/tel-no/html'
+      contactNoHTML: 'contact-details/contactNoHTML'
     })
   }
 }

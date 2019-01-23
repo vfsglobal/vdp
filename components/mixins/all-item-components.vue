@@ -41,8 +41,8 @@ var allTypeDetails = (() => {
     statsShortList($store) {
       return $store.state.stats.shortList;
     },
-    statsCompleteList($store) {
-      return $store.state.stats.completeList;
+    statsMainList($store) {
+      return $store.state.stats.mainList;
     }
   };
 
@@ -58,9 +58,9 @@ var allTypeDetails = (() => {
       itemComponent: "stats-short-list-one-line-item",
       getContent: getContent.statsShortList
     },
-    statsCompleteListBig: {
+    statsMainListBig: {
       itemComponent: 'stats-complete-list-big-item',
-      getContent: getContent.statsCompleteList
+      getContent: getContent.statsMainList
     }
   };
 })();

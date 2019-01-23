@@ -12,7 +12,7 @@ var defaultOptions = {
 },
 
   allTypeDetails = {
-    statsCompleteListBig: {
+    statsMainListBig: {
       items: 1,
       autoplay: true,
       autoplayTimeout: 5000,
@@ -163,7 +163,7 @@ export default {
     }
   }
 
-  &.statsCompleteListBig {
+  &.statsMainListBig {
     background: linear-gradient(
       to right,
       rgba(0, 0, 0, 0) 0%,
