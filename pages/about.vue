@@ -4,7 +4,7 @@
     purple-heading-text="About Us"
   >
     <template slot="banner">
-      <owl-carousel type="statsCompleteListBig" />
+      <owl-carousel type="statsMainListBig" />
     </template>
     <basic-section>
       <p

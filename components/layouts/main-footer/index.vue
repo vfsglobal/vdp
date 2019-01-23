@@ -9,9 +9,9 @@
           <div class="main_content_wrapper">
             <h3>Get in touch</h3>
             <div class="main_content">
-              <p><strong>Add:</strong> <span v-html="address" /></p>
+              <p><strong>Address:</strong> <span v-html="address" /></p>
               <br>
-              <p><strong>Ph:</strong> <span v-html="telNoHTML" /></p>
+              <p><strong>Ph:</strong> <span v-html="contactNoHTML" /></p>
               <p><strong>Email:</strong>
                 <email-link :email="email" />
               </p>
@@ -84,13 +84,13 @@ export default {
 
   computed: {
     ...mapState({
-      email: state => state['contact-details'].email.emailId,
+      email: state => state['contact-details'].emailId,
       topNav: state => state['top-nav'].list
     }),
     ...mapGetters({
       services: 'services/linkList',
-      address: 'contact-details/address/text',
-      telNoHTML: 'contact-details/tel-no/html'
+      address: 'contact-details/addressText',
+      contactNoHTML: 'contact-details/contactNoHTML'
     })
   }
 }

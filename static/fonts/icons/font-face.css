@@ -23,46 +23,38 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-location:before {
+
+.icon-service-shared-services-consulting:before {
   content: "\e900";
 }
 .icon-legal-entities:before {
-  content: "\e901";
-}
-.icon-payroll-handled:before {
   content: "\e902";
 }
 .icon-city:before {
-  content: "\e903";
-}
-.icon-quality:before {
   content: "\e904";
 }
-.icon-payslip:before {
+.icon-quality:before {
   content: "\e905";
 }
-.icon-query-resolutions:before {
+.icon-payslip:before {
   content: "\e906";
 }
 .icon-countries:before {
-  content: "\e907";
-}
-.icon-servicing-employees:before {
   content: "\e908";
 }
-.icon-nationalities:before {
+.icon-servicing-employees:before {
   content: "\e909";
 }
-.icon-establishment:before {
+.icon-nationalities:before {
   content: "\e90a";
 }
-.icon-service-employee-benefits:before {
+.icon-establishment:before {
   content: "\e90b";
 }
-.icon-service-vendor-management:before {
+.icon-service-employee-benefits:before {
   content: "\e90c";
 }
-.icon-service-shared-services-consulting:before {
+.icon-service-vendor-management:before {
   content: "\e90d";
 }
 .icon-service-payroll:before {
@@ -88,7 +80,4 @@
 }
 .icon-linkedin:before {
   content: "\f0e3";
-}
-.icon-quote-right:before {
-  content: "\f10f";
 }

@@ -34,8 +34,8 @@ import {mapState} from 'vuex';
 export default {
   mixins: [pageDefault],
 
-  computed: mapState('contact-details/address', {
-    address: state => state.html
+  computed: mapState('contact-details', {
+    address: state => state.addressHTML
   })
 }
 </script>

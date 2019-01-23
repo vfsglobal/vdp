@@ -104,6 +104,11 @@ section.basic {
     border-bottom: $main_boder_thinckness solid $purple;
   }
 
+  &.seperator > .wrapper {
+    padding-bottom: 20px;
+    border-bottom: 1px solid $light_border_color;
+  }
+
   &:last-child {
     padding-bottom: $container_big_spacing;
   }

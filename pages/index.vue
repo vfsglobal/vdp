@@ -16,10 +16,14 @@
     <template slot="bannerNextSection">
       <box-list type="services" />
     </template>
-    <basic-section>
+    <basic-section type="seperator">
       <div class="heading_wrapper">
-        <box-list type="statsShortListBig" />
+        <h3 class="main_heading">Introduction</h3>
       </div>
+      <p class="main">Welcome to VDP Global Services, we provide HR services across all international locations, our wide range of services include HR Administration, HR Strategy formation and HR tech solutions.</p>
+    </basic-section>
+    <basic-section>
+      <box-list type="statsShortListBig" />
     </basic-section>
   </master-page>
 </template>

@@ -222,9 +222,12 @@ h5.normal {
   font-weight: bold;
 }
 p.main {
+  font-size: 16px;
   text-align: center;
   padding-bottom: $container_spacing;
   line-height: $content_para_line_height;
+  max-width: 800px;
+  margin: 0 auto;
 }
 ul.seperator_content_list > li:not(:last-child) {
   padding-bottom: $container_spacing;
@@ -275,28 +278,6 @@ ul.side_heading_content_list {
 }
 a.bottom_border {
   @extend %bottom_border_link;
-}
-ul.arrow_list > li {
-  position: relative;
-  padding-left: 15px;
-  &:not(:last-child) {
-    margin-bottom: 5px;
-  }
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0%;
-    top: 4px;
-    @include create_unfilled_arrow(
-      (
-        direction: right,
-        size: 7px,
-        border_width: 1px,
-        color: $content_color
-      )
-    );
-  }
 }
 .main_content_container {
   p {
