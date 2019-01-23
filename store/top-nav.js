@@ -26,7 +26,8 @@ export const state = () => ({
     },
     {
       text: "Countrypedia",
-      link: "/countrypedia"
+      link: "/countrypedia",
+      sitemapSubmenuModule: 'countrypedia'
     }
   ]
 });
