@@ -159,7 +159,7 @@ export const indexPathFromArr = (() => {
       pathIndexes[curIndex] = index;
 
       if (element.hasOwnProperty(nestedKey)) {
-        indexPathOfArr(element[nestedKey], fn, nestedKey, pathIndexes);
+        indexPathFromArr(element[nestedKey], fn, nestedKey, pathIndexes);
 
         if (pathIndexes.length - 1 != curIndex) return (isFound = true), false;
       }
