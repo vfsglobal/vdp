@@ -17,290 +17,87 @@
         <accordion class="careers">
           <accordion-element>
             <template slot="buttonContent">
-              <h4>HR Service Partner</h4>
-              <h5>Location: Mumbai</h5>
+              <h4>Dy. Manager HR / Sr. Executive HR / Executive HR</h4>
+              <h5>Location: Mumbai / Bangkok</h5>
             </template>
             <section>
-              <h4 class="normal seperator">Responsibility</h4>
-              <ul class="side_heading_content_list">
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">On-boarding Process</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Initiating & timely completion of joining formalities for new employee</li>
-                      <li>Ensuring the release of all employment related contracts & letters</li>
-                      <li>HRIS/Workday Updation</li>
-                      <li>Creating Personnel File</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Confirmation Process & Employee Movement</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Initiating Confirmation process within said timeframe</li>
-                      <li>Issuing letters of confirmation /extension as per Probation Evaluation Form</li>
-                      <li>Issuing transfer letter as per SRF given</li>
-                      <li>HRIS/Workday Updation</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Employee Payroll, Benefits & Compliance Process</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Payroll inputs to Vendor</li>
-                      <li>Checking & Verifying pay sheet</li>
-                      <li>Finalizing pay sheet and bank reports</li>
-                      <li>Timely & accurate salary credit to employee</li>
-                      <li>Claim & Reimbursement inputs</li>
-                      <li>Preparing compliance related report</li>
-                      <li>Preparing accurate Benefits Masters Data</li>
-                      <li>Updating claim & reimbursement details of employee</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Attendance & Leave Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Attendance Collation</li>
-                      <li>Leave record updation</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Personnel File & Document Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Maintaining physical personnel file of employees</li>
-                      <li>Updating Employee File Management Data</li>
-                      <li>Preparing various letter as per SRF request</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Employee Query Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Reverts to various query raised by employee</li>
-                      <li>Query Management tracking report</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Separation Process</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Initiating separation process with resigned employee</li>
-                      <li>Inputs of f& f to payroll vendor</li>
-                      <li>End to end completing f & f settlement</li>
-                      <li>Dispatching f & f cheque along with relevant documents to resigned employee</li>
-                      <li>Filling f & f documents in physical personnel file of resigned employee</li>
-                      <li>Updating Employment Management Data</li>
-                      <li>Updating F & f tracker</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Project Assistance</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Contribution & quality of work exhibited during the project</li>
-                      <li>Assisting in preparing final project report</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Audit Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Collating & verifying audit report from team members</li>
-                      <li>Front end audit responsibility</li>
-                      <li>Timely submission of audit requirement</li>
-                    </ol>
-                  </div>
-                </li>
+              <h4 class="normal">Roles & Responsibilities</h4>
+              <ul class="normal_list">
+                <li>International HR Individual Contributor Role in an HR Shared Services / HR BPO</li>
+                <li>End to End remote HR lifecycle management from hire to exit</li>
+                <li>HRIS Updation & records creation</li>
+                <li>Payroll Processing for multiple companies and / or countries</li>
+                <li>Employee Document Management</li>
+                <li>Employee query management</li>
+                <li>Client Management & Customer Service</li>
+                <li>Reporting, Projects & Audit support</li>
               </ul>
             </section>
+            <br>
             <section>
-              <h4 class="normal seperator">Requirements</h4>
-              <p><strong>Education :</strong> Graduate or Master’s Degree in HR<br>
-                <strong>Work Experience :</strong> 5 – 7 years of experience in generalist HR</p>
+              <h4 class="normal">Requirements</h4>
+              <ul class="normal_list">
+                <li><strong>Education :</strong> Graduate or Master’s Degree in HR</li>
+                <li><strong>Work Experience :</strong> 1 – 10 years of experience in generalist HR with payroll processing.<br>
+                  Experience in hands on experience in payroll processing for 2 or more countries is an advantage</li>
+              </ul>
             </section>
           </accordion-element>
           <accordion-element>
             <template slot="buttonContent">
-              <h4>Regional HR Manager</h4>
+              <h4>HR Manager / Sr. HR Manager</h4>
+              <h5>Location: Mumbai / Bangkok</h5>
+            </template>
+            <section>
+              <h4 class="normal">Roles & Responsibilities</h4>
+              <ul class="normal_list">
+                <li>International HR Managerial Role in an HR Shared Services / HR BPO</li>
+                <li>Team Management</li>
+                <li>End to End remote HR lifecycle management from hire to exit</li>
+                <li>Ensuring that the HRIS is always updated & records are created on time</li>
+                <li>Overseeing the Payroll is Processed and checked for multiple companies and / or countries</li>
+                <li>Managing Employee Documentation Process</li>
+                <li>Managing Allocation of Escalations Employee Queries</li>
+                <li>Client Management & Customer Service</li>
+                <li>Reporting, Projects & Audit support</li>
+              </ul>
+            </section>
+            <br>
+            <section>
+              <h4 class="normal">Requirements</h4>
+              <ul class="normal_list">
+                <li><strong>Education :</strong> Graduate or Master’s Degree in HR</li>
+                <li><strong>Work Experience :</strong> 7 – 12 years of experience in generalist HR with payroll processing in atleast 2 countries.<br>
+                  Should have handled a team of atleast 2 people for atleast 2 years.<br>
+                  Experience in hands on experience in payroll process management for 2 or more countries is an advantage</li>
+              </ul>
+            </section>
+          </accordion-element>
+          <accordion-element>
+            <template slot="buttonContent">
+              <h4>HR Internships / HR Trainees</h4>
               <h5>Location: Mumbai</h5>
             </template>
             <section>
-              <h4 class="normal seperator">Responsibility</h4>
-              <ul class="side_heading_content_list">
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">On-boarding Process</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Initiating & timely completion of joining formalities for new employee</li>
-                      <li>Ensuring the release of all employment related contracts & letters</li>
-                      <li>HRIS/Workday Updation</li>
-                      <li>Creating Personnel File</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Confirmation Process & Employee Movement</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Initiating Confirmation process within said timeframe</li>
-                      <li>Issuing letters of confirmation /extension as per Probation Evaluation Form</li>
-                      <li>Issuing transfer letter as per SRF given</li>
-                      <li>HRIS/Workday Updation</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Employee Payroll, Benefits & Compliance Process</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Payroll inputs to Vendor</li>
-                      <li>Checking & Verifying pay sheet</li>
-                      <li>Finalizing pay sheet and bank reports</li>
-                      <li>Timely & accurate salary credit to employee</li>
-                      <li>Claim & Reimbursement inputs</li>
-                      <li>Preparing compliance related report</li>
-                      <li>Preparing accurate Benefits Masters Data</li>
-                      <li>Updating claim & reimbursement details of employee</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Attendance & Leave Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Attendance Collation</li>
-                      <li>Leave record updation</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Personnel File & Document Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Maintaining physical personnel file of employees</li>
-                      <li>Updating Employee File Management Data</li>
-                      <li>Preparing various letter as per SRF request</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Employee Query Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Reverts to various query raised by employee</li>
-                      <li>Query Management tracking report</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Separation Process</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Initiating separation process with resigned employee</li>
-                      <li>Inputs of f& f to payroll vendor</li>
-                      <li>End to end completing f & f settlement</li>
-                      <li>Dispatching f & f cheque along with relevant documents to resigned employee</li>
-                      <li>Filling f & f documents in physical personnel file of resigned employee</li>
-                      <li>Updating Employment Management Data</li>
-                      <li>Updating F & f tracker</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Project Assistance</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Contribution & quality of work exhibited during the project</li>
-                      <li>Assisting in preparing final project report</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Audit Management</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Collating & verifying audit report from team members</li>
-                      <li>Front end audit responsibility</li>
-                      <li>Timely submission of audit requirement</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Team Supervision</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Supervising team performance</li>
-                      <li>Collation of various report from team as per said SLA timelines</li>
-                    </ol>
-                  </div>
-                </li>
-                <li>
-                  <div class="heading_wrapper">
-                    <h5 class="normal">Knowledge Sharing, Contribution & Project Assistance</h5>
-                  </div>
-                  <div class="main_content">
-                    <ol type="a">
-                      <li>Contribution to monthly meetings</li>
-                      <li>Divisional updates provided during meetings</li>
-                      <li>Contribution & quality of work exhibited during the project</li>
-                      <li>Initiating & conducting monthly review meeting</li>
-                    </ol>
-                  </div>
-                </li>
+              <h4 class="normal">Roles & Responsibilities</h4>
+              <ul class="normal_list">
+                <li>International HR Support & Projects</li>
+                <li>Assistance in End to End remote HR lifecycle management from hire to exit</li>
+                <li>Assistance in HRIS Updation & records creation</li>
+                <li>Assistance in Payroll Processing for multiple companies and / or countries</li>
+                <li>Assistance in Employee Document Management</li>
+                <li>Assistance in Employee query management</li>
+                <li>Assistance in Client Management & Customer Service</li>
+                <li>Assistance in Reporting, Projects & Audit support</li>
               </ul>
             </section>
+            <br>
             <section>
-              <h4 class="normal seperator">Requirements</h4>
-              <p><strong>Education :</strong> Masters Degree in Human Resources<br>
-                <strong>Work Experience :</strong> 8-10 years of work experience and atleast 2-3 years in a similar role. Expert in handling HR operations including payroll</p>
+              <h4 class="normal">Requirements</h4>
+              <ul class="normal_list">
+                <li><strong>Education :</strong> Internship phase during Graduate or related Master’s Degree</li>
+                <li><strong>Work Experience :</strong> Freshers or any experience</li>
+              </ul>
             </section>
           </accordion-element>
         </accordion>
