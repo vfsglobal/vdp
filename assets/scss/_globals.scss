@@ -32,6 +32,8 @@ $basic_direction_details: (
 );
 $accordion_hor_padding: 15px;
 $accordion_transition_duration: 0.7s;
+$page_transition_duration: 1000ms;
+$page_transition_delay: 300ms;
 @mixin table_with_cell($valign: middle) {
   display: table;
   > * {
@@ -62,10 +64,8 @@ $accordion_transition_duration: 0.7s;
 }
 @mixin repeat_css($property, $value, $repeat) {
   $new_value: $value;
-
   @for $i from 1 to $repeat {
     $new_value: $new_value + ", " + $value;
   }
-
   #{$property}: #{$new_value};
 }

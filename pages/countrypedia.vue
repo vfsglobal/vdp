@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <basic-section>
+    <basic-section
+      type="bg"
+      :options="{image: 'countrypedia.jpg'}"
+    >
       <div class="countrypedia_map_container">
         <svg-map
           :countries="countryList"
@@ -8,8 +11,16 @@
         />
         <div class="info">This map is only for representation purpose.</div>
       </div>
-      <nuxt-child />
     </basic-section>
+    <div class="wrapper">
+      <purple-heading-wrapper
+        v-if="activeCountry"
+        :key="activeCountry.title"
+      >{{activeCountry.title}}</purple-heading-wrapper>
+    </div>
+    <!-- <basic-section v-if="activeCountry">
+      <nuxt-child />
+    </basic-section> -->
   </div>
 </template>
 
@@ -17,8 +28,9 @@
 import { pageDefault, generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
 
 import svgMap from '~/components/utils/svg-map.vue';
+import purpleHeadingWrapper from '~/components/purple-heading-wrapper.vue';
 
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   mixins: [pageDefault, generateURLAndListIndexSyncMixin({
@@ -29,18 +41,24 @@ export default {
   })],
 
   components: {
-    svgMap
+    svgMap,
+    purpleHeadingWrapper
   },
 
   computed: {
-    ...mapState('countrypedia', {
-      countryList: state => state.list
-    })
+    ...mapGetters({
+      countryList: 'countrypedia/correctedListContent'
+    }),
+    activeCountry() {
+      return this.activeCountryIndex == -1 ? null : this.countryList[this.activeCountryIndex];
+    }
   }
 }
 </script>
 
 <style lang="scss">
+@import "./assets/scss/globals";
+
 .countrypedia_map_container {
   position: relative;
 

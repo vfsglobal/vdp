@@ -24,7 +24,7 @@
 import { generateTypeDetailsMixin } from '~/components/mixins/general';
 
 import banner from './banner.vue';
-import purpleHeadingWrapper from './purple-heading-wrapper.vue';
+import purpleHeadingWrapper from '~/components/purple-heading-wrapper.vue';
 import statsListWrapper from './stats-list-wrapper.vue';
 
 var allBannerNextSectionTypeDetails = {

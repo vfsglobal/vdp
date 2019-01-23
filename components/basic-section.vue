@@ -17,14 +17,13 @@
 import { optionsProp, generateTypeDetailsMixin } from '~/components/mixins/general';
 import { createImageStyle } from '~/utils';
 
-function createBannerImageStyle(component) {
-  return createImageStyle(component.options.image, 'banners/')
+function createBannerImageStyle() {
+  return createImageStyle(this.options.image, 'banners/')
 }
 
 var allTypeDetails = {
-  bg_and_bottom_border() {
-    return createBannerImageStyle(this);
-  }
+  bg: createBannerImageStyle,
+  bg_and_bottom_border: createBannerImageStyle
 };
 
 export default {
