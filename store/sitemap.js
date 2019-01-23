@@ -44,15 +44,15 @@ export const getters = {
 
     function addSubmenuModuleLinks(links, rootState, rootGetters) {
       links.forEach(linkObj => {
-        var { sitempSubmenuModule } = linkObj;
+        var { sitemapSubmenuModule } = linkObj;
 
-        if (!sitempSubmenuModule) return;
+        if (!sitemapSubmenuModule) return;
 
-        var linkList = allModuleLinkLists[sitempSubmenuModule];
+        var linkList = allModuleLinkLists[sitemapSubmenuModule];
 
         if(!linkList) {
-            linkList = getLinkListFromModule(sitempSubmenuModule, rootState, rootGetters);
-            allModuleLinkLists[sitempSubmenuModule] = linkList;
+            linkList = getLinkListFromModule(sitemapSubmenuModule, rootState, rootGetters);
+            allModuleLinkLists[sitemapSubmenuModule] = linkList;
         }
 
         linkObj.sitemapSubmenu = linkList;
