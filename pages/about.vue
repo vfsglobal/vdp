@@ -28,7 +28,7 @@
           <div class="main_content_wrapper our_story">
             <h3 class="main_heading bottom_space">Our Story</h3>
             <div class="main_content_container">
-              <p>Since its setup in 2010, VDP has grown from being an in-house HR Expertise Center into an HR Outsourcing organisation with an ever growing Expertise Center and Partner network that can cater to various HR fucntions across industries and geographies.</p>
+              <p>Since its setup in 2010, VDP has grown from being an in-house HR Expertise Center into an HR Outsourcing organisation with an ever growing Expertise Center and Partner network that can cater to various HR functions across industries and geographies.</p>
               <p>A truly diverse team and vast knowledge of core HR functions, makes VDP a trusted partner of the clients.</p>
             </div>
           </div>

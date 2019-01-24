@@ -16,7 +16,7 @@
     <template slot="bannerNextSection">
       <box-list type="services" />
     </template>
-    <basic-section type="seperator">
+    <basic-section type="bottom_seperator">
       <div class="heading_wrapper">
         <h3 class="main_heading">Introduction</h3>
       </div>
