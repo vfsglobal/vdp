@@ -40,7 +40,7 @@ export default {
 
   display: flex;
   position: relative;
-  min-height: 450px;
+  height: 450px;
   background-size: cover;
   background-repeat: no-repeat;
   margin-bottom: -$bottom_overlap_space;

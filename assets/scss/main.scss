@@ -337,6 +337,10 @@ a.bottom_border {
   }
 }
 
+.page_container {
+  overflow: hidden;
+}
+
 .page-from-right-enter-active,
 .page-from-right-leave-active,
 .page-from-left-enter-active,
