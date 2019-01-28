@@ -64,11 +64,6 @@ module.exports = {
   ],
 
   /*
-   ** Nuxt.js modules
-   */
-  modules: [],
-
-  /*
    ** Build configuration
    */
   build: {
