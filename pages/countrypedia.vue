@@ -12,20 +12,25 @@
         <div class="info">This map is only for representation purpose.</div>
       </div>
     </basic-section>
-    <div class="wrapper">
-      <purple-heading-wrapper
-        v-if="activeCountry"
-        :key="activeCountry.title"
-      >{{activeCountry.title}}</purple-heading-wrapper>
+    <div class="wrapper purple_heading_container">
+      <transition name="purple-heading">
+        <purple-heading-wrapper
+          v-if="activeCountry"
+          :key="activeCountry.title"
+        >{{activeCountry.title}}</purple-heading-wrapper>
+      </transition>
     </div>
-    <!-- <basic-section v-if="activeCountry">
-      <nuxt-child />
-    </basic-section> -->
+    <basic-section v-if="activeCountry" class="main_content_container">
+      <div class="inner_page_container">
+        <nuxt-child />
+      </div>
+    </basic-section>
   </div>
 </template>
 
 <script>
-import { pageDefault, generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
+import { pageDefault } from '~/components/mixins/page';
+import { generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
 
 import svgMap from '~/components/utils/svg-map.vue';
 import purpleHeadingWrapper from '~/components/purple-heading-wrapper.vue';

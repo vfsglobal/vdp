@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { pageDefault } from '~/components/mixins/general';
+import { pageDefault } from '~/components/mixins/page';
 
 import {mapState} from 'vuex';
 

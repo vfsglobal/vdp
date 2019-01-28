@@ -350,23 +350,21 @@ a.bottom_border {
   width: 100%;
   transition: all $page_transition_duration $page_transition_delay;
 }
-[data-page-type="new"] {
+.page-from-right-enter-active,
+.page-from-left-enter-active {
   position: relative;
 }
-[data-page-type="old"] {
+.page-from-right-leave-active,
+.page-from-left-leave-active {
   position: absolute;
 }
-.page-from-right-enter[data-page-type="new"],
-.page-from-right-leave-to[data-page-type="new"],
-.page-from-left-enter[data-page-type="old"],
-.page-from-left-leave-to[data-page-type="old"] {
+.page-from-right-enter,
+.page-from-left-leave-to {
   transform: translateX(50%);
   opacity: 0;
 }
-.page-from-left-enter[data-page-type="new"],
-.page-from-left-leave-to[data-page-type="new"],
-.page-from-right-enter[data-page-type="old"],
-.page-from-right-leave-to[data-page-type="old"] {
+.page-from-left-enter,
+.page-from-right-leave-to {
   transform: translateX(-50%);
   opacity: 0;
 }

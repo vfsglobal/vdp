@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { pageDefault, generateMainLinkListMixin } from '~/components/mixins/general';
+import { pageDefault } from '~/components/mixins/page';
+import { generateMainLinkListMixin } from '~/components/mixins/general';
 
 import menuNav from '~/components/utils/menu-nav.vue';
 

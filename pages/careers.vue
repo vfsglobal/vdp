@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import { pageDefault } from '~/components/mixins/general';
+import { pageDefault } from '~/components/mixins/page';
 
 import accordion from '~/components/accordion/index.vue';
 import accordionElement from '~/components/accordion/element.vue';

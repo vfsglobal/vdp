@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { pageDefault } from '~/components/mixins/general';
+import { pageDefault } from '~/components/mixins/page';
 
 import tabContainer from '~/components/tab-container.vue';
 

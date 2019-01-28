@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import { pageDefault, generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
+import { pageDefault } from '~/components/mixins/page';
+import { generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
 
 import accordion from '~/components/accordion/index.vue';
 

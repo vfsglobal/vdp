@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { pageDefault } from '~/components/mixins/general';
+import { pageDefault } from '~/components/mixins/page';
 
 import boxList from '~/components/box-list.vue';
 
