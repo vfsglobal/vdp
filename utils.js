@@ -85,6 +85,18 @@ export function checkAndPush(mainArr, elementArr) {
   return mainArr;
 }
 
+export function checkAndRemove(mainArr, elementArr) {
+  elementArr = elementArr instanceof Array ? elementArr : [elementArr];
+
+  elementArr.forEach(element => {
+    var foundIndex = mainArr.indexOf(element);
+
+    if (foundIndex != -1) mainArr.splice(foundIndex, 1);
+  });
+
+  return mainArr;
+}
+
 export function removeIndexFromArr(mainArr, indexArr) {
   indexArr = indexArr instanceof Array ? indexArr : [indexArr];
 
@@ -175,7 +187,10 @@ export const indexPathFromArr = (() => {
   }
 
   return function() {
-    return setPathIndexes.apply(null, Array.prototype.slice.call(arguments, 0, 3));
+    return setPathIndexes.apply(
+      null,
+      Array.prototype.slice.call(arguments, 0, 3)
+    );
   };
 })();
 
@@ -183,7 +198,7 @@ export const indexPathFromArr = (() => {
 
 export function indexPathOfRoutePath(curPath, pathArr, pathKey, submenuKey) {
   curPath = checkAddSlashInPath(curPath);
-  
+
   return indexPathFromArr(
     pathArr,
     path => checkAddSlashInPath(pathKey ? path[pathKey] : path) == curPath,
@@ -207,7 +222,8 @@ export function sortRoutePath(
 
     if (foundIndex != -1 && result.indexOf(path) == -1) result.push(path);
 
-    if (submenu) sortRoutePath(pathArrToSort, submenu, pathKey, submenuKey, result);
+    if (submenu)
+      sortRoutePath(pathArrToSort, submenu, pathKey, submenuKey, result);
   });
 
   return result;
