@@ -58,7 +58,7 @@
               class="main_image"
             />
             <div class="main_content">
-              VDP Global Services is a registered trademark of VFS Data Processing Ltd
+              VDP Global Services is a registered trademark of VFS Data Processing Pvt. Ltd.
             </div>
           </div>
         </li>
