@@ -1,7 +1,5 @@
 import routerBaseUrl from "~/router-base-url";
 
-/*test*/
-
 /*defaults*/
 
 export const defaultContentOptions = {
