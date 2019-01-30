@@ -70,6 +70,9 @@ export default {
       geodata: am4geodata_world,
       projection: 'Miller',
       maxZoomLevel: 1,
+      chartContainer: {
+        wheelable: false
+      },
       seriesContainer: {
         draggable: false,
         resizable: false

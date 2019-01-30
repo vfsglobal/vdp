@@ -57,6 +57,7 @@ module.exports = {
     "~/plugins/router-url",
     "~/plugins/html-entity-encode",
     "~/plugins/show-by-slide",
+    "~/plugins/animate-height",
     {
       src: "~/plugins/outer-hooks",
       ssr: false

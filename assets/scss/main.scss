@@ -236,7 +236,6 @@ ul.seperator_content_list > li:not(:last-child) {
 }
 ul.side_heading_content_list {
   padding-bottom: 20px;
-  
   > li {
     display: flex;
     &:not(:last-child) > * {
@@ -288,7 +287,6 @@ a.bottom_border {
     &.small_space {
       padding-bottom: 10px;
     }
-
     img {
       vertical-align: middle;
     }
@@ -314,11 +312,9 @@ a.bottom_border {
     list-style-type: disc;
     padding-left: 20px;
     line-height: $content_para_line_height;
-
     &:not(:last-child) {
       padding-bottom: 20px;
     }
-
     > li:not(:last-child) {
       padding-bottom: 10px;
     }
@@ -326,37 +322,20 @@ a.bottom_border {
   ol {
     padding-left: 20px;
     line-height: $content_para_line_height;
-
     &:not(:last-child) {
       padding-bottom: 20px;
     }
-
     &.big_space > li:not(:last-child) {
       padding-bottom: 20px;
     }
   }
 }
-
 .page_container {
+  position: relative;
   overflow: hidden;
 }
-
-.page-from-right-enter-active,
-.page-from-right-leave-active,
-.page-from-left-enter-active,
-.page-from-left-leave-active {
-  left: 0%;
-  top: 0%;
-  width: 100%;
+@include add_transition_default_css((page-from-right page-from-left)) {
   transition: all $page_transition_duration $page_transition_delay;
-}
-.page-from-right-enter-active,
-.page-from-left-enter-active {
-  position: relative;
-}
-.page-from-right-leave-active,
-.page-from-left-leave-active {
-  position: absolute;
 }
 .page-from-right-enter,
 .page-from-left-leave-to {
@@ -366,5 +345,15 @@ a.bottom_border {
 .page-from-left-enter,
 .page-from-right-leave-to {
   transform: translateX(-50%);
+  opacity: 0;
+}
+
+.inner_page_container {
+  position: relative;
+}
+@include add_transition_default_css(inner-page) {
+  transition: all $inner_page_transition_duration;
+}
+.inner-page-enter, .inner-page-leave-to {
   opacity: 0;
 }

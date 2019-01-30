@@ -46,26 +46,17 @@ export default {
     }
   }
 
-  &.purple-heading-enter-active,
-  &.purple-heading-leave-active {
-    width: 100%;
-    box-sizing: border-box;
-    transition: all 0.7s;
-  }
-  &.purple-heading-enter-active {
-    position: relative;
-  }
-  &.purple-heading-leave-active {
-    position: absolute;
-  }
+  @include add_transition_default_css(purple-heading, (
+    prefix: "&"
+  )) {
+    transition: all $inner_page_transition_duration;
+  };
   &.purple-heading-enter {
     transform: translateY(100%);
+    opacity: 0;
   }
   &.purple-heading-leave-to {
     transform: translateY(-100%);
-  }
-  &.purple-heading-enter,
-  &.purple-heading-leave-to {
     opacity: 0;
   }
 }

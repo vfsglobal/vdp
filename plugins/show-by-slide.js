@@ -1,27 +1,12 @@
 import Vue from "vue";
+import { createAdvancedAutocorrectOptions } from "~/utils";
 
 var defaultOptions = {
-  show: false,
-  slideDuration: 700,
-  callback() {}
-};
-
-function autocorrectOptions(binding) {
-  var { value: options } = binding;
-
-  if (typeof options == "boolean") {
-    options = {
-      show: options
-    };
-  }
-
-  options = {
-    ...defaultOptions,
-    ...options
-  };
-
-  return options;
-}
+    show: false,
+    slideDuration: 700,
+    callback() {}
+  },
+  autocorrectOptions = createAdvancedAutocorrectOptions(defaultOptions, "show");
 
 Vue.directive("show-by-slide", {
   bind(el, binding) {

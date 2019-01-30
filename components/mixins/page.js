@@ -107,3 +107,7 @@ export const pageDefault = {
     })
   ])
 };
+
+export const innerPage = {
+  mixins: [pageTitle]
+};

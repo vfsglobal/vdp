@@ -40,6 +40,9 @@
 [data-column-details="col4_details_big"] {
   @include set_column(4, $box_big_spacing, true);
 }
+[data-column-details="full_col2_details"] {
+  @include set_column(2, 0%);
+}
 [data-column-details="col2_details"] {
   @include set_column(2, $box_spacing);
 }

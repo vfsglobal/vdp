@@ -34,6 +34,7 @@ $accordion_hor_padding: 15px;
 $accordion_transition_duration: 0.7s;
 $page_transition_duration: 1000ms;
 $page_transition_delay: 300ms;
+$inner_page_transition_duration: 1000ms;
 @mixin table_with_cell($valign: middle) {
   display: table;
   > * {
@@ -68,4 +69,49 @@ $page_transition_delay: 300ms;
     $new_value: $new_value + ", " + $value;
   }
   #{$property}: #{$new_value};
+}
+@function add_transition_selector(
+  $transition_name,
+  $type,
+  $options,
+  $selector: ""
+) {
+  $prefix: map-get($options, prefix);
+  $suffix: map-get($options, suffix);
+  @return $selector + if($selector == "", "", ", ") + if($prefix, $prefix, "") +
+    "." + $transition_name + "-" + $type + "-active" + if($suffix, $suffix, "");
+}
+@mixin add_transition_default_css($all_transition_names, $options: ()) {
+  @if type-of($all_transition_names) == "string" {
+    $all_transition_names: ($all_transition_names);
+  }
+  $enter_active_selector: "";
+  $leave_active_selector: "";
+  @each $transition_name in $all_transition_names {
+    $enter_active_selector: add_transition_selector(
+      $transition_name,
+      "enter",
+      $options,
+      $enter_active_selector
+    );
+    $leave_active_selector: add_transition_selector(
+      $transition_name,
+      "leave",
+      $options,
+      $leave_active_selector
+    );
+  }
+  #{$enter_active_selector}, #{$leave_active_selector} {
+    @content;
+  }
+  #{$enter_active_selector} {
+    position: relative;
+  }
+  #{$leave_active_selector} {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }

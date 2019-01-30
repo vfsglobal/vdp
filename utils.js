@@ -259,6 +259,29 @@ export function isNumericKeysObject(obj) {
   return hasNumericKey;
 }
 
+/*directive operations*/
+
+export function createAdvancedAutocorrectOptions(defaultOptions, nonObjKey) {
+  var nonObjType = typeof defaultOptions[nonObjKey];
+
+  return binding => {
+    var { value: options } = binding;
+
+    if (typeof options == nonObjType) {
+      options = {
+        [nonObjKey]: options
+      };
+    }
+
+    options = {
+      ...defaultOptions,
+      ...options
+    };
+
+    return options;
+  };
+}
+
 /*function operations*/
 
 export function createMergedFunction(functionsArr) {
@@ -389,6 +412,45 @@ export const createLinkListFn = (() => {
     return state => {
       return state.list.map(element => getLinkObj(element, options, state));
     };
+  };
+})();
+
+/*array content operations*/
+
+/* generate new modified data according to ordered key; also it will contain other data */
+
+export var generateNewArrData = (function() {
+  var generateOtherData = (function() {
+    var ignoreDataDetailsKeyInLoop = ["keyOrder", "dataDetails"];
+
+    return function(dataDetails, dataKey) {
+      var otherData = {};
+
+      for (var dataDetailsKey in dataDetails) {
+        if (ignoreDataDetailsKeyInLoop.indexOf(dataDetailsKey) != -1) continue;
+
+        otherData[dataDetailsKey] = dataDetails[dataDetailsKey][dataKey];
+      }
+
+      return otherData;
+    };
+  })();
+
+  return function(data, dataDetails) {
+    var innerDataDetails = dataDetails.dataDetails;
+
+    return dataDetails.keyOrder.map(dataKey => {
+      var curInnerDataDetails = innerDataDetails && innerDataDetails[dataKey],
+        dataValue = data[dataKey];
+
+      return {
+        key: dataKey,
+        ...generateOtherData(dataDetails, dataKey),
+        value: curInnerDataDetails
+          ? generateNewArrData(dataValue, curInnerDataDetails)
+          : dataValue
+      };
+    });
   };
 })();
 
