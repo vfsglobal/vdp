@@ -2,10 +2,10 @@
 </template>
 
 <script>
-import { innerPage } from '~/components/mixins/page';
+import { countrypediaPage } from '~/components/mixins/page';
 
 export default {
-  mixins: [innerPage]
+  mixins: [countrypediaPage]
 }
 </script>
 

@@ -108,6 +108,13 @@ export const pageDefault = {
   ])
 };
 
-export const innerPage = {
-  mixins: [pageTitle]
+import accordion from '~/components/accordion/index.vue';
+import accordionElement from '~/components/accordion/element.vue';
+
+export const countrypediaPage = {
+  mixins: [pageTitle],
+  components: {
+    accordion,
+    accordionElement
+  }
 };
