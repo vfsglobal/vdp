@@ -1,31 +1,22 @@
 import Vue from "vue";
-import { createAdvancedAutocorrectOptions, animateHeight } from "~/utils";
-
-var defaultOptions = {
-    toHeight: "auto",
-    duration: 700,
-    delay: 0,
-    callback() {}
-  },
-  autocorrectOptions = createAdvancedAutocorrectOptions(
-    defaultOptions,
-    "toHeight"
-  );
+import { animateHeight } from "~/utils";
 
 function hook(el, binding, vnode) {
-  var $el = $(el);
-  options;
+  var $el = $(el),
+    el_height = $el.height();
 
-//   $el.data('animate-height', $el.height());
-  
-//   options = autocorrectOptions(binding);
+  //if (el_height == $el.data("animate-height")) return;
 
-//   $el.stop().css("height", $pageContainer.height() + "px");
+  //$el.data("animate-height", $el.height());
 
-//   vnode.context.$nextTick(function() {
-//     console.log($(el).height());
-//   });
-//   console.log($(el).height());
+  //options = autocorrectOptions(binding);
+
+  $el.stop().css("height", el_height + "px");
+
+  vnode.context.$nextTick(function() {
+    animateHeight($el, binding.value);
+  });
+  //   console.log($(el).height());
 }
 
 Vue.directive("animate-height", {

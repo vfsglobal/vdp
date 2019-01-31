@@ -10,7 +10,7 @@ var defaultOptions = {
 
 Vue.directive("show-by-slide", {
   bind(el, binding) {
-    var options = autocorrectOptions(binding),
+    var options = autocorrectOptions(binding.value),
       { show } = options;
 
     el.style.display = show ? null : "none";

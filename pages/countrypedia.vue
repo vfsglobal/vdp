@@ -12,7 +12,7 @@
         <div class="info">This map is only for representation purpose.</div>
       </div>
     </basic-section>
-    <div v-animate-height="'auto'">
+    <div v-animate-height="{duration: 1000}">
       <div class="wrapper purple_heading_container">
         <transition name="purple-heading">
           <purple-heading-wrapper

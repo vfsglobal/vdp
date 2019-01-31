@@ -259,14 +259,10 @@ export function isNumericKeysObject(obj) {
   return hasNumericKey;
 }
 
-/*directive operations*/
-
 export function createAdvancedAutocorrectOptions(defaultOptions, nonObjKey) {
   var nonObjType = typeof defaultOptions[nonObjKey];
 
-  return binding => {
-    var { value: options } = binding;
-
+  return options => {
     if (typeof options == nonObjType) {
       options = {
         [nonObjKey]: options
@@ -465,13 +461,15 @@ export const animateHeight = (() => {
     removeHeightAfterAnimate: true,
     removeOverflowAfterAnimate: true,
     callback() {}
-  };
+  },
+  
+  autocorrectOptions = createAdvancedAutocorrectOptions(
+    defaultOptions,
+    "toHeight"
+  );
 
   return function($el, options) {
-    options = {
-      ...defaultOptions,
-      ...options
-    };
+    options = autocorrectOptions(options);
 
     var {
       toHeight,
