@@ -105,10 +105,10 @@ $inner_page_transition_duration: 1000ms;
     @content;
   }
   #{$enter_active_selector} {
-    position: relative;
+    position: relative !important;
   }
   #{$leave_active_selector} {
-    position: absolute;
+    position: absolute !important;
     left: 0%;
     top: 0%;
     width: 100%;
