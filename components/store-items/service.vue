@@ -76,6 +76,10 @@ export default {
       color: #fff;
       font-weight: bold;
     }
+
+    &.bg_icon > i {
+      font-size: 130px;
+    }
   }
 
   &:hover {
