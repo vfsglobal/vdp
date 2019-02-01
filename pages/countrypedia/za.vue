@@ -142,9 +142,19 @@ Encashment will be calculated based on the last drawn basic monthly salary.
         <template slot="buttonContent">
           <h4>Statutory Bonus</h4>
         </template>
-        <p>The 13th cheque or Christmas bonus</p>
-        <p>This bonus is normally classed as a gratuity - in other words, a payment of gratitude by the employer to the employee in recognition of a job well done, or if you like, going the extra mile.</p>
+         <ul class="side_heading_content_list">
+          <li>
+            <div class="heading_wrapper">
+              <h5 class="normal">The 13th cheque or Christmas bonus:</h5>
+            </div>
+            <div class="main_content">
+               <p>This bonus is normally classed as a gratuity - in other words, a payment of gratitude by the employer to the employee in recognition of a job well done, or if you like, going the extra mile.</p>
         <p>However, over the years most employees have come to expect the payment of the 13th cheque as a right or entitlement, or as a condition of employment.  This is evidenced by the fact that at job application interviews most applicants will ask "do you pay a 13th Cheque?”. In other words, they expect to be paid a 13th cheque irrespective of whether the job is well done or irrespective of whether they go the extra mile. They want the payment of a 13th cheque to be incorporated as a condition of employment.</p>
+            </div>
+          </li>
+          </ul>
+        <p></p>
+       
        
       </accordion-element>
       <accordion-element>
