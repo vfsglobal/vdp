@@ -2,7 +2,12 @@
   <div class="container countrypedia">
     <basic-section
       type="bg"
-      :options="{image: 'countrypedia.jpg'}"
+      :options="{
+        image: {
+          name: 'countrypedia.jpg',
+          position: 'top'
+        }
+      }"
     >
       <div class="outer_map_container">
         <svg-map
@@ -29,19 +34,12 @@
             class="main_content_container"
           >
             <p>All information in this document is as of November 2018. This information is only a reference paper through various website links which is not officially verified. This document may not be used as a guide for policy or regulation. The creator or sender bears no liability for the authentication of this data.</p>
-            <!-- <ul
-              class="heading_content_list"
-              data-column-details="full_col2_details"
-            >
-              <li>
-                <h4>Currency</h4>
-                <div class="main_content">Sterling Pounds, GBP (Symbol : £)</div>
-              </li>
-              <li>
-                <h4>Fiscal Year</h4>
-                <div class="main_content">6 April – 5 April each year</div>
-              </li>
-            </ul> -->
+            <list :content="activeCountry.mainInfo" class="heading_content_list" data-column-details="col2_details">
+              <template slot-scope="slotProps">
+                <h4 class="normal">{{slotProps.item.heading}}</h4>
+                <div class="main_content"><strong>{{slotProps.item.value}}</strong></div>
+              </template>
+            </list>
             <nuxt-child />
           </basic-section>
         </transition>
@@ -55,6 +53,7 @@ import { pageDefault } from '~/components/mixins/page';
 import { generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
 
 import svgMap from '~/components/utils/svg-map.vue';
+import list from '~/components/utils/list.vue';
 import purpleHeadingWrapper from '~/components/purple-heading-wrapper.vue';
 
 import { mapGetters } from 'vuex';
@@ -69,6 +68,7 @@ export default {
 
   components: {
     svgMap,
+    list,
     purpleHeadingWrapper
   },
 

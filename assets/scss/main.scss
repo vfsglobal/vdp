@@ -216,16 +216,22 @@ button {
     }
   }
 }
-h4.normal {
+%h4_normal {
   font-family: Poppins, sans-serif;
   @extend %L_font_size;
   font-weight: bold;
   color: $dark_content_color;
 }
-h5.normal {
+%h5_normal {
   font-family: Poppins, sans-serif;
   font-size: 1em;
   font-weight: bold;
+}
+h4.normal {
+  @extend %h4_normal;
+}
+h5.normal {
+  @extend %h5_normal;
 }
 p.main {
   @extend %L_font_size;
@@ -284,6 +290,27 @@ a.bottom_border {
   &:hover:before {
     opacity: 1;
     transform: scaleX(1);
+  }
+}
+ul.heading_content_list {
+  @extend %marb_big;
+
+  > li {
+    flex-direction: column;
+    text-align: center;
+    %padding {
+      @extend %padv_normal;
+      @extend %padh_normal;
+    }
+    > h4.normal,
+    > h5.normal {
+      @extend %padding;
+      background: $light_background_color;
+    }
+    > .main_content {
+      @extend %padding;
+      background: $light_background_color2;
+    }
   }
 }
 .main_content_container {
