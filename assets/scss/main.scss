@@ -40,14 +40,13 @@ body {
   background: #fff;
   font-family: Roboto, sans-serif;
   color: $content_color;
-  font-size: 14px;
-}
 
+  @extend %common_font_size;
+}
 a {
   text-decoration: none;
   outline: 0;
 }
-
 article,
 aside,
 canvas,
@@ -64,7 +63,6 @@ section,
 summary {
   display: block;
 }
-
 h1,
 h2,
 h3,
@@ -74,26 +72,21 @@ h6 {
   font-weight: normal;
   margin: 0;
 }
-
 ul {
   list-style: none;
 }
-
 p {
   margin: 0;
 }
-
 button {
   padding: 0;
   border: none;
   background: none;
   box-sizing: content-box;
 }
-
 @mixin selection() {
   $color: #fff;
   $background: lighten($purple, 10);
-
   ::-moz-selection {
     color: $color;
     background: $background;
@@ -103,27 +96,22 @@ button {
     background: $background;
   }
 }
-
 @include selection();
-
 .wrapper {
   width: 95%;
   max-width: 1080px;
   margin: 0 auto;
 }
-
 .clearfix:after {
   content: "";
   display: block;
   clear: both;
 }
-
 @mixin pad_and_mar_classes() {
   $css_space_types: (
     pad: padding,
     mar: margin
   );
-
   $css_space_details: (
     t: top,
     b: bottom,
@@ -137,7 +125,7 @@ button {
       @each $class_type, $css_suffixes in $css_space_details {
         .#{$class_prefix + $class_type + _ + $name} {
           @each $css_suffix in $css_suffixes {
-            #{$css_name + '-' + $css_suffix}: $value;
+            @include multi_media($css_name + '-' + $css_suffix, $value);
           }
         }
       }
@@ -155,7 +143,11 @@ button {
     position: absolute;
     left: 50%;
     top: 50%;
-    font-size: 130px;
+    @include multi_media(font-size, (
+      default: 50px,
+      _onlySdesktop: 40px,
+      mobile: 30px
+    ));
     color: rgba(#000, 0.03);
     transform: translate(-50%, -50%);
     z-index: -1;
@@ -171,7 +163,8 @@ button {
   display: inline-block;
   position: relative;
   font-family: Poppins, sans-serif;
-  font-size: 20px;
+  @extend %XL_font_size;
+  
   &%before_after {
     content: "";
     position: absolute;
@@ -182,37 +175,66 @@ button {
   }
   &:before {
     @extend %before_after;
-    bottom: -12px;
-    width: 40px;
+    @include add_css_from_map(
+      (
+        bottom: (
+          default: -12px,
+          _onlySdesktop: -10px,
+          mobile: -8px
+        ),
+        width: (
+          default: 40px,
+          _onlySdesktop: 35px,
+          mobile: 30px
+        )
+      )
+    );
   }
   &:after {
     @extend %before_after;
-    bottom: -15px;
-    width: 60px;
+    @include add_css_from_map(
+      (
+        bottom: (
+          default: -15px,
+          _onlySdesktop: -13px,
+          mobile: -11px
+        ),
+        width: (
+          default: 60px,
+          _onlySdesktop: 50px,
+          mobile: 45px
+        )
+      )
+    );
   }
-  &.top_space {
-    margin-top: $container_spacing;
-  }
-  &.bottom_space {
-    margin-bottom: $container_spacing;
-  }
-  $small_space: 10px;
-  &.small_top_space {
-    margin-top: $small_space;
-  }
-  &.small_bottom_space {
-    margin-bottom: $small_space;
-  }
-  &.small_border_space:before {
-    bottom: -2px;
-  }
-  &.small_border_space:after {
-    bottom: -5px;
+  &.small_border_space {
+    @extend .marb_extra_small;
+
+    &:before {
+      @include multi_media(
+        bottom,
+        (
+          default: -2px,
+          _onlySdesktop: -1px,
+          mobile: 0px
+        )
+      );
+    }
+    &:after {
+      @include multi_media(
+        bottom,
+        (
+          default: -5px,
+          _onlySdesktop: -4px,
+          mobile: -3px
+        )
+      );
+    }
   }
 }
 h4.normal {
   font-family: Poppins, sans-serif;
-  font-size: 16px;
+  @extend %L_font_size;
   font-weight: bold;
   color: $dark_content_color;
 }
@@ -222,24 +244,24 @@ h5.normal {
   font-weight: bold;
 }
 p.main {
-  font-size: 16px;
-  text-align: center;
-  padding-bottom: $container_spacing;
+  @extend %L_font_size;
+  @extend .padb_big;
   line-height: $content_para_line_height;
   max-width: 800px;
   margin: 0 auto;
+  text-align: center;
 }
 ul.seperator_content_list > li:not(:last-child) {
-  padding-bottom: $container_spacing;
+  @extend .padb_big;
   border-bottom: 1px solid $light_border_color;
-  margin-bottom: $container_spacing;
+  @extend .marb_big;
 }
 ul.side_heading_content_list {
-  padding-bottom: 20px;
+  @extend .padb_normal;
   > li {
     display: flex;
     &:not(:last-child) > * {
-      padding-bottom: 20px;
+      @extend .padb_normal;
     }
     > .heading_wrapper {
       width: 20%;
@@ -250,9 +272,13 @@ ul.side_heading_content_list {
     }
     > .main_content {
       flex: 1;
-      padding-left: 20px;
-      border-left: 3px solid $light_border_color;
-      margin-left: 20px;
+      $space: map-get($space_details, normal);
+
+      @include add_css_from_map((
+        padding-left: $space,
+        border-left: 3px solid $light_border_color,
+        margin-left: $space
+      ));
     }
   }
 }
@@ -347,13 +373,13 @@ a.bottom_border {
   transform: translateX(-50%);
   opacity: 0;
 }
-
 .inner_page_container {
   position: relative;
 }
 @include add_transition_default_css(inner-page) {
   transition: all $inner_page_transition_duration;
 }
-.inner-page-enter, .inner-page-leave-to {
+.inner-page-enter,
+.inner-page-leave-to {
   opacity: 0;
 }

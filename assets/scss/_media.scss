@@ -1,0 +1,304 @@
+$media_resolutions: (
+  XLdesktop: -2500, //extra large desktop
+  Ldesktop: -1400, //large desktop
+  laptop: 1200,
+  Sdesktop: 1140, //small desktop
+  ipad: 1080,
+  Sipad: 960,
+  Ltablet: 900,
+  tablet: 768,
+  Stablet: 680,
+  Lmobile: 600,
+  mobile: 520,
+  Smobile: 480,
+  XSmobile: 380
+);
+
+$predefined_media_type: (
+  onlySdesktop: Sdesktop/mobile
+);
+
+// $value_options will be
+// (
+// multiplier: 1.5,
+// round: true,
+// adder: 5,
+// prefix: "calc(",
+// suffix: ")"
+// )
+// all options are optional
+// operations will be solved in the order as passed in $value_options
+@function generate_value($value, $value_options) {
+  @if ($value_options == false) {
+    @return $value;
+  }
+  @each $option_key, $option_value in $value_options {
+    @if $option_key == multiply {
+      $value: $value * $option_value;
+    } @else if $option_key == add {
+      $value: $value + $option_value;
+    } @else if $option_key == round {
+      $value: round($value);
+    } @else if $option_key == prefix {
+      $value: $option_value + $value;
+    } @else if $option_key == suffix {
+      $value: $value + $option_value;
+    }
+  }
+  @return unquote($value);
+}
+// $content will be
+// (
+// prop: ("padding" "margin"),
+// value: 20px
+// )
+// //or
+// (
+// prop: padding,
+// value: 20px
+// )
+// //or
+// (
+// padding: 20px,
+// margin: 20px,
+// color: #FFF
+// )
+@mixin set_css_content($content, $value_options) {
+  @if $content == false {
+    @content;
+  } @else {
+    $prop: map-get($content, prop);
+    $value: map-get($content, value);
+    @if $prop and $value {
+      @each $cur_prop in $prop {
+        #{$prop}: generate_value($value, $value_options);
+      }
+    } @else {
+      @each $prop, $value in $content {
+        #{$prop}: generate_value($value, $value_options);
+      }
+    }
+  }
+}
+// below are possible values of $type
+// $type: laptop //or any value from media_resolutions
+// //output @media (max-width: 1200px)
+// $type: extra_big
+// //output @media (min-width: 1400px) //note min-width instead of max-width since value is given in negative
+// $type: (
+// from: laptop,
+// to: mobile
+// ) //output (max-width: 1200px) and (min-width: 521px)
+// $type: (
+// from: mobile,
+// to: laptop
+// ) //output (min-width: 520px) and (max-width: 1199px)
+// $type: laptop/mobile //as same as (from: laptop, to: mobile) or
+// $type: mobile/laptop //as same as (from: mobile, to: laptop)
+// $type: _only_laptop //if starts with underscope give value as given in predefined_media_type
+@function generate_media_str($type) {
+  $media_str: "";
+  @if type-of($type) == map {
+    $from: map-get($type, from);
+    $to: map-get($type, to);
+    $resolution_from_value: abs(map-get($media_resolutions, $from));
+    $resolution_to_value: abs(map-get($media_resolutions, $to));
+    $is_from_greater: $resolution_from_value > $resolution_to_value;
+    $media_str: "(" +
+      if($is_from_greater, "max", "min") +
+      "-width: " +
+      $resolution_from_value +
+      "px) and (" +
+      if($is_from_greater, "min", "max") +
+      "-width: " +
+      ($resolution_to_value + if($is_from_greater, 1, -1)) +
+      "px)";
+  } @else if str-index($type, "/") != null {
+    $index: str-index($type, "/");
+    $media_str: generate_media_str(
+      (
+        from: str-slice($type, 1, $index - 1),
+        to: str-slice($type, $index + 1)
+      )
+    );
+  } @else if str-index($type, "_") == 1 {
+    $media_str: generate_media_str(
+      map-get($predefined_media_type, str-slice($type, 2))
+    );
+  } @else {
+    $resolution_value: map-get($media_resolutions, $type);
+    @if $resolution_value > 0 {
+      $media_str: "(max-width: " + $resolution_value + "px)";
+    } @else {
+      $media_str: "(min-width: " + abs($resolution_value) + "px)";
+    }
+  }
+  @return $media_str;
+}
+@mixin media($type, $content: false, $value_options: false) {
+  @if $type == default {
+    @include set_css_content($content, $value_options) {
+      @content;
+    }
+  } @else {
+    @media screen and #{generate_media_str($type)} {
+      @include set_css_content($content, $value_options) {
+        @content;
+      }
+    }
+  }
+}
+// multi_media(padding, 30, (suffix: "px"));
+// multi_media(padding, (
+// default: 80,
+// ipad: 70
+// ), (suffix: "px")); //also allows prefix in third parameter
+// multi_media(("padding" "margin"), (
+// default: 80px,
+// laptop: 70px
+// ));
+// $ipad_height: 50px;
+// multi_media((
+// default: (
+// width: 80px,
+// height: auto
+// ),
+// laptop: (
+// display: table
+// width: auto,
+// min-width: $ipad_height,
+// height: $ipad_height,
+// line-height: $ipad_height
+// ),
+// ipad: (
+// display: none
+// )
+// ));
+@mixin multi_media(
+  $default_css_prop,
+  $all_type_values: false,
+  $value_options: false
+) {
+  @if ($all_type_values == false) {
+    $all_type_values: $default_css_prop;
+    $default_css_prop: false;
+  }
+  @if type-of($all_type_values) != map and $default_css_prop != false {
+    @include set_css_content(
+      (
+        $default_css_prop: $all_type_values
+      ),
+      $value_options
+    );
+  } @else {
+    @each $type, $value in $all_type_values {
+      @if type-of($value) == map {
+        @include media($type, $value, $value_options);
+      } @else {
+        @include media(
+          $type,
+          (
+            prop: $default_css_prop,
+            value: $value
+          ),
+          $value_options
+        );
+      }
+    }
+  }
+}
+// add_css_from_map((
+// height: (
+// default: 50px,
+// laptop: 40px
+// ),
+// width: (
+// default: 80px,
+// ipad: 60px
+// )
+// ));
+// add_css_from_map((
+// height: 40px,
+// width: 60px
+// ));
+@mixin add_css_from_map($css_obj) {
+  @each $name, $value in $css_obj {
+    @include multi_media($name, $value);
+  }
+}
+// //if
+// $modify_options: (
+//     multiply: (
+//         default: 3,
+//         mobile: 2
+//     ),
+//     add: 1
+// );
+// //and
+// $key: default
+// //output 
+// (
+//     multiply: 3,
+//     add: 1
+// );
+@function modify_map_value_options($modify_options, $key) {
+	@each $option_key, $option_val in $modify_options {
+		$modify_options: map-merge($modify_options, (
+			$option_key: if(type-of($option_val) == map, map-get($option_val, $key), $option_val)
+		));
+	}
+
+	@return $modify_options;
+}
+
+// //modify_options for basic map can be
+// $modify_options: (
+//     multiply: 2,
+//     add: 1
+// );
+// //modify options for map like
+// $map: (
+//     default: 30,
+//     mobile: 20
+// )
+// $modify_options: (
+//     multiply: (
+//         default: 3,
+//         mobile: 2
+//     ),
+//     add: 1
+// );
+// //or even n level nested like
+// $map: (
+//     default: (
+//          padding: 30px,
+//          margin: 15px
+//     ),
+//     mobile: 20
+// )
+// $modify_options: (
+//     multiply: (
+//         default: (
+//             padding: 1.5,
+//             margin: 1.2
+//         ),
+//         mobile: 2
+//     ),
+//     add: 1
+// );
+@function modify_map_value($map, $modify_options) {
+	@each $key, $value in $map {
+		$new_modify_options: modify_map_value_options($modify_options, $key);
+
+		@if type-of($value) == map {
+			$value: modify_map_value($value, $new_modify_options);
+		}
+		@else {
+			$value: generate_value($value, $new_modify_options);
+		}
+
+		$map: map-merge($map, ($key: $value));
+	}
+
+	@return $map;
+}
