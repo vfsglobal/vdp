@@ -18,7 +18,7 @@ Vue.directive("show-by-slide", {
   update(el, binding) {
     if (binding.oldValue == binding.value) return;
 
-    var options = autocorrectOptions(binding),
+    var options = autocorrectOptions(binding.value),
       { show, slideDuration, callback } = options;
 
     $(el)
