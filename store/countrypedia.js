@@ -49,11 +49,19 @@ export const state = () => ({
       }
     },
     {
+      key: "ae",
+      title: "UAE",
+      mainInfo: {
+        currency: "United Arab Emirates Dirham (AED)",
+        fiscalYear: "1st January to 31st December"
+      }
+    },
+    {
       key: "gb",
       title: "United Kingdom",
       mainInfo: {
         currency: "Sterling Pounds (GBP)",
-        fiscalYear: "6th April to 5th April each year"
+        fiscalYear: "6th April to 5th April"
       }
     },
     {
