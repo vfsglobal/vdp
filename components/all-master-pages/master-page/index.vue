@@ -5,12 +5,11 @@
     </banner>
     <section
       class="off_white_bg"
-      :class="bannerNextSectionTypeDetails.offWhiteSectionClass"
+      :class="bannerNextSectionType"
     >
       <div class="wrapper">
         <purple-heading-wrapper
           :heading-tag="purpleHeadingTag"
-          :class="bannerNextSectionTypeDetails.purpleHeadingClass"
         >{{purpleHeadingText}}</purple-heading-wrapper>
         <slot name="bannerNextSection" />
       </div>
@@ -21,27 +20,12 @@
 </template>
 
 <script>
-import { generateTypeDetailsMixin } from '~/components/mixins/general';
-
 import banner from './banner.vue';
 import purpleHeadingWrapper from '~/components/purple-heading-wrapper.vue';
 import statsListWrapper from './stats-list-wrapper.vue';
 
-var allBannerNextSectionTypeDetails = {
-  overlapContent: {
-    offWhiteSectionClass: 'padb_small',
-    purpleHeadingClass: 'overlap_content'
-  }
-};
-
 export default {
   name: 'master-page',
-
-  mixins: [generateTypeDetailsMixin({
-    namePrefix: 'bannerNextSection',
-    data: allBannerNextSectionTypeDetails,
-    includeProp: true
-  })],
 
   components: {
     banner,
@@ -50,6 +34,10 @@ export default {
   },
 
   props: {
+    bannerNextSectionType: {
+      type: String,
+      default: 'default'
+    },
     bannerImage: {
       type: [String, Object],
       required: true
@@ -71,3 +59,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+section.off_white_bg.overlapContent {
+  padding-bottom: 20px;
+}
+</style>

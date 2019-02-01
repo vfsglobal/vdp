@@ -33,7 +33,7 @@ export default {
   color: #fff;
   z-index: 1;
 
-  &.overlap_content {
+  .overlapContent & {
     $overlap_spacing: 80px;
 
     padding-bottom: $spacing + $overlap_spacing;
