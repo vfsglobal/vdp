@@ -247,6 +247,9 @@ ul.side_heading_content_list {
   word-break: break-word;
   > li {
     display: flex;
+    @include media(Stablet) {
+      flex-direction: column;
+    }
     &:not(:last-child) > * {
       @extend %padb_big;
     }
