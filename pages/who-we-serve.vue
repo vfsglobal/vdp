@@ -7,7 +7,7 @@
       <div class="main_content_container">
         <ul class="seperator_content_list">
           <li>
-            <h4 class="main_heading marb_big">Introduction</h4>
+            <h4 class="main_heading bottom_space">Introduction</h4>
             <p>As business becomes more complex, so do the functions of Human Resources, consequences of a HR oversight can entail legal and economic ramifications.</p>
             <p>Today the merits of outsourcing human resources activities have been well established and have become a widely accepted practice. We have developed a streamlined process that evaluates and takes care of your HR needs. </p>
             <p>VDP’s shared service solution can provide customer centric support in the form of a tailor made delivery model to suit your organisation. </p>
@@ -16,7 +16,7 @@
             v-for="(item, index) in list"
             :key="index"
           >
-            <h4 class="main_heading marb_big">{{item.title}}</h4>
+            <h4 class="main_heading bottom_space">{{item.title}}</h4>
             <tab-container
               :content="item.content"
               :set-button-width="false"

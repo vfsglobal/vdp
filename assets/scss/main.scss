@@ -107,32 +107,6 @@ button {
   display: block;
   clear: both;
 }
-@mixin pad_and_mar_classes() {
-  $css_space_types: (
-    pad: padding,
-    mar: margin
-  );
-  $css_space_details: (
-    t: top,
-    b: bottom,
-    v: (
-      top,
-      bottom
-    )
-  );
-  @each $name, $value in $space_details {
-    @each $class_prefix, $css_name in $css_space_types {
-      @each $class_type, $css_suffixes in $css_space_details {
-        .#{$class_prefix + $class_type + _ + $name} {
-          @each $css_suffix in $css_suffixes {
-            @include multi_media($css_name + "-" + $css_suffix, $value);
-          }
-        }
-      }
-    }
-  }
-}
-@include pad_and_mar_classes();
 .off_white_bg {
   background: $light_background_color;
 }
@@ -183,7 +157,7 @@ button {
         bottom: (
           default: -12px,
           _onlySdesktop: -10px,
-          _onlymobile: -8px
+          _onlymobile: -5px
         ),
         width: (
           default: 40px,
@@ -200,7 +174,7 @@ button {
         bottom: (
           default: -15px,
           _onlySdesktop: -13px,
-          _onlymobile: -11px
+          _onlymobile: -8px
         ),
         width: (
           default: 60px,
@@ -210,8 +184,17 @@ button {
       )
     );
   }
+  &.top_space {
+    @extend %mart_big;
+  }
+  &.bottom_space {
+    @extend %marb_big;
+  }
+  &.vertical_space {
+    @extend %marv_big;
+  }
   &.small_border_space {
-    @extend .marb_extra_small;
+    @extend %marb_extra_small;
 
     &:before {
       @include multi_media(
@@ -248,24 +231,24 @@ h5.normal {
 }
 p.main {
   @extend %L_font_size;
-  @extend .padb_big;
+  @extend %padb_big;
   line-height: $content_para_line_height;
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 ul.seperator_content_list > li:not(:last-child) {
-  @extend .padb_big;
+  @extend %padb_big;
   border-bottom: 1px solid $light_border_color;
-  @extend .marb_big;
+  @extend %marb_big;
 }
 ul.side_heading_content_list {
-  @extend .padb_normal;
+  @extend %padb_normal;
   word-break: break-word;
   > li {
     display: flex;
     &:not(:last-child) > * {
-      @extend .padb_big;
+      @extend %padb_big;
     }
     > .heading_wrapper {
       width: 20%;
