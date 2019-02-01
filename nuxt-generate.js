@@ -61,9 +61,17 @@ var processArgsDetails = {
           zipFolder(curZipFolder, curZipFolder + ".zip", err => {
             if (err) showErrorAndExit(err);
 
-            remove(curZipFolder + '/');
+            remove(curZipFolder + "/");
           });
         }
+      },
+      modifyNuxtConfig() {
+        var { meta } = nuxtConfig.head,
+          index = meta.findIndex(
+            ({ name }) => name && name.toLowerCase() == "viewport"
+          );
+          
+        if (index != -1) meta.splice(index, 1);
       }
     };
 
@@ -72,29 +80,40 @@ var processArgsDetails = {
 };
 
 (function run() {
-  var curProcessArgsDetails = processArgsDetails[getMainProcessArgs()],
-    { routerBaseURL, generateDir, hooks } = curProcessArgsDetails;
+  try {
+    var curProcessArgsDetails = processArgsDetails[getMainProcessArgs()],
+      {
+        routerBaseURL,
+        generateDir,
+        hooks,
+        modifyNuxtConfig
+      } = curProcessArgsDetails;
 
-  writeRouterBaseURL(
-    typeof routerBaseURL == "string" ? routerBaseURL : routerBaseURL()
-  );
+    writeRouterBaseURL(
+      typeof routerBaseURL == "string" ? routerBaseURL : routerBaseURL()
+    );
 
-  nuxtConfig = require("./nuxt.config.js");
-  nuxtConfig.dev = false;
+    nuxtConfig = require("./nuxt.config.js");
+    nuxtConfig.dev = false;
 
-  if (generateDir) {
-    nuxtConfig.generate = nuxtConfig.generate || {};
-    nuxtConfig.generate.dir =
-      nuxtConfig.generate.dir || config.defaultGenerateDir;
-    nuxtConfig.generate.dir =
-      typeof generateDir == "string" ? generateDir : generateDir();
+    if (generateDir) {
+      nuxtConfig.generate = nuxtConfig.generate || {};
+      nuxtConfig.generate.dir =
+        nuxtConfig.generate.dir || config.defaultGenerateDir;
+      nuxtConfig.generate.dir =
+        typeof generateDir == "string" ? generateDir : generateDir();
+    }
+
+    if (modifyNuxtConfig) modifyNuxtConfig();
+
+    const nuxt = new Nuxt(nuxtConfig);
+    const builder = new Builder(nuxt);
+    const generator = new Generator(nuxt, builder);
+
+    if (hooks) nuxt.addHooks(hooks);
+
+    generator.generate();
+  } catch (e) {
+    console.log(e);
   }
-
-  const nuxt = new Nuxt(nuxtConfig);
-  const builder = new Builder(nuxt);
-  const generator = new Generator(nuxt, builder);
-
-  if (hooks) nuxt.addHooks(hooks);
-
-  generator.generate();
 })();
