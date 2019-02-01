@@ -10,7 +10,7 @@
           <div class="main_content_container">
             <div class="main_content">
               <section class="address_wrapper">
-                <h4 class="main_heading small_border_space small_bottom_space">Address</h4>
+                <h4 class="main_heading small_border_space">Address</h4>
                 <p v-html="address" />
               </section>
               <ul class="icon_info_list">

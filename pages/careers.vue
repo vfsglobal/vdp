@@ -7,13 +7,13 @@
       <p class="main">We believe in the power of people and know the best ideas can come from anywhere. <br>
         Join a team that's enhancing work and life every day.</p>
       <section>
-        <h3 class="main_heading bottom_space">Apply Now</h3>
+        <h3 class="main_heading marb_big">Apply Now</h3>
         <p>Email us your resume at
           <email-link email="careers@vdpglobalservices.com" />
         </p>
       </section>
       <section>
-        <h3 class="main_heading top_space bottom_space">Vacancies</h3>
+        <h3 class="main_heading marv_big">Vacancies</h3>
         <accordion class="careers">
           <accordion-element>
             <template slot="buttonContent">
