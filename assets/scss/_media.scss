@@ -122,10 +122,21 @@ $predefined_media_type: (
         to: str-slice($type, $index + 1)
       )
     );
+  } @else if str-index($type, "-_") == 1 {
+    $media_str: generate_media_str(
+      map-get($predefined_media_type, "-" + str-slice($type, 3))
+    );
   } @else if str-index($type, "_") == 1 {
     $media_str: generate_media_str(
       map-get($predefined_media_type, str-slice($type, 2))
     );
+  } @else if str-index($type, "-") == 1 {
+    $resolution_value: map-get($media_resolutions, str-slice($type, 2));
+    @if $resolution_value > 0 {
+      $media_str: "(min-width: " + ($resolution_value + 1) + "px)";
+    } @else {
+      $media_str: "(max-width: " + (abs($resolution_value) - 1) + "px)";
+    }
   } @else {
     $resolution_value: map-get($media_resolutions, $type);
     @if $resolution_value > 0 {
