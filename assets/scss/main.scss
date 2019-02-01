@@ -125,7 +125,7 @@ button {
       @each $class_type, $css_suffixes in $css_space_details {
         .#{$class_prefix + $class_type + _ + $name} {
           @each $css_suffix in $css_suffixes {
-            @include multi_media($css_name + '-' + $css_suffix, $value);
+            @include multi_media($css_name + "-" + $css_suffix, $value);
           }
         }
       }
@@ -143,11 +143,14 @@ button {
     position: absolute;
     left: 50%;
     top: 50%;
-    @include multi_media(font-size, (
-      default: 50px,
-      _onlySdesktop: 40px,
-      _onlymobile: 30px
-    ));
+    @include multi_media(
+      font-size,
+      (
+        default: 50px,
+        _onlySdesktop: 40px,
+        _onlymobile: 30px
+      )
+    );
     color: rgba(#000, 0.03);
     transform: translate(-50%, -50%);
     z-index: -1;
@@ -164,7 +167,7 @@ button {
   position: relative;
   font-family: Poppins, sans-serif;
   @extend %XL_font_size;
-  
+
   &%before_after {
     content: "";
     position: absolute;
@@ -258,6 +261,7 @@ ul.seperator_content_list > li:not(:last-child) {
 }
 ul.side_heading_content_list {
   @extend .padb_normal;
+  word-break: break-word;
   > li {
     display: flex;
     &:not(:last-child) > * {
@@ -265,6 +269,7 @@ ul.side_heading_content_list {
     }
     > .heading_wrapper {
       width: 20%;
+      min-width: 180px;
       text-align: left;
       > .normal {
         padding: 0px;
@@ -274,11 +279,13 @@ ul.side_heading_content_list {
       flex: 1;
       $space: map-get($space_details, normal);
 
-      @include add_css_from_map((
-        padding-left: $space,
-        border-left: 3px solid $light_border_color,
-        margin-left: $space
-      ));
+      @include add_css_from_map(
+        (
+          padding-left: $space,
+          border-left: 3px solid $light_border_color,
+          margin-left: $space
+        )
+      );
     }
   }
 }
