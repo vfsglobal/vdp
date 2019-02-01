@@ -144,7 +144,6 @@ button {
   &%before_after {
     content: "";
     position: absolute;
-
     left: 50%;
     height: 1px;
     background: $orange;
@@ -243,6 +242,7 @@ ul.seperator_content_list > li:not(:last-child) {
 }
 ul.side_heading_content_list {
   @extend %padb_normal;
+  word-break: break-word;
   > li {
     display: flex;
     &:not(:last-child) > * {
@@ -250,6 +250,7 @@ ul.side_heading_content_list {
     }
     > .heading_wrapper {
       width: 20%;
+      min-width: 180px;
       text-align: left;
       > .normal {
         padding: 0px;
