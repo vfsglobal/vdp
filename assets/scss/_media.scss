@@ -46,7 +46,7 @@ $predefined_media_type: (
       $value: $value + $option_value;
     }
   }
-  @return unquote($value);
+  @return unquote($value + "");
 }
 // $content will be
 // (
