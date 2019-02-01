@@ -266,16 +266,10 @@ ul.side_heading_content_list {
       }
     }
     > .heading_wrapper {
-      @include add_css_from_map((
-        width: (
-          default: 20%,
-          $break_point: auto
-        ),
-        min-width: (
-          default: 180px,
-          $break_point: none
-        )
-      ));
+      @include media(-$break_point) {
+        width: 20%;
+        min-width: 180px;
+      }
       text-align: left;
       > .normal {
         padding: 0px;
