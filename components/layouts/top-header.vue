@@ -61,42 +61,46 @@ export default {
 @import "./assets/scss/globals";
 
 header {
-  font-size: 13px;
-  border-top: $main_boder_thinckness solid $orange;
-  padding: 10px 0px;
-
+  @extend %S_font_size;
+  @include multi_media(
+    border-top,
+    $main_boder_thickness,
+    (
+      suffix: " solid " + $orange
+    )
+  );
+  @extend %padv_extra_small;
   .wrapper {
     @include table_with_cell();
-
     ul.extra_content {
       text-align: right;
-
       > li {
         @include inline_valign();
-        padding: 7px 0px;
-
+        @extend %padv_mini;
         a {
           color: inherit;
           transition: all 0.3s;
-
           &:hover {
             color: $orange;
           }
         }
-
         .icon_text > i {
           color: $purple;
-          font-size: 24px;
+          @include multi_media(
+            font-size,
+            (
+              default: 24px,
+              _onlySdesktop: 20px,
+              _onlymobile: 18px
+            )
+          );
         }
-
         &:not(:last-child) {
           $spacing: 20px;
-
-          padding-right: $spacing;
-          margin-right: $spacing;
+          @extend %padr_normal;
+          @extend %marr_normal;
           border-right: 1px solid #ddd;
         }
-
         > * {
           @include inline_valign();
         }

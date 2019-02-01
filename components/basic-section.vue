@@ -79,12 +79,18 @@ section.basic {
   }
 
   .heading_wrapper > .main_heading {
-      text-align: center;
-      @extend %marv_big;
+    text-align: center;
+    @extend %marv_big;
   }
 
   &.bg_and_bottom_border {
-    border-bottom: $main_boder_thinckness solid $purple;
+    @include multi_media(
+      border-bottom,
+      $main_boder_thickness,
+      (
+        suffix: " solid " + $purple
+      )
+    );
   }
 
   &.bottom_seperator > .wrapper {
