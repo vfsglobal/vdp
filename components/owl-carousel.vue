@@ -171,7 +171,15 @@ export default {
       rgba(0, 0, 0, 0) 100%
     );
     cursor: grab;
-    padding: 0px $container_spacing;
+    @include multi_media(
+      padding,
+      modify_map_value(
+        $container_spacing,
+        (
+          prefix: "0px "
+        )
+      )
+    );
     box-sizing: border-box;
 
     > .owl-nav {
@@ -209,7 +217,6 @@ export default {
       }
       > .owl-next {
         right: $size;
-
         &:before {
           @include create_unfilled_arrow(
             (
@@ -222,7 +229,6 @@ export default {
         }
       }
     }
-
     &:hover > .owl-nav {
       > * {
         visibility: visible;

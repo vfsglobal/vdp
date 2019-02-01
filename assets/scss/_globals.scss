@@ -19,17 +19,14 @@ $content_para_line_height: 1.7em;
 
 $main_boder_thinckness: 5px;
 
-// $container_spacing: (
-//   default: 30px,
-//   _onlySdesktop: 25px,
-//   _onlymobile: 15px
-// );
-// $container_big_spacing: modify_map_value($container_spacing, (
-//   multiply: 2
-// ));
-
-$container_spacing: 30px;
-$container_big_spacing: $container_spacing * 2;
+$container_spacing: (
+  default: 30px,
+  _onlySdesktop: 25px,
+  _onlymobile: 15px
+);
+$container_big_spacing: modify_map_value($container_spacing, (
+  multiply: 2
+));
 
 $space_details: (
   extra_big: $container_big_spacing,
@@ -50,6 +47,33 @@ $space_details: (
     _onlymobile: 6px
   )
 );
+
+@mixin pad_and_mar_placeholder_selector() {
+  $css_space_types: (
+    pad: padding,
+    mar: margin
+  );
+  $css_space_details: (
+    t: top,
+    b: bottom,
+    v: (
+      top,
+      bottom
+    )
+  );
+  @each $name, $value in $space_details {
+    @each $class_prefix, $css_name in $css_space_types {
+      @each $class_type, $css_suffixes in $css_space_details {
+        %#{$class_prefix + $class_type + _ + $name} {
+          @each $css_suffix in $css_suffixes {
+            @include multi_media($css_name + '-' + $css_suffix, $value);
+          }
+        }
+      }
+    }
+  }
+}
+@include pad_and_mar_placeholder_selector();
 
 $box_spacing: 2%;
 $box_big_spacing: 3%;

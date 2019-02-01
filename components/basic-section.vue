@@ -65,7 +65,7 @@ export default {
 
 section.basic {
   position: relative;
-  padding: $container_spacing 0px;
+  @extend %padv_big;
   z-index: 1;
 
   > .bg {
@@ -78,26 +78,9 @@ section.basic {
     z-index: -1;
   }
 
-  .heading_wrapper {
-    > .main_heading {
+  .heading_wrapper > .main_heading {
       text-align: center;
-      margin: $container_spacing 0px;
-    }
-    > i.main-icon {
-      $size: 30px;
-
-      display: block;
-      width: $size;
-      height: $size;
-      line-height: $size;
-      font-size: 16px;
-      border: 2px solid $orange;
-      margin: 0 auto;
-      margin-bottom: $container_spacing;
-      border-radius: 50%;
-      color: $orange;
-      text-align: center;
-    }
+      @extend %marv_big;
   }
 
   &.bg_and_bottom_border {
@@ -110,7 +93,7 @@ section.basic {
   }
 
   &:last-child {
-    padding-bottom: $container_big_spacing;
+    @extend %padb_extra_big;
   }
 }
 </style>
