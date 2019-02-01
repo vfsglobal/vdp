@@ -17,17 +17,23 @@ $light_border_color: #ddd;
 
 $content_para_line_height: 1.7em;
 
-$main_boder_thinckness: 5px;
+$main_boder_thickness: (
+  default: 5px,
+  _onlySdesktop: 4px,
+  _onlymobile: 3px
+);
 
 $container_spacing: (
   default: 30px,
   _onlySdesktop: 25px,
   _onlymobile: 15px
 );
-$container_big_spacing: modify_map_value($container_spacing, (
-  multiply: 2
-));
-
+$container_big_spacing: modify_map_value(
+  $container_spacing,
+  (
+    multiply: 2
+  )
+);
 $space_details: (
   extra_big: $container_big_spacing,
   big: $container_spacing,
@@ -45,9 +51,13 @@ $space_details: (
     default: 10px,
     _onlySdesktop: 8px,
     _onlymobile: 6px
+  ),
+  mini: (
+    default: 7px,
+    _onlySdesktop: 5px,
+    _onlymobile: 3px
   )
 );
-
 @mixin pad_and_mar_placeholder_selector() {
   $css_space_types: (
     pad: padding,
@@ -59,6 +69,12 @@ $space_details: (
     v: (
       top,
       bottom
+    ),
+    l: left,
+    r: right,
+    h: (
+      left,
+      right
     )
   );
   @each $name, $value in $space_details {
@@ -66,7 +82,7 @@ $space_details: (
       @each $class_type, $css_suffixes in $css_space_details {
         %#{$class_prefix + $class_type + _ + $name} {
           @each $css_suffix in $css_suffixes {
-            @include multi_media($css_name + '-' + $css_suffix, $value);
+            @include multi_media($css_name + "-" + $css_suffix, $value);
           }
         }
       }
@@ -74,7 +90,6 @@ $space_details: (
   }
 }
 @include pad_and_mar_placeholder_selector();
-
 $box_spacing: 2%;
 $box_big_spacing: 3%;
 $basic_direction_details: (
@@ -86,7 +101,6 @@ $accordion_transition_duration: 0.7s;
 $page_transition_duration: 1000ms;
 $page_transition_delay: 300ms;
 $inner_page_transition_duration: 1000ms;
-
 %common_font_size {
   @include multi_media(
     font-size,
@@ -115,7 +129,15 @@ $inner_page_transition_duration: 1000ms;
     )
   );
 }
-
+%S_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 13px,
+      _onlymobile: 12px
+    )
+  );
+}
 @mixin table_with_cell($valign: middle) {
   display: table;
   > * {

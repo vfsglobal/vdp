@@ -141,7 +141,6 @@ button {
   position: relative;
   font-family: Poppins, sans-serif;
   @extend %XL_font_size;
-
   &%before_after {
     content: "";
     position: absolute;
@@ -195,7 +194,6 @@ button {
   }
   &.small_border_space {
     @extend %marb_extra_small;
-
     &:before {
       @include multi_media(
         bottom,
@@ -263,15 +261,9 @@ ul.side_heading_content_list {
     }
     > .main_content {
       flex: 1;
-      $space: map-get($space_details, normal);
-
-      @include add_css_from_map(
-        (
-          padding-left: $space,
-          border-left: 3px solid $light_border_color,
-          margin-left: $space
-        )
-      );
+      @extend %padl_normal;
+      border-left: 3px solid $light_border_color;
+      @extend %marl_normal;
     }
   }
 }

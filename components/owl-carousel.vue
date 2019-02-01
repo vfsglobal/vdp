@@ -173,11 +173,9 @@ export default {
     cursor: grab;
     @include multi_media(
       padding,
-      modify_map_value(
-        $container_spacing,
-        (
-          prefix: "0px "
-        )
+      $container_spacing,
+      (
+        prefix: "0px "
       )
     );
     box-sizing: border-box;
