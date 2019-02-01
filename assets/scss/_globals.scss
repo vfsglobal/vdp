@@ -22,7 +22,7 @@ $main_boder_thinckness: 5px;
 // $container_spacing: (
 //   default: 30px,
 //   _onlySdesktop: 25px,
-//   mobile: 15px
+//   _onlymobile: 15px
 // );
 // $container_big_spacing: modify_map_value($container_spacing, (
 //   multiply: 2
@@ -37,17 +37,17 @@ $space_details: (
   normal: (
     default: 20px,
     _onlySdesktop: 15px,
-    mobile: 12px
+    _onlymobile: 12px
   ),
   small: (
     default: 15px,
     _onlySdesktop: 12px,
-    mobile: 10px
+    _onlymobile: 10px
   ),
   extra_small: (
     default: 10px,
     _onlySdesktop: 8px,
-    mobile: 6px
+    _onlymobile: 6px
   )
 );
 
@@ -68,7 +68,7 @@ $inner_page_transition_duration: 1000ms;
     font-size,
     (
       default: 14px,
-      mobile: 13px
+      _onlymobile: 13px
     )
   );
 }
@@ -78,7 +78,7 @@ $inner_page_transition_duration: 1000ms;
     (
       default: 20px,
       _onlySdesktop: 18px,
-      mobile: 16px
+      _onlymobile: 16px
     )
   );
 }
@@ -87,7 +87,7 @@ $inner_page_transition_duration: 1000ms;
     font-size,
     (
       default: 16px,
-      mobile: 15px
+      _onlymobile: 15px
     )
   );
 }

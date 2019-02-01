@@ -146,7 +146,7 @@ button {
     @include multi_media(font-size, (
       default: 50px,
       _onlySdesktop: 40px,
-      mobile: 30px
+      _onlymobile: 30px
     ));
     color: rgba(#000, 0.03);
     transform: translate(-50%, -50%);
@@ -180,12 +180,12 @@ button {
         bottom: (
           default: -12px,
           _onlySdesktop: -10px,
-          mobile: -8px
+          _onlymobile: -8px
         ),
         width: (
           default: 40px,
           _onlySdesktop: 35px,
-          mobile: 30px
+          _onlymobile: 30px
         )
       )
     );
@@ -197,12 +197,12 @@ button {
         bottom: (
           default: -15px,
           _onlySdesktop: -13px,
-          mobile: -11px
+          _onlymobile: -11px
         ),
         width: (
           default: 60px,
           _onlySdesktop: 50px,
-          mobile: 45px
+          _onlymobile: 45px
         )
       )
     );
@@ -216,7 +216,7 @@ button {
         (
           default: -2px,
           _onlySdesktop: -1px,
-          mobile: 0px
+          _onlymobile: 0px
         )
       );
     }
@@ -226,7 +226,7 @@ button {
         (
           default: -5px,
           _onlySdesktop: -4px,
-          mobile: -3px
+          _onlymobile: -3px
         )
       );
     }
