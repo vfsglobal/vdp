@@ -241,19 +241,35 @@ ul.seperator_content_list > li:not(:last-child) {
   @extend %marb_big;
 }
 ul.side_heading_content_list {
+  $break_point: Stablet;
+
   @extend %padb_normal;
   word-break: break-word;
+  
   > li {
     display: flex;
-    @include media(Stablet) {
+    @include media($break_point) {
       flex-direction: column;
+      padding-bottom: 20px;
     }
     &:not(:last-child) > * {
       @extend %padb_big;
+
+      @include media($break_point) {
+        padding-bottom: 0px;
+      }
     }
     > .heading_wrapper {
-      width: 20%;
-      min-width: 180px;
+      @include add_css_from_map((
+        width: (
+          default: 20%,
+          $break_point: auto
+        ),
+        min-width: (
+          default: 180px,
+          $break_point: none
+        )
+      ));
       text-align: left;
       > .normal {
         padding: 0px;
@@ -261,6 +277,7 @@ ul.side_heading_content_list {
     }
     > .main_content {
       flex: 1;
+
       @extend %padl_normal;
       border-left: 3px solid $light_border_color;
       @extend %marl_normal;
