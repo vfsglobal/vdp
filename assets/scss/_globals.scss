@@ -119,12 +119,32 @@ $inner_page_transition_duration: 1000ms;
     )
   );
 }
+%H_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 48px,
+      _onlySdesktop: 40px,
+      _onlymobile: 30px
+    )
+  );
+}
 %XL_font_size {
   @include multi_media(
     font-size,
     (
       default: 20px,
       _onlySdesktop: 18px,
+      _onlymobile: 16px
+    )
+  );
+}
+%L2_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 18px,
+      _onlySdesktop: 17px,
       _onlymobile: 16px
     )
   );
