@@ -61,6 +61,8 @@ export default {
 @import "./assets/scss/globals";
 
 header {
+  $break_point: mobile;
+
   @extend %S_font_size;
   @include multi_media(
     border-top,
@@ -80,7 +82,7 @@ header {
       > li {
         @include inline_valign();
         @extend %padv_mini;
-        @include media(mobile) {
+        @include media($break_point) {
           $padding: 7px;
 
           display: block;
@@ -110,7 +112,7 @@ header {
           @extend %padr_normal;
           border-right: $border;
           @extend %marr_normal;
-          @include media(mobile) {
+          @include media($break_point) {
             border-right: none;
             padding-right: 0px;
             margin-right: 0px;
