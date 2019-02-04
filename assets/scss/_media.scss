@@ -14,6 +14,8 @@ $media_resolutions: (
   XSmobile: 380
 );
 
+$all_media_keys: map-keys($media_resolutions);
+
 $predefined_media_type: (
   onlySdesktop: Sdesktop/mobile,
   onlymobile: mobile
