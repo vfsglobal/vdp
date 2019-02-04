@@ -1,0 +1,45 @@
+$purple: #172272;
+$transparent_purple: rgba($purple, 0.9);
+$orange: #f28a03;
+$shadow_color: #333;
+$light_shadow_color: rgba($shadow_color, 0.3);
+
+$light_background_color: #f5f5f5;
+$light_background_color2: #eee;
+$dark_background_color: #ccc;
+$dark_background_color2: rgba(#000, 0.1);
+$content_color: #666;
+$dark_content_color: #333;
+$light_border_color: #ddd;
+
+$content_para_line_height: 1.7em;
+
+$main_boder_thickness: (
+  default: 5px,
+  _onlySdesktop: 4px,
+  _onlymobile: 3px
+);
+
+$container_spacing: (
+  default: 30px,
+  _onlySdesktop: 25px,
+  _onlymobile: 15px
+);
+$container_big_spacing: modify_map_value(
+  $container_spacing,
+  (
+    multiply: 2
+  )
+);
+
+$box_spacing: 2%;
+$box_big_spacing: 3%;
+$basic_direction_details: (
+  horizontal: left right,
+  vertical: top bottom
+);
+$accordion_hor_padding: 15px;
+$accordion_transition_duration: 0.7s;
+$page_transition_duration: 1000ms;
+$page_transition_delay: 300ms;
+$inner_page_transition_duration: 1000ms;

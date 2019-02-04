@@ -1,15 +1,3 @@
-$container_spacing: (
-  default: 30px,
-  _onlySdesktop: 25px,
-  _onlymobile: 15px
-);
-$container_big_spacing: modify_map_value(
-  $container_spacing,
-  (
-    multiply: 2
-  )
-);
-
 $space_details: (
   extra_big: $container_big_spacing,
   big: $container_spacing,
