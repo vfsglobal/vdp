@@ -3,16 +3,14 @@
   flex-wrap: wrap;
   > * {
     display: flex;
-    margin-bottom: 15px;
+    @extend %marb_small;
     box-sizing: border-box;
   }
 }
 
-@mixin set_column($column, $margin_right, $center_items: false) {
-  @if ($center_items) {
-    justify-content: center;
-  }
+$first_res: Sdesktop;
 
+@mixin set_column($column, $margin_right) {
   > * {
     width: (100 - (($column - 1) * $margin_right)) / $column;
     &:not(:nth-child(#{$column}n)) {
@@ -28,21 +26,66 @@
     }
   }
 }
+@function autocorrect_res($res) {
+  @return if(type-of($res) == "string", abs(map-get($media_resolutions, $res)), $res);
+}
+@mixin set_multi_column($column_details, $margin_right, $center_items: true) {
+  @if ($center_items) {
+    justify-content: center;
+  }
+
+  $all_res: map-keys($column_details);
+  $count: length($all_res);
+
+  @for $i from 1 through $count {
+    $res_key: nth($all_res, $i);
+    $res: autocorrect_res($res_key);
+    $next_res: autocorrect_res(if($i == $count, null, nth($all_res, $i + 1)));
+
+    $media: if($res == null, "", "(max-width: " + $res + "px)");
+    $media: $media + if($next_res == null, "", if($media == "", "", " and ") + "(min-width: " + ($next_res + 1) + "px)");
+
+    @media screen and #{$media} {
+      @include set_column(map-get($column_details, $res_key), $margin_right);
+    }
+  }
+}
 [data-column-details="col6_details"] {
-  @include set_column(6, $box_spacing);
+  @include set_multi_column(
+    (
+      null: 6,
+      $first_res: 4
+    ),
+    $box_spacing
+  );
 }
 [data-column-details="full_col4_details"] {
-  @include set_column(4, 0%);
+  @include set_multi_column((
+    null: 4,
+    $first_res: 3
+  ), 0%);
 }
 [data-column-details="col4_details"] {
-  @include set_column(4, $box_spacing, true);
+  @include set_multi_column((
+    null: 4,
+    $first_res: 3
+  ), $box_spacing);
 }
 [data-column-details="col4_details_big"] {
-  @include set_column(4, $box_big_spacing, true);
-}
-[data-column-details="full_col2_details"] {
-  @include set_column(2, 0%);
+  @include set_multi_column((
+    null: 4,
+    $first_res: 3
+  ), $box_big_spacing);
 }
 [data-column-details="col2_details"] {
-  @include set_column(2, $box_spacing);
+  @include set_multi_column((
+    null: 2,
+    $first_res: 1
+  ), $box_spacing);
+}
+[data-column-details="full_col2_details"] {
+  @include set_multi_column((
+    null: 2,
+    $first_res: 1
+  ), 0%);
 }
