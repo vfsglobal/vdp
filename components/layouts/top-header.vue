@@ -98,8 +98,8 @@ header {
         &:not(:last-child) {
           $spacing: 20px;
           @extend %padr_normal;
-          @extend %marr_normal;
           border-right: 1px solid #ddd;
+          @extend %marr_normal;
         }
         > * {
           @include inline_valign();

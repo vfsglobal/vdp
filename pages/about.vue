@@ -64,7 +64,7 @@ export default {
 @import "./assets/scss/globals";
 
 ul.about_us_box_content_list .main_content_wrapper {
-  @include multi_media(padding, $container_spacing);
+  @extend %pad_big;
   box-sizing: border-box;
 
   &.about_us {

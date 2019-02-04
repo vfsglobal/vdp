@@ -171,13 +171,7 @@ export default {
       rgba(0, 0, 0, 0) 100%
     );
     cursor: grab;
-    @include multi_media(
-      padding,
-      $container_spacing,
-      (
-        prefix: "0px "
-      )
-    );
+    @extend %padh_big;
     box-sizing: border-box;
 
     > .owl-nav {

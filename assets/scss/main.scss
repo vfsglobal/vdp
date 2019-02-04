@@ -309,17 +309,13 @@ ul.heading_content_list {
   > li {
     flex-direction: column;
     text-align: center;
-    %padding {
-      @extend %padv_normal;
-      @extend %padh_normal;
-    }
     > h4.normal,
     > h5.normal {
-      @extend %padding;
+      @extend %pad_normal;
       background: $light_background_color;
     }
     > .main_content {
-      @extend %padding;
+      @extend %pad_normal;
       background: $light_background_color2;
     }
   }
