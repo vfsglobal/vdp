@@ -1,36 +1,172 @@
+$container_spacing: (
+  default: 30px,
+  _onlySdesktop: 25px,
+  _onlymobile: 15px
+);
+$container_big_spacing: modify_map_value(
+  $container_spacing,
+  (
+    multiply: 2
+  )
+);
+
+$space_details: (
+  extra_big: $container_big_spacing,
+  big: $container_spacing,
+  normal: (
+    default: 20px,
+    _onlySdesktop: 15px,
+    _onlymobile: 12px
+  ),
+  small: (
+    default: 15px,
+    _onlySdesktop: 12px,
+    _onlymobile: 10px
+  ),
+  extra_small: (
+    default: 10px,
+    _onlySdesktop: 8px,
+    _onlymobile: 6px
+  ),
+  mini: (
+    default: 7px,
+    _onlySdesktop: 5px,
+    _onlymobile: 3px
+  ),
+  extra_mini: (
+    default: 5px,
+    _onlySdesktop: 4px,
+    _onlymobile: 3px
+  )
+);
+@mixin pad_and_mar_placeholder_selector() {
+  $css_space_types: (
+    pad: padding,
+    mar: margin
+  );
+  $css_space_details: (
+    t: top,
+    b: bottom,
+    v: (
+      top,
+      bottom
+    ),
+    l: left,
+    r: right,
+    h: (
+      left,
+      right
+    ),
+    "": ""
+  );
+  @each $name, $value in $space_details {
+    @each $class_prefix, $css_name in $css_space_types {
+      @each $class_type, $css_suffixes in $css_space_details {
+        %#{$class_prefix + $class_type + _ + $name} {
+          @each $css_suffix in $css_suffixes {
+            @include multi_media(
+              $css_name + if($css_suffix != "", "-" + $css_suffix, ""),
+              $value
+            );
+          }
+        }
+      }
+    }
+  }
+}
+@include pad_and_mar_placeholder_selector();
+
+%common_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 14px,
+      _onlymobile: 13px
+    )
+  );
+}
+%H_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 48px,
+      _onlySdesktop: 40px,
+      _onlymobile: 30px
+    )
+  );
+}
+%XL_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 20px,
+      _onlySdesktop: 18px,
+      _onlymobile: 16px
+    )
+  );
+}
+%L2_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 18px,
+      _onlySdesktop: 17px,
+      _onlymobile: 16px
+    )
+  );
+}
+%L_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 16px,
+      _onlymobile: 15px
+    )
+  );
+}
+%S_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 13px,
+      _onlymobile: 12px
+    )
+  );
+}
+
 @mixin set_all_media_content($selector_options, $media_css: false) {
-	@each $key in $all_media_keys {
-		$prefix: map-get($selector_options, prefix);
-		$suffix: map-get($selector_options, suffix);
+  @each $key in $all_media_keys {
+    $prefix: map-get($selector_options, prefix);
+    $suffix: map-get($selector_options, suffix);
 
-		$cur_css_selector: $key;
-		
-		@if($prefix) {
-			$cur_css_selector: $prefix + $cur_css_selector;
-		}
+    $cur_css_selector: $key;
 
-		@if($suffix) {
-			$cur_css_selector: $cur_css_selector + $suffix;
-		}
+    @if ($prefix) {
+      $cur_css_selector: $prefix + $cur_css_selector;
+    }
 
-		#{$cur_css_selector} {
-			@content;
+    @if ($suffix) {
+      $cur_css_selector: $cur_css_selector + $suffix;
+    }
 
-			@include media($key) {
-				@if $media_css != false {
-					@include add_css_from_map($media_css);
-				}
-			}
-		}
-	}
+    #{$cur_css_selector} {
+      @content;
+
+      @include media($key) {
+        @if $media_css != false {
+          @include add_css_from_map($media_css);
+        }
+      }
+    }
+  }
 }
 
-@include set_all_media_content((prefix: '%show_from_'), (
-	display: block !important
-)) {
-	@extend %hide_all_show_from;
-}
+// @include set_all_media_content((prefix: '%show_from_'), (
+// 	display: block !important
+// )) {
+// 	@extend %hide_all_show_from;
+// }
 
-@include set_all_media_content((prefix: '%hide_from_'), (
-	display: none !important
-));
+// @include set_all_media_content((prefix: '%hide_from_'), (
+// 	display: none !important
+// ));
