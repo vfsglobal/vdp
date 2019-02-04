@@ -71,12 +71,22 @@ header {
   );
   @extend %padv_extra_small;
   .wrapper {
-    @include table_with_cell();
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     ul.extra_content {
-      text-align: right;
+      text-align: center;
       > li {
         @include inline_valign();
         @extend %padv_mini;
+        @include media(mobile) {
+          $padding: 7px;
+
+          display: block;
+          padding-top: $padding;
+          padding-bottom: $padding;
+        }
         a {
           color: inherit;
           transition: all 0.3s;
@@ -96,10 +106,16 @@ header {
           );
         }
         &:not(:last-child) {
-          $spacing: 20px;
+          $border: 1px solid #ddd;
           @extend %padr_normal;
-          border-right: 1px solid #ddd;
+          border-right: $border;
           @extend %marr_normal;
+          @include media(mobile) {
+            border-right: none;
+            padding-right: 0px;
+            margin-right: 0px;
+            border-bottom: $border;
+          }
         }
         > * {
           @include inline_valign();

@@ -137,7 +137,7 @@ button {
   text-align: center;
 }
 .main_heading {
-  display: inline-block;
+  @include inline_valign();
   position: relative;
   font-family: Poppins, sans-serif;
   @extend %XL_font_size;

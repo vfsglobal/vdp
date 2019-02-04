@@ -36,45 +36,86 @@ export default {
 @import "./assets/scss/globals";
 
 .banner {
-  $bottom_overlap_space: 50px;
+  $bottom_overlap_space: (
+    default: 50px,
+    _onlySdesktop: 40px,
+    _onlymobile: 30px
+  );
 
   display: flex;
   position: relative;
-  height: 450px;
+  @include add_css_from_map(
+    (
+      height: (
+        default: 450px,
+        _onlySdesktop: 380px,
+        _onlymobile: 300px
+      ),
+      margin-bottom:
+        modify_map_value(
+          $bottom_overlap_space,
+          (
+            prefix: "-"
+          )
+        )
+    )
+  );
   background-size: cover;
   background-repeat: no-repeat;
-  margin-bottom: -$bottom_overlap_space;
   align-items: center;
   z-index: 1;
-
   > .wrapper > .main_content {
-    padding-bottom: $bottom_overlap_space;
+    $shadow_modify_option: (
+      suffix: " " + $shadow_color
+    );
+    @include multi_media(padding-bottom, $bottom_overlap_space);
     text-align: center;
     color: #fff;
-
     .big_heading {
-      font-size: 48px;
+      @include multi_media(
+        text-shadow,
+        (
+          default: 3px 3px 3px,
+          _onlySdesktop: 2px 2px 2px,
+          _onlymobile: 1px 1px 1px
+        ),
+        $shadow_modify_option
+      );
+      @extend %H_font_size;
       font-weight: bold;
-      text-shadow: 3px 3px 3px $shadow_color;
     }
-
     > p {
-      font-size: 18px;
-      line-height: 28px;
-      padding-top: 20px;
+      @extend %L2_font_size;
+      line-height: 1.6em;
+      @extend %padt_normal;
     }
-
     > a.main_button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
+      @include inline_valign();
+      @extend %mart_normal;
+      @extend %padv_extra_small;
+      @extend %padh_normal;
       background: $orange;
       color: #fff;
-      font-size: 16px;
-      border-radius: 10px;
-      box-shadow: 5px 5px 5px $shadow_color;
+      @extend %L_font_size;
+      @include add_css_from_map(
+        (
+          border-radius: (
+            default: 10px,
+            _onlySdesktop: 7px,
+            _onlymobile: 5px
+          ),
+          box-shadow:
+            modify_map_value(
+              (
+                default: 5px 5px 5px,
+                _onlySdesktop: 4px 4px 4px,
+                _onlymobile: 3px 3px 3px
+              ),
+              $shadow_modify_option
+            )
+        )
+      );
       transition: all 0.3s;
-
       &:hover {
         transform: scale(1.1);
       }
