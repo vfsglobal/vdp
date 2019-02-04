@@ -2,6 +2,7 @@
 @import "./assets/scss/arrow";
 @import "./assets/scss/media";
 @import "./assets/scss/placeholder-selector";
+@import "./assets/scss/vue-transition-utils";
 
 @mixin inline_valign($valign: middle) {
   display: inline-block;
@@ -27,49 +28,29 @@
   }
   #{$property}: #{$new_value};
 }
-@function add_transition_selector(
-  $transition_name,
-  $type,
-  $options,
-  $selector: ""
-) {
-  $prefix: map-get($options, prefix);
-  $suffix: map-get($options, suffix);
-  @return $selector + if($selector == "", "", ", ") + if($prefix, $prefix, "") +
-    "." + $transition_name + "-" + $type + "-active" + if($suffix, $suffix, "");
-}
-@mixin add_transition_default_css($all_transition_names, $options: ()) {
-  @if type-of($all_transition_names) == "string" {
-    $all_transition_names: ($all_transition_names);
+
+@mixin add_lines($width, $thickness, $color, $repeat, $space, $set_center: true) {
+  width: $width;
+  height: $thickness;
+  background: $color;
+  border-radius: $thickness;
+
+  $box_shadow: "";
+  @for $i from 2 through $repeat {
+    @if($box_shadow != "") {
+      $box_shadow: $box_shadow + ", ";
+    }
+    $y: ($thickness + $space) * ($i - 1);
+
+    $box_shadow: unquote($box_shadow + "0px " + $y + " 0px " + $color);
   }
-  $enter_active_selector: "";
-  $leave_active_selector: "";
-  @each $transition_name in $all_transition_names {
-    $enter_active_selector: add_transition_selector(
-      $transition_name,
-      "enter",
-      $options,
-      $enter_active_selector
-    );
-    $leave_active_selector: add_transition_selector(
-      $transition_name,
-      "leave",
-      $options,
-      $leave_active_selector
-    );
+
+  @if ($box_shadow != "") {
+    box-shadow: $box_shadow;
   }
-  #{$enter_active_selector},
-  #{$leave_active_selector} {
-    @content;
-  }
-  #{$enter_active_selector} {
-    position: relative !important;
-  }
-  #{$leave_active_selector} {
-    position: absolute !important;
-    left: 0%;
-    top: 0%;
-    width: 100%;
-    box-sizing: border-box;
+
+  @if($set_center) {
+    $total_height: ($thickness + $space) * $repeat - $space;
+    margin-top: - round($total_height / 2);
   }
 }

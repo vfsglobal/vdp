@@ -28,6 +28,8 @@ export default {
 @import "./assets/scss/globals";
 
 nav {
+  $break_point: tablet;
+
   $height: (
     default: 50px,
     _onlySdesktop: 45px,
@@ -46,7 +48,7 @@ nav {
   ul.menu_nav {
     display: flex;
     justify-content: space-between;
-    @include media(Stablet) {
+    @include media($break_point) {
       display: none;
     }
     > li {
@@ -119,11 +121,22 @@ nav {
   }
   button.responsive_toggle {
     display: none;
+    position: relative;
     width: 100%;
     color: #fff;
     @extend %height_with_line_height;
+    @extend %S_font_size;
+    font-weight: bold;
     outline: none;
-    @include media(Stablet) {
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0%;
+      top: 50%;
+      @include add_lines(35px, 5px, #FFF, 3, 5px);
+    }
+    @include media($break_point) {
       display: block;
     }
   }
