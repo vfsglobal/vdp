@@ -1,7 +1,8 @@
 <template>
     <nav>
         <div class="wrapper">
-            <menu-nav :content="navContent" class="clearfix" />
+            <menu-nav :content="navContent" />
+            
         </div>
     </nav>
 </template>
@@ -30,14 +31,11 @@ nav {
   $height: 50px;
 
   background: $purple;
-  ul {
+  ul.menu_nav {
+    display: flex;
+    justify-content: space-between;
+
     > li {
-      float: left;
-
-      &:not(:last-child) {
-        margin-right: 60px;
-      }
-
       $link_hover_border_height: 3px;
       $link_hover_border_radius: $link_hover_border_height;
 
