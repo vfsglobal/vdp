@@ -138,7 +138,7 @@ ul.accordion.careers > li {
       > h5 {
         $border_radius: 5px;
 
-        display: inline-block;
+        @include inline_valign();
         font-size: 14px;
         padding: 5px;
         background: $dark_background_color2;

@@ -65,7 +65,7 @@ export default {
     }
 
     > a.main_button {
-      display: inline-block;
+      @include inline_valign();
       margin-top: 20px;
       padding: 10px 20px;
       background: $orange;

@@ -31,7 +31,7 @@ export default {
     }
     
     > i {
-        padding-right: 5px;
+        @extend %padr_extra_mini;
     }
 }
 </style>

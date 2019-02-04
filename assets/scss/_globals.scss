@@ -56,6 +56,11 @@ $space_details: (
     default: 7px,
     _onlySdesktop: 5px,
     _onlymobile: 3px
+  ),
+  extra_mini: (
+    default: 5px,
+    _onlySdesktop: 4px,
+    _onlymobile: 3px
   )
 );
 @mixin pad_and_mar_placeholder_selector() {
@@ -141,17 +146,6 @@ $inner_page_transition_duration: 1000ms;
       _onlymobile: 12px
     )
   );
-}
-@mixin table_with_cell($valign: middle) {
-  display: table;
-  > * {
-    @include table_cell($valign);
-    @content;
-  }
-}
-@mixin table_cell($valign: middle) {
-  display: table-cell;
-  vertical-align: $valign;
 }
 @mixin inline_valign($valign: middle) {
   display: inline-block;
