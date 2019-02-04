@@ -75,14 +75,18 @@ $space_details: (
     h: (
       left,
       right
-    )
+    ),
+    "": ""
   );
   @each $name, $value in $space_details {
     @each $class_prefix, $css_name in $css_space_types {
       @each $class_type, $css_suffixes in $css_space_details {
         %#{$class_prefix + $class_type + _ + $name} {
           @each $css_suffix in $css_suffixes {
-            @include multi_media($css_name + "-" + $css_suffix, $value);
+            @include multi_media(
+              $css_name + if($css_suffix != "", "-" + $css_suffix, ""),
+              $value
+            );
           }
         }
       }
