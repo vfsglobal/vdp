@@ -94,7 +94,7 @@ section.basic {
   }
 
   &.bottom_seperator > .wrapper {
-    padding-bottom: 20px;
+    @extend %padb_normal;
     border-bottom: 1px solid $light_border_color;
   }
 

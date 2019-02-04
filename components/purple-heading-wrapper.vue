@@ -24,33 +24,62 @@ export default {
 @import "./assets/scss/globals";
 
 .purple_heading_wrapper {
-  $spacing: 40px;
+  $spacing: (
+    default: 40px,
+    _onlySdesktop: 35px,
+    _onlymobile: 30px
+  );
 
   position: relative;
-  padding: $spacing 0px;
+  @include multi_media(
+    padding,
+    $spacing,
+    (
+      suffix: " 0px"
+    )
+  );
   text-align: center;
   background: $transparent_purple;
   color: #fff;
   z-index: 1;
-
   .overlapContent & {
-    $overlap_spacing: 80px;
-
-    padding-bottom: $spacing + $overlap_spacing;
-    margin-bottom: -$overlap_spacing;
-
+    $overlap_spacing: (
+      default: 80px,
+      _onlySdesktop: 70px,
+      _onlymobile: 60px
+    );
+    @include add_css_from_map(
+      (
+        padding-bottom:
+          modify_map_value(
+            $spacing,
+            (
+              add: $overlap_spacing
+            )
+          ),
+        margin-bottom:
+          modify_map_value(
+            $overlap_spacing,
+            (
+              prefix: "-"
+            )
+          )
+      )
+    );
     + * {
       position: relative;
       z-index: 1;
       margin: 0 $box_spacing;
     }
   }
-
-  @include add_transition_default_css(purple-heading, (
-    prefix: "&"
-  )) {
+  @include add_transition_default_css(
+    purple-heading,
+    (
+      prefix: "&"
+    )
+  ) {
     transition: all $inner_page_transition_duration;
-  };
+  }
   &.purple-heading-enter {
     transform: translateY(100%);
     opacity: 0;
@@ -60,9 +89,8 @@ export default {
     opacity: 0;
   }
 }
-
 .purple_heading_container {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 </style>
