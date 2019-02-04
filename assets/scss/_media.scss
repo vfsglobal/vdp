@@ -277,8 +277,15 @@ $predefined_media_type: (
 // );
 @function modify_map_value_options($modify_options, $key) {
 	@each $option_key, $option_val in $modify_options {
+    $new_option_val: $option_val;
+
+    @if(type-of($option_val) == map) {
+      $new_option_val: map-get($option_val, $key);
+      $new_option_val: if($new_option_val == null, $option_val, $new_option_val);
+    }
+
 		$modify_options: map-merge($modify_options, (
-			$option_key: if(type-of($option_val) == map, map-get($option_val, $key), $option_val)
+			$option_key: $new_option_val
 		));
 	}
 

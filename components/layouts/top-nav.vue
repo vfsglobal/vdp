@@ -123,7 +123,6 @@ nav {
     color: #fff;
     @extend %height_with_line_height;
     outline: none;
-    
     @include media(Stablet) {
       display: block;
     }
