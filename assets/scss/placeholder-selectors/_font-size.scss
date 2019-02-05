@@ -1,0 +1,57 @@
+%common_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 14px,
+      _onlymobile: 13px
+    )
+  );
+}
+%H_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 48px,
+      _onlySdesktop: 40px,
+      _onlymobile: 30px
+    )
+  );
+}
+%XL_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 20px,
+      _onlySdesktop: 18px,
+      _onlymobile: 16px
+    )
+  );
+}
+%L2_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 18px,
+      _onlySdesktop: 17px,
+      _onlymobile: 16px
+    )
+  );
+}
+%L_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 16px,
+      _onlymobile: 15px
+    )
+  );
+}
+%S_font_size {
+  @include multi_media(
+    font-size,
+    (
+      default: 13px,
+      _onlymobile: 12px
+    )
+  );
+}

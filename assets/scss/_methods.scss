@@ -1,0 +1,147 @@
+@function get_position_opposite($position) {
+  $position_opposites: (
+    top: bottom,
+    right: left
+  );
+  @each $key, $value in $position_opposites {
+    @if ($key == $position) {
+      @return $value;
+    } @else if($value == $position) {
+      @return $key;
+    }
+  }
+}
+
+// $value_options will be
+// (
+// multiplier: 1.5,
+// round: true,
+// adder: 5,
+// prefix: "calc(",
+// suffix: ")",
+// repeat: 3,
+// repeat: (
+//  count: 3,
+//  join: ", " //default is " "
+// )
+// )
+// all options are optional
+// operations will be solved in the order as passed in $value_options
+@function generate_value($value, $value_options) {
+  @if ($value_options == false) {
+    @return $value;
+  }
+  @each $option_key, $option_value in $value_options {
+    @if $option_key == multiply {
+      $value: $value * $option_value;
+    } @else if $option_key == add {
+      $value: $value + $option_value;
+    } @else if $option_key == round {
+      $value: round($value);
+    } @else if $option_key == prefix {
+      $value: $option_value + $value;
+    } @else if $option_key == suffix {
+      $value: $value + $option_value;
+    } @else if $option_key == repeat {
+      @if (type-of($option_value) == number) {
+        $option_value: (
+          count: $option_value
+        );
+      }
+
+      $count: map-get($option_value, count);
+      $join: map-get($option_value, join);
+      $join: if($join == null, " ", $join);
+
+      $original_value: $value;
+      @for $i from 2 through $count {
+        $value: $value + $join + $original_value;
+      }
+    }
+  }
+  @return unquote($value + "");
+}
+
+// //if
+// $modify_options: (
+//     multiply: (
+//         default: 3,
+//         mobile: 2
+//     ),
+//     add: 1
+// );
+// //and
+// $key: default
+// //output 
+// (
+//     multiply: 3,
+//     add: 1
+// );
+@function modify_map_value_options($modify_options, $key) {
+	@each $option_key, $option_val in $modify_options {
+    $new_option_val: $option_val;
+
+    @if(type-of($option_val) == map) {
+      $new_option_val: map-get($option_val, $key);
+      $new_option_val: if($new_option_val == null, $option_val, $new_option_val);
+    }
+
+		$modify_options: map-merge($modify_options, (
+			$option_key: $new_option_val
+		));
+	}
+
+	@return $modify_options;
+}
+
+// //modify_options for basic map can be
+// $modify_options: (
+//     multiply: 2,
+//     add: 1
+// );
+// //modify options for map like
+// $map: (
+//     default: 30,
+//     mobile: 20
+// )
+// $modify_options: (
+//     multiply: (
+//         default: 3,
+//         mobile: 2
+//     ),
+//     add: 1
+// );
+// //or even n level nested like
+// $map: (
+//     default: (
+//          padding: 30px,
+//          margin: 15px
+//     ),
+//     mobile: 20
+// )
+// $modify_options: (
+//     multiply: (
+//         default: (
+//             padding: 1.5,
+//             margin: 1.2
+//         ),
+//         mobile: 2
+//     ),
+//     add: 1
+// );
+@function modify_map_value($map, $modify_options) {
+	@each $key, $value in $map {
+		$new_modify_options: modify_map_value_options($modify_options, $key);
+
+		@if type-of($value) == map {
+			$value: modify_map_value($value, $new_modify_options);
+		}
+		@else {
+			$value: generate_value($value, $new_modify_options);
+		}
+
+		$map: map-merge($map, ($key: $value));
+	}
+
+	@return $map;
+}

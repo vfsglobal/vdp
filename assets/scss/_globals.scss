@@ -1,25 +1,13 @@
+@import "./assets/scss/methods";
 @import "./assets/scss/variables";
 @import "./assets/scss/arrow";
 @import "./assets/scss/media";
-@import "./assets/scss/placeholder-selector";
+@import "./assets/scss/placeholder-selectors/main";
 @import "./assets/scss/vue-transition-utils";
 
 @mixin inline_valign($valign: middle) {
   display: inline-block;
   vertical-align: $valign;
-}
-@function get_position_opposite($position) {
-  $position_opposites: (
-    top: bottom,
-    right: left
-  );
-  @each $key, $value in $position_opposites {
-    @if ($key == $position) {
-      @return $value;
-    } @else if($value == $position) {
-      @return $key;
-    }
-  }
 }
 @mixin repeat_css($property, $value, $repeat) {
   $new_value: $value;
