@@ -1,9 +1,9 @@
-@import "./assets/scss/methods";
-@import "./assets/scss/variables";
-@import "./assets/scss/arrow";
-@import "./assets/scss/media";
-@import "./assets/scss/placeholder-selectors/main";
-@import "./assets/scss/vue-transition-utils";
+@import "methods";
+@import "variables";
+@import "arrow";
+@import "media";
+@import "placeholder-selectors/main";
+@import "vue-transition-utils";
 
 @mixin inline_valign($valign: middle) {
   display: inline-block;

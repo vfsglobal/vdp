@@ -10,6 +10,11 @@
 
 $first_res: Sdesktop;
 
+$col4_details: (
+  null: 4,
+  $first_res: 3
+);
+
 $all_column_details: (
   6: (
     details: (
@@ -18,25 +23,12 @@ $all_column_details: (
     ),
     space: $box_spacing
   ),
-  4: (
-    details: (
-      null: 4,
-      $first_res: 3
-    ),
-    space: $box_spacing
-  ),
   4_full: (
-    details: (
-      null: 4,
-      $first_res: 3
-    ),
+    details: $col4_details,
     space: 0%
   ),
   4_big: (
-    details: (
-      null: 4,
-      $first_res: 3
-    ),
+    details: $col4_details,
     space: $box_big_spacing
   ),
   2: (
@@ -45,13 +37,6 @@ $all_column_details: (
       $first_res: 1
     ),
     space: $box_spacing
-  ),
-  2_full: (
-    details: (
-      null: 2,
-      $first_res: 1
-    ),
-    space: 0%
   )
 );
 

@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 footer {
   background: $light_background_color;

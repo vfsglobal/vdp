@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/scss/globals';
+@import "./assets/scss/globals/main";
 
 section.off_white_bg.overlapContent {
   @extend %padb_normal;

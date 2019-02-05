@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 .stats_short_list_one_line_item {
   > * {

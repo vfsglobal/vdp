@@ -1,4 +1,4 @@
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 html,
 body,
@@ -97,7 +97,7 @@ button {
 }
 @include selection();
 .wrapper {
-  width: 95%;
+  width: $wrapper_width;
   max-width: 1080px;
   margin: 0 auto;
 }
