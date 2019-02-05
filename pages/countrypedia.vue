@@ -34,7 +34,10 @@
             class="main_content_container"
           >
             <p>All information in this document is as of November 2018. This information is only a reference paper through various website links which is not officially verified. This document may not be used as a guide for policy or regulation. The creator or sender bears no liability for the authentication of this data.</p>
-            <list :content="activeCountry.mainInfo" class="heading_content_list" data-column-details="col2_details">
+            <list
+              :content="activeCountry.mainInfo"
+              class="heading_content_list"
+            >
               <template slot-scope="slotProps">
                 <h4 class="normal">{{slotProps.item.heading}}</h4>
                 <div class="main_content"><strong>{{slotProps.item.value}}</strong></div>
@@ -101,6 +104,10 @@ export default {
       bottom: 0%;
       font-size: 12px;
     }
+  }
+
+  .inner_page_container ul.heading_content_list {
+    @extend %col2;
   }
 }
 </style>

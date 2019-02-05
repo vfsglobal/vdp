@@ -1,10 +1,7 @@
 <template>
   <footer>
     <div class="wrapper">
-      <ul
-        class="main_content_list"
-        data-column-details="col4_details_big"
-      >
+      <ul class="main_content_list">
         <li>
           <div class="main_content_wrapper">
             <h3>Get in touch</h3>
@@ -104,6 +101,7 @@ footer {
   border-top: 3px solid $purple;
 
   ul.main_content_list {
+    @extend %col4_big;
     margin: 20px 0px;
 
     > li {

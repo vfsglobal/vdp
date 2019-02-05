@@ -1,18 +1,8 @@
 <script>
-import { generateTypeDetailsMixin } from '~/components/mixins/general';
 import allItemComponents from '~/components/mixins/all-item-components.vue';
 
-var allTypeDetails = {
-  'services': 'col6_details',
-  'statsShortListBig': 'full_col4_details',
-  'statsShortListOneLine': 'full_col4_details'
-};
-
 export default {
-  mixins: [allItemComponents, generateTypeDetailsMixin({
-    namePrefix: 'main',
-    data: allTypeDetails
-  })],
+  mixins: [allItemComponents],
 
   data() {
     return {
@@ -25,11 +15,6 @@ export default {
   computed: {
     listLiClass() {
       return this.itemClass;
-    },
-    listAttrs() {
-      return {
-        'data-column-details': this.mainTypeDetails
-      };
     }
   }
 }
@@ -41,6 +26,14 @@ export default {
 .box_list {
   > li > .box {
     width: 100%;
+  }
+
+  &.services {
+    @extend %col6;
+  }
+
+  &.statsShortListBig, &.statsShortListOneLine {
+    @extend %col4_full;
   }
 
   &.statsShortListOneLine > li {

@@ -11,10 +11,7 @@
         class="main"
         v-html="mainPara"
       />
-      <ul
-        class="about_us_box_content_list"
-        data-column-details="col2_details"
-      >
+      <ul class="about_us_box_content_list">
         <li>
           <div class="main_content_wrapper about_us">
             <h3 class="main_heading bottom_space">About Us</h3>
@@ -63,17 +60,21 @@ export default {
 <style lang="scss">
 @import "./assets/scss/globals";
 
-ul.about_us_box_content_list .main_content_wrapper {
-  @extend %pad_big;
-  box-sizing: border-box;
+ul.about_us_box_content_list {
+  @extend %col2;
 
-  &.about_us {
-    background: $purple;
-    color: #fff;
-  }
+  .main_content_wrapper {
+    @extend %pad_big;
+    box-sizing: border-box;
 
-  &.our_story {
-    background: $light_background_color;
+    &.about_us {
+      background: $purple;
+      color: #fff;
+    }
+
+    &.our_story {
+      background: $light_background_color;
+    }
   }
 }
 </style>

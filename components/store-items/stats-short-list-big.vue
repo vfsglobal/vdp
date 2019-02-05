@@ -111,14 +111,14 @@ ul.box_list.statsShortListBig > li {
       display: block;
       position: absolute;
       left: 0%;
-      // @include multi_media(
-      // bottom,
-      // $icon_size,
-      // (
-      // multiply: 0.5,
-      // add: $spacing
-      // )
-      // );
+      @include multi_media(
+        bottom,
+        $icon_size,
+        (
+          multiply: 0.5,
+          add: $spacing
+        )
+      );
       width: 100%;
       height: 1px;
       background: $border_color;

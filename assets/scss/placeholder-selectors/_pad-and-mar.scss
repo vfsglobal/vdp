@@ -27,7 +27,7 @@ $space_details: (
     _onlymobile: 3px
   )
 );
-@mixin pad_and_mar_placeholder_selector() {
+@mixin add_pad_and_mar() {
   $css_space_types: (
     pad: padding,
     mar: margin
@@ -62,4 +62,4 @@ $space_details: (
     }
   }
 }
-@include pad_and_mar_placeholder_selector();
+@include add_pad_and_mar();
