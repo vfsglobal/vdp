@@ -163,7 +163,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 .svg_map_container {
   width: 100%;

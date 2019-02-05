@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 @import "./assets/scss/owl.carousel.min";
 
 .owl-carousel {

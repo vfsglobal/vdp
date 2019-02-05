@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 .banner {
   $bottom_overlap_space: (

@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 ul.about_us_box_content_list {
   @extend %col2;

@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 .service_item {
   $hover_content_transition: all 0.7s;

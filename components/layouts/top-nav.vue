@@ -2,8 +2,8 @@
   <nav>
     <div class="wrapper">
       <menu-nav :content="navContent" />
-      <button class="responsive_toggle">Menu</button>
     </div>
+    <button class="responsive_toggle"> Menu </button>
   </nav>
 </template>
 
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 nav {
   $break_point: tablet;
@@ -129,12 +129,12 @@ nav {
     font-weight: bold;
     outline: none;
     &:before {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
-      left: 0%;
+      left: (100 - $wrapper_width) / 2;
       top: 50%;
-      @include add_lines(35px, 5px, #FFF, 3, 5px);
+      @include add_lines(35px, 5px, #fff, 3, 5px);
     }
     @include media($break_point) {
       display: block;

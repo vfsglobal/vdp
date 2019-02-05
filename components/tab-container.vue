@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 .tab_container {
   > ul.button_list {

@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 .copyright_wrapper {
   $text_color: rgba(#fff, 0.7);

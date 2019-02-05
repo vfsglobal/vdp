@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 ul.accordion.services > li {
   > .accordion_button > .button_content {

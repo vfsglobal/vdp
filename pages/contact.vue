@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./assets/scss/globals";
+@import "./assets/scss/globals/main";
 
 .contact_us_content_container > .map_container {
   display: flex;
