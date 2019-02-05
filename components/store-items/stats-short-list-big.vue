@@ -26,26 +26,37 @@ export default {
 
 $root_element_selector: ".stats_short_list_big_item";
 $border_color: $light_border_color;
-$icon_size: 60px;
-$spacing: 20px;
 
+$icon_size: (
+  default: 60px,
+  _onlySdesktop: 50px,
+  _onlymobile: 40px
+);
+$spacing: map-get($space_details, normal);
 #{$root_element_selector} {
   > .inner_box {
     width: 190px;
     margin: 0 auto;
     background: $light_background_color;
-    padding: $spacing;
+    @include multi_media(padding, $spacing);
     border-radius: 10px;
     box-sizing: border-box;
-
     > i {
+      @include add_css_from_map(
+        (
+          font-size: (
+            default: 30px,
+            _onlySdesktop: 25px,
+            _onlymobile: 20px
+          ),
+          margin-top: $spacing,
+          width: $icon_size,
+          height: $icon_size
+        )
+      );
       display: flex;
       position: relative;
-      width: $icon_size;
-      height: $icon_size;
       margin: 0 auto;
-      margin-top: $spacing;
-      font-size: 30px;
       background: #fff;
       color: $purple;
       border-radius: 50%;
@@ -54,49 +65,57 @@ $spacing: 20px;
       justify-content: center;
       box-sizing: border-box;
     }
-
     > h4 {
       text-align: center;
-
       > span {
         display: block;
       }
-
       > .count {
-        font-size: 50px;
-        line-height: 50px;
+        $font_size: (
+          default: 50px,
+          _onlySdesktop: 40px,
+          _onlymobile: 30px
+        );
+        @include add_css_from_map(
+          (
+            font-size: $font_size,
+            line-height: $font_size
+          )
+        );
         color: $purple;
       }
-
       > .text {
-        font-size: 16px;
+        @extend %L_font_size;
         font-weight: bold;
       }
     }
   }
 }
-
 ul.box_list.statsShortListBig > li {
   #{$root_element_selector} {
     position: relative;
-
     &:before {
       content: "";
       display: block;
       position: absolute;
       left: 0%;
-      bottom: $icon_size / 2 + $spacing;
+      // @include multi_media(
+      //   bottom,
+      //   $icon_size,
+      //   (
+      //     multiply: 0.5,
+      //     add: $spacing
+      //   )
+      // );
       width: 100%;
       height: 1px;
       background: $border_color;
     }
   }
-
   &:first-child #{$root_element_selector}:before {
     left: 50%;
     width: 50%;
   }
-
   &:last-child #{$root_element_selector}:before {
     left: 0%;
     width: 50%;
