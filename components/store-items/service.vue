@@ -34,21 +34,28 @@ export default {
 
   position: relative;
   background: #fff;
-  padding: 30px 10px;
+  @extend %padv_big;
+  @extend %padh_extra_small;
   text-align: center;
   overflow: hidden;
   transition: $hover_content_transition;
 
   > i {
-    font-size: 60px;
+    @include multi_media(
+      font-size,
+      (
+        default: 60px,
+        _onlySdesktop: 50px,
+        _onlymobile: 40px
+      )
+    );
     color: $orange;
   }
 
   > h4 {
-    padding-top: 30px;
-    padding-bottom: 5px;
+    @extend %padt_big;
+   @extend %padb_extra_mini;
   }
-
   > .hover_content_wrapper {
     display: flex;
     flex-direction: column;
@@ -60,31 +67,33 @@ export default {
     background: $light_background_color;
     color: $dark_content_color;
     transition: $hover_content_transition;
-
     > .main_content {
       display: flex;
       flex: 1;
       align-items: center;
-      padding: 10px;
+      @extend %pad_extra_small;
       box-sizing: border-box;
     }
-
     > .read_more {
       display: block;
-      padding: 5px;
+      @extend %pad_extra_mini;
       background: $orange;
       color: #fff;
       font-weight: bold;
     }
-
     &.bg_icon > i {
-      font-size: 130px;
+       @include multi_media(
+      font-size,
+      (
+        default: 130px,
+        _onlySdesktop: 100px,
+        _onlymobile: 80px
+      )
+    );
     }
   }
-
   &:hover {
     box-shadow: 0px 0px 10px $light_shadow_color;
-
     > .hover_content_wrapper {
       top: 0%;
     }
