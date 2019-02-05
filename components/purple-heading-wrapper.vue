@@ -72,7 +72,7 @@ export default {
       margin: 0 $box_spacing;
     }
   }
-  @include add_transition_default_css(
+  @include add_transition_blank_mode_default_css(
     purple-heading,
     (
       prefix: "&"

@@ -387,7 +387,7 @@ ul.heading_content_list {
   position: relative;
   overflow: hidden;
 }
-@include add_transition_default_css((page-from-right page-from-left)) {
+@include add_transition_blank_mode_default_css((page-from-right page-from-left)) {
   transition: all $page_transition_duration $page_transition_delay;
 }
 .page-from-right-enter,
@@ -403,7 +403,7 @@ ul.heading_content_list {
 .inner_page_container {
   position: relative;
 }
-@include add_transition_default_css(inner-page) {
+@include add_transition_blank_mode_default_css(inner-page) {
   transition: all $inner_page_transition_duration;
 }
 .inner-page-enter,
