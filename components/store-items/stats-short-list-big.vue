@@ -35,14 +35,33 @@ $icon_size: (
 $spacing: map-get($space_details, normal);
 #{$root_element_selector} {
   > .inner_box {
-    width: 190px;
+    @include add_css_from_map(
+      (
+        width: (
+          default: 190px,
+          _onlySdesktop: 150px,
+          _onlymobile: 110px
+        ),
+        padding: $spacing,
+        border-radius: (
+          default: 10px,
+           _onlySdesktop: 7px,
+          _onlymobile: 5px
+        )
+      )
+    );
     margin: 0 auto;
     background: $light_background_color;
-    @include multi_media(padding, $spacing);
-    border-radius: 10px;
     box-sizing: border-box;
     > i {
-      @include add_css_from_map(
+      display: flex;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+      color: $purple;
+      border-radius: 50%;
+      border: 1px solid $border_color;
+        @include add_css_from_map(
         (
           font-size: (
             default: 30px,
@@ -54,13 +73,6 @@ $spacing: map-get($space_details, normal);
           height: $icon_size
         )
       );
-      display: flex;
-      position: relative;
-      margin: 0 auto;
-      background: #fff;
-      color: $purple;
-      border-radius: 50%;
-      border: 1px solid $border_color;
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
@@ -100,12 +112,12 @@ ul.box_list.statsShortListBig > li {
       position: absolute;
       left: 0%;
       // @include multi_media(
-      //   bottom,
-      //   $icon_size,
-      //   (
-      //     multiply: 0.5,
-      //     add: $spacing
-      //   )
+      // bottom,
+      // $icon_size,
+      // (
+      // multiply: 0.5,
+      // add: $spacing
+      // )
       // );
       width: 100%;
       height: 1px;
