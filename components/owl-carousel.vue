@@ -37,8 +37,7 @@ export default {
     return {
       listUlTag: 'div',
       defaultClass: 'owl-carousel',
-      listLiTag: 'div',
-      listAttrs: null
+      listLiTag: 'div'
     }
   },
 

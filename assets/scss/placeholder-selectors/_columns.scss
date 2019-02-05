@@ -1,0 +1,122 @@
+%all_columns {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    display: flex;
+    @extend %marb_small;
+    box-sizing: border-box;
+  }
+}
+
+$first_res: Sdesktop;
+
+$all_column_details: (
+  6: (
+    details: (
+      null: 6,
+      $first_res: 4
+    ),
+    space: $box_spacing
+  ),
+  4: (
+    details: (
+      null: 4,
+      $first_res: 3
+    ),
+    space: $box_spacing
+  ),
+  4_full: (
+    details: (
+      null: 4,
+      $first_res: 3
+    ),
+    space: 0%
+  ),
+  4_big: (
+    details: (
+      null: 4,
+      $first_res: 3
+    ),
+    space: $box_big_spacing
+  ),
+  2: (
+    details: (
+      null: 2,
+      $first_res: 1
+    ),
+    space: $box_spacing
+  ),
+  2_full: (
+    details: (
+      null: 2,
+      $first_res: 1
+    ),
+    space: 0%
+  )
+);
+
+@mixin set_column($column, $margin_right) {
+  > * {
+    width: (100 - (($column - 1) * $margin_right)) / $column;
+    &:not(:nth-child(#{$column}n)) {
+      margin-right: $margin_right;
+    }
+    &:last-child {
+      margin-right: 0%;
+    }
+    $last_row_first_child_selector: "&:nth-child(#{$column}n+1):nth-last-child(-n+#{$column})";
+    #{$last_row_first_child_selector},
+    #{$last_row_first_child_selector} ~ * {
+      margin-bottom: 0px !important;
+    }
+  }
+}
+@function autocorrect_res($res) {
+  @return if(
+    type-of($res) == "string",
+    abs(map-get($media_resolutions, $res)),
+    $res
+  );
+}
+@mixin set_multi_column($config) {
+  $details: map-get($config, details);
+  $space: map-get($config, space);
+  $center: map-get($config, center);
+
+  $center: if($center == null, true, false);
+  
+  @if ($center) {
+    justify-content: center;
+  }
+
+  $all_res: map-keys($details);
+  $count: length($all_res);
+
+  @for $i from 1 through $count {
+    $res_key: nth($all_res, $i);
+    $res: autocorrect_res($res_key);
+    $next_res: autocorrect_res(if($i == $count, null, nth($all_res, $i + 1)));
+
+    $media: if($res == null, "", "(max-width: " + $res + "px)");
+    $media: $media +
+      if(
+        $next_res == null,
+        "",
+        if($media == "", "", " and ") + "(min-width: " + ($next_res + 1) + "px)"
+      );
+
+    @media screen and #{$media} {
+      @include set_column(map-get($details, $res_key), $space);
+    }
+  }
+}
+
+@mixin add_all_column() {
+  @each $key, $config in $all_column_details {
+    %col#{$key} {
+      @extend %all_columns;
+      @include set_multi_column($config);
+    }
+  }
+}
+@include add_all_column();

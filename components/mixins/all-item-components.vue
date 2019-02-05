@@ -5,7 +5,6 @@
     :li-tag="listLiTag"
     :li-class="listLiClass"
     :content="mainContent"
-    v-bind="listAttrs"
   >
     <template slot-scope="slotProps">
       <component
