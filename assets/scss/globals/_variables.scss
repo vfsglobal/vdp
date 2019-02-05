@@ -21,6 +21,7 @@ $main_boder_thickness: (
 );
 
 $wrapper_width: 95%;
+$wrapper_left_space: (100 - $wrapper_width) / 2;
 
 $container_spacing: (
   default: 30px,
