@@ -25,6 +25,11 @@ $space_details: (
     default: 5px,
     _onlySdesktop: 4px,
     _onlymobile: 3px
+  ),
+  extra_mini2: (
+    default: 3px,
+    _onlySdesktop: 2px,
+    _onlymobile: 1px
   )
 );
 @mixin add_pad_and_mar() {
