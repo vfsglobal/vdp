@@ -63,7 +63,7 @@ export default {
 header {
   $break_point: mobile;
 
-  @extend %S_font_size;
+  @extend %XS_font_size;
   @include multi_media(
     border-top,
     $main_boder_thickness,

@@ -98,18 +98,24 @@ export default {
 
 footer {
   background: $light_background_color;
-  border-top: 3px solid $purple;
-
+  @include multi_media(
+    border-top,
+    (
+      default: 3px,
+      _onlymobile: 2px
+    ),
+    (
+      suffix: " solid " + $purple
+    )
+  );
   ul.main_content_list {
     @extend %col4_big;
     @extend %marv_normal;
-
     > li {
       position: relative;
 
       &:not(:last-child) {
         padding-right: $box_big_spacing;
-
         &:after {
           content: "";
           display: block;
@@ -121,33 +127,20 @@ footer {
           background: $light_border_color;
         }
       }
-
       > .main_content_wrapper {
         > h3,
         > img.main_image {
           @extend %marb_normal;
         }
-
         > h3 {
           color: $dark_content_color;
           @extend %L_font_size;
           font-weight: bold;
           text-transform: uppercase;
         }
-
         > .main_content {
-          @include add_css_from_map(
-            (
-              font-size: (
-                default: 12px,
-                _onlymobile: 10px
-              ),
-              line-height: (
-                default: 1.5em,
-                _onlymobile: 1em
-              )
-            )
-          );
+          @extend %XS_font_size;
+          line-height: 1.5em;
         }
         ul.link_list > li:not(:last-child) {
           @extend %marb_extra_mini;

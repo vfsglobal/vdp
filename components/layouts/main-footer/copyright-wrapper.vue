@@ -45,14 +45,8 @@ export default {
 
 .copyright_wrapper {
   $text_color: rgba(#fff, 0.7);
-@extend %pad_small;
- @include multi_media(
-    font-size,
-    (
-      default: 12px,
-      _onlymobile: 10px
-    )
-  );
+  @extend %pad_small;
+  @extend %XS_font_size;
   background: $purple;
   text-align: center;
 
@@ -73,7 +67,6 @@ export default {
       }
 
       > ul > li {
-
         position: relative;
         float: left;
         @extend %padl_extra_small;
