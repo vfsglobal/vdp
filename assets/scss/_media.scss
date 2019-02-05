@@ -177,8 +177,10 @@ $predefined_media_type: (
     );
   } @else {
     @each $type, $value in $all_type_values {
+      $cur_value_options: if($value_options == false, $value_options, modify_map_value_options($value_options, $type));
+
       @if type-of($value) == map {
-        @include media($type, $value, $value_options);
+        @include media($type, $value, $cur_value_options);
       } @else {
         @include media(
           $type,
@@ -186,7 +188,7 @@ $predefined_media_type: (
             prop: $default_css_prop,
             value: $value
           ),
-          $value_options
+          $cur_value_options
         );
       }
     }
