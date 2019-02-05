@@ -1,48 +1,46 @@
-
 @function add_transition_selector(
-    $transition_name,
-    $type,
-    $options,
-    $selector: ""
-  ) {
-    $prefix: map-get($options, prefix);
-    $suffix: map-get($options, suffix);
-    @return $selector + if($selector == "", "", ", ") + if($prefix, $prefix, "") +
-      "." + $transition_name + "-" + $type + "-active" + if($suffix, $suffix, "");
+  $transition_name,
+  $type,
+  $options,
+  $selector: ""
+) {
+  $prefix: map-get($options, prefix);
+  $suffix: map-get($options, suffix);
+  @return $selector + if($selector == "", "", ", ") + if($prefix, $prefix, "") +
+    "." + $transition_name + "-" + $type + "-active" + if($suffix, $suffix, "");
+}
+@mixin add_transition_blank_mode_default_css($all_transition_names, $options: ()) {
+  @if type-of($all_transition_names) == "string" {
+    $all_transition_names: ($all_transition_names);
   }
-  @mixin add_transition_default_css($all_transition_names, $options: ()) {
-    @if type-of($all_transition_names) == "string" {
-      $all_transition_names: ($all_transition_names);
-    }
-    $enter_active_selector: "";
-    $leave_active_selector: "";
-    @each $transition_name in $all_transition_names {
-      $enter_active_selector: add_transition_selector(
-        $transition_name,
-        "enter",
-        $options,
-        $enter_active_selector
-      );
-      $leave_active_selector: add_transition_selector(
-        $transition_name,
-        "leave",
-        $options,
-        $leave_active_selector
-      );
-    }
-    #{$enter_active_selector},
-    #{$leave_active_selector} {
-      @content;
-    }
-    #{$enter_active_selector} {
-      position: relative !important;
-    }
-    #{$leave_active_selector} {
-      position: absolute !important;
-      left: 0%;
-      top: 0%;
-      width: 100%;
-      box-sizing: border-box;
-    }
+  $enter_active_selector: "";
+  $leave_active_selector: "";
+  @each $transition_name in $all_transition_names {
+    $enter_active_selector: add_transition_selector(
+      $transition_name,
+      "enter",
+      $options,
+      $enter_active_selector
+    );
+    $leave_active_selector: add_transition_selector(
+      $transition_name,
+      "leave",
+      $options,
+      $leave_active_selector
+    );
   }
-  
+  #{$enter_active_selector},
+  #{$leave_active_selector} {
+    @content;
+  }
+  #{$enter_active_selector} {
+    position: relative !important;
+  }
+  #{$leave_active_selector} {
+    position: absolute !important;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
