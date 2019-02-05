@@ -45,9 +45,14 @@ export default {
 
 .copyright_wrapper {
   $text_color: rgba(#fff, 0.7);
-
-  padding: 15px;
-  font-size: 12px;
+@extend %pad_small;
+ @include multi_media(
+    font-size,
+    (
+      default: 12px,
+      _onlymobile: 10px
+    )
+  );
   background: $purple;
   text-align: center;
 
@@ -68,12 +73,11 @@ export default {
       }
 
       > ul > li {
-        $spacing: 10px;
 
         position: relative;
         float: left;
-        padding-left: $spacing;
-        margin-left: $spacing;
+        @extend %padl_extra_small;
+        @extend %marl_extra_small;
 
         &:before {
           $seperator_height: 70%;

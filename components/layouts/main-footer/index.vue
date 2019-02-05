@@ -102,7 +102,7 @@ footer {
 
   ul.main_content_list {
     @extend %col4_big;
-    margin: 20px 0px;
+    @extend %marv_normal;
 
     > li {
       position: relative;
@@ -125,29 +125,36 @@ footer {
       > .main_content_wrapper {
         > h3,
         > img.main_image {
-          margin-bottom: 20px;
+          @extend %marb_normal;
         }
 
         > h3 {
           color: $dark_content_color;
-          font-size: 16px;
+          @extend %L_font_size;
           font-weight: bold;
           text-transform: uppercase;
         }
 
         > .main_content {
-          font-size: 12px;
-          line-height: 1.5em;
+          @include add_css_from_map(
+            (
+              font-size: (
+                default: 12px,
+                _onlymobile: 10px
+              ),
+              line-height: (
+                default: 1.5em,
+                _onlymobile: 1em
+              )
+            )
+          );
         }
-
         ul.link_list > li:not(:last-child) {
-          margin-bottom: 5px;
+          @extend %marb_extra_mini;
         }
-
         a {
           color: inherit;
           transition: all 0.3s;
-
           &:hover {
             color: $orange;
           }
