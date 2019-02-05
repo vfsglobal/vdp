@@ -42,6 +42,13 @@ export default {
   overflow: hidden;
   transition: $hover_content_transition;
 
+  $mobile_padding: 10px;
+
+  @include media($break_point) {
+    padding-top: $mobile_padding;
+    padding-bottom: $mobile_padding * 2.5;
+  }
+
   > .icon_heading_wrapper {
     @include media($break_point) {
       display: flex;
@@ -58,7 +65,7 @@ export default {
         )
       );
       @include media($break_point) {
-        padding-right: 20px;
+        padding-right: $mobile_padding;
       }
       color: $orange;
     }
@@ -82,10 +89,11 @@ export default {
     color: $dark_content_color;
     transition: $hover_content_transition;
     @include media($break_point) {
-      position: relative;
+      position: static;
       top: 0%;
       height: auto;
       background: none;
+      color: $content_color;
     }
     > .main_content {
       display: flex;
@@ -93,6 +101,12 @@ export default {
       align-items: center;
       @extend %pad_extra_small;
       box-sizing: border-box;
+      @include media($break_point) {
+        padding: 0;
+        padding-top: $mobile_padding;
+        line-height: 1.5em;
+        text-align: left;
+      }
     }
     > .read_more {
       display: block;
@@ -102,8 +116,9 @@ export default {
       font-weight: bold;
       @include media($break_point) {
         position: absolute;
-        right:0%;
-        bottom:0%;
+        padding: 3px 5px;
+        bottom: 0%;
+        right: 0%;
       }
     }
     &.bg_icon > i {
