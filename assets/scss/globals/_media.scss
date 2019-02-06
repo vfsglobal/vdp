@@ -45,7 +45,7 @@ $predefined_media_type: (
     $value: map-get($content, value);
     @if $prop and $value {
       @each $cur_prop in $prop {
-        #{$prop}: generate_value($value, $value_options);
+        #{$cur_prop}: generate_value($value, $value_options);
       }
     } @else {
       @each $prop, $value in $content {

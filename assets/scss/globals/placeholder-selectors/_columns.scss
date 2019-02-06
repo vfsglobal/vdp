@@ -26,16 +26,20 @@ $all_column_details: (
       null: 4,
       Stablet: 2,
       mobile: 1
-    ),
-    space: 0%
+    )
   ),
   4_full: (
     details: (
       null: 4,
       $first_res: 2,
       mobile: 1
-    ),
-    space: 0%
+    )
+  ),
+  3_from_non_default: (
+    details: (
+      Stablet: 3,
+      Smobile: 2
+    )
   ),
   2: (
     details: (
@@ -148,12 +152,17 @@ $set_col_res_css_res_key: null;
     }
   }
 }
+$default_config: (
+  details: null,
+  space: 0%,
+  center: true
+);
 @mixin set_multi_column($config) {
+  $config: autocorrect_options($config, $default_config);
+
   $details: map-get($config, details);
   $space: map-get($config, space);
   $center: map-get($config, center);
-
-  $center: if($center == null, true, false);
 
   @if ($center) {
     justify-content: center;
