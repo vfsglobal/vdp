@@ -50,11 +50,20 @@ $column_el_selector_default_options: (
   inverse: false
 );
 
-@function modify_column_selector($selector, $options: false) {
+@function modify_column_selector(
+  $selector,
+  $options: false,
+  $inversable: true,
+  $type: ""
+) {
   $options: autocorrect_options($options, $column_el_selector_default_options);
 
   $with_ampersant: map-get($options, with_ampersant);
   $inverse: map-get($options, inverse);
+
+  @if ($inversable == false and $inverse == true) {
+    @error $type + " is not inversable; plese give css to all and then override for " + $type;
+  }
 
   @return if($with_ampersant, "&", "") +
     if($inverse, ":not(" + $selector + ")", $selector);
@@ -70,7 +79,9 @@ $column_el_selector_default_options: (
   } @else if $type == last_row_first_child {
     @return modify_column_selector(
       ":nth-child(#{$column}n+1):nth-last-child(-n+#{$column})",
-      $options
+      $options,
+      false,
+      $type
     );
   } @else if $type == last_row {
     $selector: get_column_selector(
@@ -82,8 +93,8 @@ $column_el_selector_default_options: (
       )
     );
 
-    @return modify_column_selector($selector, $options) + ", " +
-      modify_column_selector($selector + " ~ *", $options);
+    @return modify_column_selector($selector, $options, false, $type) + ", " +
+      modify_column_selector($selector + " ~ *", $options, false, $type);
   }
 }
 
@@ -93,29 +104,12 @@ $column_el_selector_default_options: (
     #{get_column_selector($column, last_column, (inverse: true))} {
       margin-right: $margin_right;
     }
-    #{get_column_selector($column, first_row, (inverse: true))} {
-      transform: scale(0.5);
+    &:last-child {
+      margin-right: 0%;
     }
-    // &:not(:nth-child(#{$column}n)) {
-    //   margin-right: $margin_right;
-    // }
-    // &:last-child {
-    //   margin-right: 0%;
-    // }
-    /*testing: first_column: #{get_column_selector($column, first_column)}*/
-    /*testing: first_column: #{get_column_selector($column, first_column, (with_ampersant: false))}*/
-    /*testing: first_column: #{get_column_selector($column, first_column, (inverse: true))}*/
-    /*testing: first_column: #{get_column_selector($column, first_column, (with_ampersant: false, inverse: true))}*/
-    /*testing: last_column: #{get_column_selector($column, last_column)}*/
-    /*testing: first_row: #{get_column_selector($column, first_row)}*/
-    /*testing: last_row_first_child: #{get_column_selector($column, last_row_first_child)}*/
-    /*testing: last_row: #{get_column_selector($column, last_row)}*/
-    /*testing: last_row: #{get_column_selector($column, last_row, (with_ampersant: false))}*/
-    /*testing: last_row: #{get_column_selector($column, last_row, (inverse: true))}*/
-    /*testing: last_row: #{get_column_selector($column, last_row, (with_ampersant: false, inverse: true)))}*/
-    // #{get_column_selector($column, last_row)} {
-    //   margin-bottom: 0px !important;
-    // }
+    #{get_column_selector($column, last_row)} {
+      margin-bottom: 0px !important;
+    }
   }
 }
 @function autocorrect_res($res) {
@@ -124,6 +118,29 @@ $column_el_selector_default_options: (
     abs(map-get($media_resolutions, $res)),
     $res
   );
+}
+$set_all_res_css_res_key: null;
+@mixin set_all_res_css($details) {
+  $all_res: map-keys($details);
+  $count: length($all_res);
+
+  @for $i from 1 through $count {
+    $set_all_res_css_res_key: nth($all_res, $i) !global;
+    $res: autocorrect_res($set_all_res_css_res_key);
+    $next_res: autocorrect_res(if($i == $count, null, nth($all_res, $i + 1)));
+
+    $media: if($res == null, "", "(max-width: " + $res + "px)");
+    $media: $media +
+      if(
+        $next_res == null,
+        "",
+        if($media == "", "", " and ") + "(min-width: " + ($next_res + 1) + "px)"
+      );
+
+    @media screen and #{$media} {
+      @content;
+    }
+  }
 }
 @mixin set_multi_column($config) {
   $details: map-get($config, details);
@@ -136,25 +153,9 @@ $column_el_selector_default_options: (
     justify-content: center;
   }
 
-  $all_res: map-keys($details);
-  $count: length($all_res);
-
-  @for $i from 1 through $count {
-    $res_key: nth($all_res, $i);
-    $res: autocorrect_res($res_key);
-    $next_res: autocorrect_res(if($i == $count, null, nth($all_res, $i + 1)));
-
-    $media: if($res == null, "", "(max-width: " + $res + "px)");
-    $media: $media +
-      if(
-        $next_res == null,
-        "",
-        if($media == "", "", " and ") + "(min-width: " + ($next_res + 1) + "px)"
-      );
-
-    @media screen and #{$media} {
-      @include set_column(map-get($details, $res_key), $space);
-    }
+  @include set_all_res_css($details) {
+    /*test: #{$set_all_res_css_res_key}*/
+    @include set_column(map-get($details, $set_all_res_css_res_key), $space);
   }
 }
 
@@ -167,3 +168,13 @@ $column_el_selector_default_options: (
   }
 }
 @include add_all_column();
+
+@mixin set_all_res_selector_css($column_details_key, $selector_type, $selector_type_options: false) {
+  $details: map-get(map-get($all_column_details, $column_details_key), details);
+
+  @include set_all_res_css($details) {
+    #{get_column_selector(map-get($details, $set_all_res_css_res_key), $selector_type, $selector_type_options)} {
+      @content;
+    }
+  }
+}
