@@ -10,11 +10,6 @@
 
 $first_res: Sdesktop;
 
-$col4_details: (
-  null: 4,
-  $first_res: 3
-);
-
 $all_column_details: (
   6: (
     details: (
@@ -27,11 +22,18 @@ $all_column_details: (
     space: $box_spacing
   ),
   4_full: (
-    details: $col4_details,
+    details: (
+      null: 4,
+      Stablet: 2,
+      mobile: 1
+    ),
     space: 0%
   ),
   4_big: (
-    details: $col4_details,
+    details: (
+      null: 4,
+      mobile: 1
+    ),
     space: $box_big_spacing
   ),
   2: (
@@ -43,18 +45,69 @@ $all_column_details: (
   )
 );
 
+$column_el_selector_default_options: (
+  with_ampersant: true,
+  inverse: false
+);
+
+@function modify_column_selector(
+  $selector,
+  $options: false,
+  $inversable: true,
+  $type: ""
+) {
+  $options: autocorrect_options($options, $column_el_selector_default_options);
+
+  $with_ampersant: map-get($options, with_ampersant);
+  $inverse: map-get($options, inverse);
+
+  @if ($inversable == false and $inverse == true) {
+    @error $type + " is not inversable; plese give css to all and then override for " + $type;
+  }
+
+  @return if($with_ampersant, "&", "") +
+    if($inverse, ":not(" + $selector + ")", $selector);
+}
+
+@function get_column_selector($column, $type, $options: false) {
+  @if $type == first_column {
+    @return modify_column_selector(":nth-child(#{$column}n+1)", $options);
+  } @else if $type == last_column {
+    @return modify_column_selector(":nth-child(#{$column}n)", $options);
+  } @else if $type == first_row {
+    @return modify_column_selector(":nth-child(-n+#{$column})", $options);
+  } @else if $type == last_row_first_child {
+    @return modify_column_selector(
+      ":nth-child(#{$column}n+1):nth-last-child(-n+#{$column})",
+      $options,
+      false,
+      $type
+    );
+  } @else if $type == last_row {
+    $selector: get_column_selector(
+      $column,
+      "last_row_first_child",
+      (
+        with_ampersant: false,
+        inverse: false
+      )
+    );
+
+    @return modify_column_selector($selector, $options, false, $type) + ", " +
+      modify_column_selector($selector + " ~ *", $options, false, $type);
+  }
+}
+
 @mixin set_column($column, $margin_right) {
   > * {
     width: (100 - (($column - 1) * $margin_right)) / $column;
-    &:not(:nth-child(#{$column}n)) {
+    #{get_column_selector($column, last_column, (inverse: true))} {
       margin-right: $margin_right;
     }
     &:last-child {
       margin-right: 0%;
     }
-    $last_row_first_child_selector: "&:nth-child(#{$column}n+1):nth-last-child(-n+#{$column})";
-    #{$last_row_first_child_selector},
-    #{$last_row_first_child_selector} ~ * {
+    #{get_column_selector($column, last_row)} {
       margin-bottom: 0px !important;
     }
   }
@@ -66,23 +119,14 @@ $all_column_details: (
     $res
   );
 }
-@mixin set_multi_column($config) {
-  $details: map-get($config, details);
-  $space: map-get($config, space);
-  $center: map-get($config, center);
-
-  $center: if($center == null, true, false);
-  
-  @if ($center) {
-    justify-content: center;
-  }
-
+$set_all_res_css_res_key: null;
+@mixin set_all_res_css($details) {
   $all_res: map-keys($details);
   $count: length($all_res);
 
   @for $i from 1 through $count {
-    $res_key: nth($all_res, $i);
-    $res: autocorrect_res($res_key);
+    $set_all_res_css_res_key: nth($all_res, $i) !global;
+    $res: autocorrect_res($set_all_res_css_res_key);
     $next_res: autocorrect_res(if($i == $count, null, nth($all_res, $i + 1)));
 
     $media: if($res == null, "", "(max-width: " + $res + "px)");
@@ -94,8 +138,24 @@ $all_column_details: (
       );
 
     @media screen and #{$media} {
-      @include set_column(map-get($details, $res_key), $space);
+      @content;
     }
+  }
+}
+@mixin set_multi_column($config) {
+  $details: map-get($config, details);
+  $space: map-get($config, space);
+  $center: map-get($config, center);
+
+  $center: if($center == null, true, false);
+
+  @if ($center) {
+    justify-content: center;
+  }
+
+  @include set_all_res_css($details) {
+    /*test: #{$set_all_res_css_res_key}*/
+    @include set_column(map-get($details, $set_all_res_css_res_key), $space);
   }
 }
 
@@ -108,3 +168,13 @@ $all_column_details: (
   }
 }
 @include add_all_column();
+
+@mixin set_all_res_selector_css($column_details_key, $selector_type, $selector_type_options: false) {
+  $details: map-get(map-get($all_column_details, $column_details_key), details);
+
+  @include set_all_res_css($details) {
+    #{get_column_selector(map-get($details, $set_all_res_css_res_key), $selector_type, $selector_type_options)} {
+      @content;
+    }
+  }
+}

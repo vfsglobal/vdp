@@ -56,13 +56,7 @@ $circle_arrow_default_other_options: (
   $inner_arrow_options,
   $other_options: false
 ) {
-  @if ($other_options == false) {
-    $other_options: ();
-  }
-  $other_options: map-merge(
-    $circle_arrow_default_other_options,
-    $other_options
-  );
+  $other_options: autocorrect_options($other_options, $circle_arrow_default_other_options);
   $circle_border_width: map-get($other_options, circle_border_width);
   $position: map-get($other_options, position);
   $circle_border_width: if(

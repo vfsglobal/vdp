@@ -145,3 +145,9 @@
 
 	@return $map;
 }
+
+@function autocorrect_options($options, $default_options) {
+  $options: if($options == false, (), $options);
+
+  @return map-merge($default_options, $options);
+}

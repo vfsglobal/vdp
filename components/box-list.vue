@@ -32,12 +32,12 @@ export default {
     @extend %col6;
   }
 
-  &.statsShortListBig, &.statsShortListOneLine {
+  &.statsShortListBig {
     @extend %col4_full;
   }
 
-  &.statsShortListOneLine > li {
-    text-align: center;
+  &.statsShortListOneLine {
+    @extend %col4_full;
   }
 }
 </style>
