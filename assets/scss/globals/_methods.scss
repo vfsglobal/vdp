@@ -146,8 +146,15 @@
 	@return $map;
 }
 
-@function autocorrect_options($options, $default_options) {
-  $options: if($options == false, (), $options);
+@function autocorrect_options($options, $default_options, $default_key: false) {
+  @if($default_key != false) {
+    @if(type-of(map-get($default_options, $default_key)) == type-of($options)) {
+      $options: (
+        $default_key: $options
+      );
+    }
+  }
+  $options: if($options == null, (), $options);
 
   @return map-merge($default_options, $options);
 }

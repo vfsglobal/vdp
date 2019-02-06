@@ -109,22 +109,57 @@ footer {
     )
   );
   ul.main_content_list {
-    @extend %col4_big;
+    $col_type: 4_full;
+    @extend %col#{$col_type};
     @extend %marv_normal;
     > li {
+      $bottom_spacing: map-get($space_details, normal);
+      $border_color: $light_border_color;
       position: relative;
-
-      &:not(:last-child) {
+      @include multi_media(
+        margin-bottom,
+        $bottom_spacing,
+        (
+          multiply: 2
+        )
+      );
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0%;
+        @include multi_media(
+          bottom,
+          $bottom_spacing,
+          (
+            prefix: "-"
+          )
+        );
+        width: 100%;
+        height: 1px;
+        background: $border_color;
+      }
+      @include set_col_selector_css($col_type, last_row) {
+        margin-bottom: 0px;
+        &:before {
+          display: none;
+        }
+      }
+      @include set_col_selector_css($col_type, first_column, true) {
+        padding-left: $box_big_spacing;
+      }
+      @include set_col_selector_css($col_type, last_column, true) {
         padding-right: $box_big_spacing;
         &:after {
           content: "";
           display: block;
           position: absolute;
           right: 0%;
-          top: 0%;
+          top: 50%;
           width: 1px;
-          height: 100%;
-          background: $light_border_color;
+          height: 90%;
+          background: $border_color;
+          transform: translateY(-50%);
         }
       }
       > .main_content_wrapper {
