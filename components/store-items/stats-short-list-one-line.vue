@@ -32,4 +32,8 @@ export default {
     font-size: 16px;
   }
 }
+
+ul.box_list.statsShortListBig > li {
+  text-align: center;
+}
 </style>

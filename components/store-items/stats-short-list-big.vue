@@ -33,7 +33,12 @@ $icon_size: (
   _onlymobile: 40px
 );
 $spacing: map-get($space_details, normal);
+$first_break_point: Stablet;
 #{$root_element_selector} {
+  $box_background: $light_background_color;
+  @include media($first_break_point) {
+    background: $box_background;
+  }
   > .inner_box {
     @include add_css_from_map(
       (
@@ -45,14 +50,20 @@ $spacing: map-get($space_details, normal);
         padding: $spacing,
         border-radius: (
           default: 10px,
-           _onlySdesktop: 7px,
+          _onlySdesktop: 7px,
           _onlymobile: 5px
         )
       )
     );
     margin: 0 auto;
-    background: $light_background_color;
+    background: $box_background;
     box-sizing: border-box;
+    @include media($first_break_point) {
+      display: flex;
+      width: auto;
+      flex-direction: row-reverse;
+      background: none;
+    }
     > i {
       display: flex;
       position: relative;
@@ -61,7 +72,7 @@ $spacing: map-get($space_details, normal);
       color: $purple;
       border-radius: 50%;
       border: 1px solid $border_color;
-        @include add_css_from_map(
+      @include add_css_from_map(
         (
           font-size: (
             default: 30px,
@@ -78,6 +89,10 @@ $spacing: map-get($space_details, normal);
       box-sizing: border-box;
     }
     > h4 {
+      @include media($first_break_point) {
+        flex: 1;
+      }
+
       text-align: center;
       > span {
         display: block;
@@ -104,6 +119,16 @@ $spacing: map-get($space_details, normal);
   }
 }
 ul.box_list.statsShortListBig > li {
+  margin-bottom: 0px;
+  @include media($first_break_point) {
+    &:not(#{get_last_row_selector(2)}) {
+      border-bottom: 1px solid $border_color;
+    }
+    
+    &:not(#{get_row_last_child_selector(2)}) {
+      border-right: 1px solid $border_color;
+    }
+  }
   #{$root_element_selector} {
     position: relative;
     &:before {
@@ -122,6 +147,9 @@ ul.box_list.statsShortListBig > li {
       width: 100%;
       height: 1px;
       background: $border_color;
+      @include media($first_break_point) {
+        display: none;
+      }
     }
   }
   &:first-child #{$root_element_selector}:before {
