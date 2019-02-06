@@ -45,7 +45,12 @@ export default {
 
 .copyright_wrapper {
   $text_color: rgba(#fff, 0.7);
-  @extend %pad_small;
+  $pad_key: small;
+  $first_break_point: Ltablet;
+  $second_break_point: Stablet;
+  $only_first_break_point: $first_break_point + "/" + $second_break_point;
+
+  @extend %pad_#{$pad_key};
   @extend %XS_font_size;
   background: $purple;
   text-align: center;
@@ -65,24 +70,31 @@ export default {
         direction: ltr;
         @include inline_valign();
 
-        @include media(Ltablet) {
+        @include media($first_break_point) {
           display: block;
         }
       }
 
       > ul {
-        @include media(Ltablet) {
-          padding-bottom: 10px;
+        $col_type: 3_non_default;
+        @extend %col#{$col_type};
+        @include media($first_break_point) {
+          @include multi_media(
+            (padding-bottom margin-bottom),
+            map-get($space_details, $pad_key)
+          );
           border-bottom: 1px solid rgba($text_color, 0.1);
-          margin-bottom: 10px;
         }
 
         > li {
           position: relative;
           float: left;
+          @include media($second_break_point) {
+            float: none;
+          }
 
-          @extend %padl_extra_small;
-          @extend %marl_extra_small;
+          $hor_spacing: map-get($space_details, extra_small);
+          @include multi_media((padding-left margin-left), $hor_spacing);
 
           &:before {
             $seperator_height: 70%;
@@ -97,14 +109,31 @@ export default {
             background: $text_color;
           }
 
-          @include media(Ltablet) {
-            &:first-child {
-              padding-left: 0px;
-              margin-left: 0px;
+          @mixin hide_left_space() {
+            padding-left: 0px;
+            margin-left: 0px;
+          }
 
-              &:before {
-                display: none;
-              }
+          @mixin hide_border() {
+            &:before {
+              display: none;
+            }
+          }
+
+          @include media($only_first_break_point) {
+            &:first-child {
+              @include hide_left_space();
+              @include hide_border();
+            }
+          }
+
+          @include media($second_break_point) {
+            @include hide_left_space();
+            @include multi_media((padding-left padding-right), $hor_spacing);
+            justify-content: center;
+
+            @include add_col_selector_css($col_type, first_column) {
+              @include hide_border();
             }
           }
 

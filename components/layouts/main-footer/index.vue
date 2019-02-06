@@ -98,6 +98,8 @@ export default {
 
 footer {
   background: $light_background_color;
+  $break_point: mobile;
+
   @include multi_media(
     border-top,
     (
@@ -123,6 +125,10 @@ footer {
           multiply: 2
         )
       );
+      @include media($break_point) {
+        justify-content: center;
+        text-align: center;
+      }
       &:before {
         content: "";
         display: block;
@@ -139,16 +145,16 @@ footer {
         height: 1px;
         background: $border_color;
       }
-      @include set_col_selector_css($col_type, last_row) {
+      @include add_col_selector_css($col_type, last_row) {
         margin-bottom: 0px;
         &:before {
           display: none;
         }
       }
-      @include set_col_selector_css($col_type, first_column, true) {
+      @include add_col_selector_css($col_type, first_column, true) {
         padding-left: $box_big_spacing;
       }
-      @include set_col_selector_css($col_type, last_column, true) {
+      @include add_col_selector_css($col_type, last_column, true) {
         padding-right: $box_big_spacing;
         &:after {
           content: "";

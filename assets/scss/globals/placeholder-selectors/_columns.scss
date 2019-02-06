@@ -1,11 +1,15 @@
-%all_columns {
+@mixin all_columns_common_css() {
   display: flex;
   flex-wrap: wrap;
   > * {
     display: flex;
-    @extend %marb_small;
     box-sizing: border-box;
+    @include multi_media(margin-bottom, map-get($space_details, small));
   }
+}
+
+%default_all_columns {
+  @include all_columns_common_css();
 }
 
 $first_res: Sdesktop;
@@ -35,10 +39,11 @@ $all_column_details: (
       mobile: 1
     )
   ),
-  3_from_non_default: (
+  3_non_default: (
     details: (
       Stablet: 3,
-      Smobile: 2
+      Lmobile: 2,
+      XSmobile: 1
     )
   ),
   2: (
@@ -176,14 +181,22 @@ $default_config: (
 @mixin add_all_column() {
   @each $key, $config in $all_column_details {
     %col#{$key} {
-      @extend %all_columns;
+      $details_first_key: map_first_key(map-get($config, details));
+      @if($details_first_key == null) {
+        @extend %default_all_columns;
+      }
+      @else {
+        @include media($details_first_key) {
+          @include all_columns_common_css();
+        }
+      }
       @include set_multi_column($config);
     }
   }
 }
 @include add_all_column();
 
-@mixin set_col_selector_css(
+@mixin add_col_selector_css(
   $column_details_key,
   $selector_type,
   $selector_type_options: false

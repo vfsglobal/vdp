@@ -72,6 +72,7 @@ $predefined_media_type: (
 // $type: _only_laptop //if starts with underscope give value as given in predefined_media_type
 @function generate_media_str($type) {
   $media_str: "";
+  
   @if type-of($type) == map {
     $from: map-get($type, from);
     $to: map-get($type, to);
@@ -87,6 +88,8 @@ $predefined_media_type: (
       "-width: " +
       ($resolution_to_value + if($is_from_greater, 1, -1)) +
       "px)";
+  } @else if type-of($type) == number {
+    $media_str: "(max-width: " + strip_unit($type) + "px)";
   } @else if str-index($type, "/") != null {
     $index: str-index($type, "/");
     $media_str: generate_media_str(

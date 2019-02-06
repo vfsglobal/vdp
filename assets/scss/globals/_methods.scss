@@ -158,3 +158,15 @@
 
   @return map-merge($default_options, $options);
 }
+
+@function map_first_key($map) {
+  @return nth(map-keys($map), 1);
+}
+
+@function strip_unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

@@ -287,6 +287,7 @@ ul.side_heading_content_list {
   }
 }
 a.bottom_border {
+  @include inline_valign();
   position: relative;
   &:before {
     content: "";
