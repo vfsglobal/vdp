@@ -33,7 +33,7 @@ export default {
   }
 
   &.statsShortListBig {
-    @extend %col4_full;
+    @extend %col4_full_long;
   }
 
   &.statsShortListOneLine {

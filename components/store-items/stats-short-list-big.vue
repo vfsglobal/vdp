@@ -138,7 +138,6 @@ $only_first_break_point: $first_break_point + "/" + $second_break_point;
         font-weight: bold;
         @include media($second_break_point) {
           $text_space: 5px;
-
           &.empty {
             display: none;
           }
@@ -160,7 +159,7 @@ ul.box_list.statsShortListBig > li {
     #{get_column_selector(2, last_row)} {
       border-bottom: none;
     }
-    #{get_column_selector(2, last_column, (inverse: true))} {
+    #{get_column_selector(2, last_column, true)} {
       border-right: $border;
     }
   }
