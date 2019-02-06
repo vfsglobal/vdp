@@ -21,20 +21,30 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./assets/scss/globals/main";
+
 .stats_complete_list_big_item > .big_heading {
   display: flex;
-  padding: 10px 0px;
+  @extend %padv_extra_small;
   align-items: center;
   justify-content: center;
   text-align: left;
 
   > i {
-    font-size: 60px;
+    @include multi_media(
+      font-size,
+      (
+        default: 60px,
+       _onlySdesktop: 50px,
+      _onlymobile: 40px
+      )
+    );
+    
     color: #fff;
   }
 
   > .main_content {
-    padding-left: 20px;
+    @extend %padl_normal;
 
     > span {
       display: block;
@@ -42,7 +52,7 @@ export default {
       &.text {
         font-size: 0.5em;
         font-weight: normal;
-        padding-bottom: 5px;
+        @extend %padb_extra_mini;
       }
     }
   }

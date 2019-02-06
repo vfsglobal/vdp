@@ -102,18 +102,23 @@ export default {
   &%general {
     > .owl-dots {
       text-align: center;
-      margin-top: 20px;
+      @extend %mart_normal;
 
       > .owl-dot {
-        $size: 12px;
+        $size: (
+          default: 12px,
+          _onlySdesktop: 10px,
+          _onlymobile: 8px
+        );
 
         position: relative;
         @include inline_valign();
-        width: $size;
-        height: $size;
+        @include add_css_from_map((
+          width:$size,
+          height:$size
+        ));
         border-radius: 50%;
         background: $dark_background_color;
-
         &:before {
           content: "";
           position: absolute;
@@ -127,7 +132,6 @@ export default {
           transform: scale(0);
           transition: all 0.3s;
         }
-
         &:hover,
         &.active {
           &:before {
@@ -135,9 +139,8 @@ export default {
             transform: scale(1);
           }
         }
-
         &:not(:last-child) {
-          margin-right: 20px;
+          @extend %marr_normal;
         }
 
         &.active {
@@ -146,14 +149,11 @@ export default {
       }
     }
   }
-
   &%same_item_height {
     > .owl-stage-outer .owl-stage {
       display: flex;
-
       > .owl-item > .item {
         height: 100%;
-
         > * {
           height: 100%;
           box-sizing: border-box;
@@ -161,7 +161,6 @@ export default {
       }
     }
   }
-
   &.statsMainListBig {
     background: linear-gradient(
       to right,
@@ -173,28 +172,33 @@ export default {
     @extend %padh_big;
     box-sizing: border-box;
 
+    $break_point: ipad;
+
     > .owl-nav {
       $size: 40px;
       $border_width: 2px;
       $color: #fff;
-
       > * {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         opacity: 0;
         visibility: hidden;
+        @include media($break_point){
+          visibility: visible;
+          opacity: 1;
+        }
         transition: 0.5s;
-
         &:before {
           content: "";
           display: block;
         }
       }
-
       > .owl-prev {
         left: $size;
-
+        @include media($break_point){
+          left: 0%;
+        }
         &:before {
           @include create_unfilled_arrow(
             (
@@ -208,6 +212,9 @@ export default {
       }
       > .owl-next {
         right: $size;
+        @include media($break_point){
+          right: 0%;
+        }
         &:before {
           @include create_unfilled_arrow(
             (
