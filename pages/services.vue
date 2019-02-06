@@ -59,13 +59,20 @@ ul.accordion.services > li {
     align-items: center;
 
     > i {
-      font-size: 40px;
+      @include add_css_from_map(
+        (
+          font-size: (
+            default: 40px,
+            _onlySdesktop: 35px,
+            _onlymobile: 30px
+          ),
+          padding-right: $accordion_hor_padding
+        )
+      );
       color: $orange;
-      padding-right: $accordion_hor_padding;
       transition: all $accordion_transition_duration;
     }
   }
-
   &.active > .accordion_button > .button_content > i {
     color: #fff;
   }

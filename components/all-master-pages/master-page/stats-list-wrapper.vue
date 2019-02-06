@@ -28,15 +28,16 @@ export default {
 
     &:not(:last-child) {
       @include multi_media(
-        border-right,
-        (
-          default: 2px solid #fff,
-           _onlymobile: 1px
-        ),
-        (
-          suffix: " solid " 
-        )
-      );
+          border-right,
+          (
+            default: 2px,
+            _onlySdesktop: 1px
+          ),
+          (
+            suffix: " solid " + #fff
+          )
+        );
+        
     }
   }
 }

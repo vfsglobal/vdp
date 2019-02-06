@@ -47,7 +47,7 @@ export default {
   watch: {
     isOpen(val) {
       var $parent = this.$parent;
-      
+
       if (val)
         checkAndPush($parent.openedElements, this);
       else
@@ -65,41 +65,57 @@ export default {
 @import "./assets/scss/globals/main";
 
 ul.accordion > li {
-  $left_border_width: 5px;
+  $left_border_width: (
+    default: 5px,
+    _onlySdesktop: 4px,
+    _onlymobile: 3px
+  );
   $transition: all $accordion_transition_duration;
-
   position: relative;
   background: $light_background_color;
-  border-left: $left_border_width solid $purple;
-
+  @include multi_media(
+    border-left,
+    $left_border_width,
+    (
+      suffix: " solid " + $purple
+    )
+  );
+  
   &:not(:last-child) {
-    margin-bottom: 20px;
+    @extend %marb_normal;
   }
-
   &:before {
     content: "";
     display: block;
     position: absolute;
-    left: -$left_border_width;
+    @include add_css_from_map(
+      (
+        left:
+          modify_map_value(
+            $left_border_width,
+            (
+              prefix: "-"
+            )
+          ),
+        width: $left_border_width
+      )
+    );
     bottom: 0%;
-    width: $left_border_width;
     height: 0%;
     background: $orange;
     transition: $transition;
   }
-
   &:hover:before,
   &.active:before {
     height: 100%;
   }
-
   > .accordion_button {
     position: relative;
-    padding: 10px $accordion_hor_padding;
+    @extend %padv_extra_small;
+    @include multi_media((padding-left padding-right), $accordion_hor_padding);
     cursor: pointer;
     z-index: 1;
     transition: $transition;
-
     &:before {
       content: "";
       display: block;
@@ -112,11 +128,9 @@ ul.accordion > li {
       z-index: -1;
       transition: $transition;
     }
-
     > .button_content > h4 {
-      font-size: 18px;
+      @extend %L2_font_size;
     }
-
     > .arrow {
       @include create_circle_arrow(
         unfilled,
@@ -133,7 +147,7 @@ ul.accordion > li {
       ) {
         transition: $transition;
       }
-      right: $accordion_hor_padding;
+      @include multi_media(right, $accordion_hor_padding);
       top: 50%;
       transform: translateY(-50%);
     }
@@ -149,7 +163,7 @@ ul.accordion > li {
     }
   }
   > .accordion_content > .main_content_container {
-    padding: $accordion_hor_padding;
+    @include multi_media(padding, $accordion_hor_padding);
   }
 }
 </style>
