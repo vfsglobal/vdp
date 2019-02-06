@@ -1,37 +1,3 @@
-$space_details: (
-  extra_big: $container_big_spacing,
-  big: $container_spacing,
-  normal: (
-    default: 20px,
-    _onlySdesktop: 15px,
-    _onlymobile: 12px
-  ),
-  small: (
-    default: 15px,
-    _onlySdesktop: 12px,
-    _onlymobile: 10px
-  ),
-  extra_small: (
-    default: 10px,
-    _onlySdesktop: 8px,
-    _onlymobile: 6px
-  ),
-  mini: (
-    default: 7px,
-    _onlySdesktop: 5px,
-    _onlymobile: 3px
-  ),
-  extra_mini: (
-    default: 5px,
-    _onlySdesktop: 4px,
-    _onlymobile: 3px
-  ),
-  extra_mini2: (
-    default: 3px,
-    _onlySdesktop: 2px,
-    _onlymobile: 1px
-  )
-);
 @mixin add_pad_and_mar() {
   $css_space_types: (
     pad: padding,

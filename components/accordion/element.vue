@@ -80,6 +80,7 @@ ul.accordion > li {
       suffix: " solid " + $purple
     )
   );
+  
   &:not(:last-child) {
     @extend %marb_normal;
   }
@@ -110,7 +111,8 @@ ul.accordion > li {
   }
   > .accordion_button {
     position: relative;
-    padding: 10px $accordion_hor_padding;
+    @extend %padv_extra_small;
+    @include multi_media((padding-left padding-right), $accordion_hor_padding);
     cursor: pointer;
     z-index: 1;
     transition: $transition;
@@ -145,7 +147,7 @@ ul.accordion > li {
       ) {
         transition: $transition;
       }
-      right: $accordion_hor_padding;
+      @include multi_media(right, $accordion_hor_padding);
       top: 50%;
       transform: translateY(-50%);
     }
@@ -161,7 +163,7 @@ ul.accordion > li {
     }
   }
   > .accordion_content > .main_content_container {
-    padding: $accordion_hor_padding;
+    @include multi_media(padding, $accordion_hor_padding);
   }
 }
 </style>

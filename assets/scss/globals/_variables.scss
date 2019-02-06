@@ -35,13 +35,48 @@ $container_big_spacing: modify_map_value(
   )
 );
 
+$space_details: (
+  extra_big: $container_big_spacing,
+  big: $container_spacing,
+  normal: (
+    default: 20px,
+    _onlySdesktop: 15px,
+    _onlymobile: 12px
+  ),
+  small: (
+    default: 15px,
+    _onlySdesktop: 12px,
+    _onlymobile: 10px
+  ),
+  extra_small: (
+    default: 10px,
+    _onlySdesktop: 8px,
+    _onlymobile: 6px
+  ),
+  mini: (
+    default: 7px,
+    _onlySdesktop: 5px,
+    _onlymobile: 3px
+  ),
+  extra_mini: (
+    default: 5px,
+    _onlySdesktop: 4px,
+    _onlymobile: 3px
+  ),
+  extra_mini2: (
+    default: 3px,
+    _onlySdesktop: 2px,
+    _onlymobile: 1px
+  )
+);
+
 $box_spacing: 2%;
 $box_big_spacing: 3%;
 $basic_direction_details: (
   horizontal: left right,
   vertical: top bottom
 );
-$accordion_hor_padding: 15px;
+$accordion_hor_padding: map-get($space_details, small);
 $accordion_transition_duration: 0.7s;
 $page_transition_duration: 1000ms;
 $page_transition_delay: 300ms;
