@@ -21,13 +21,22 @@ export default {
 
 .stats_list_wrapper {
   background: $orange;
-  padding: 15px 0px;
+  @extend %padv_small;
 
   ul > li {
     color: #fff;
 
     &:not(:last-child) {
-      border-right: 2px solid #fff;
+      @include multi_media(
+        border-right,
+        (
+          default: 2px solid #fff,
+           _onlymobile: 1px
+        ),
+        (
+          suffix: " solid " 
+        )
+      );
     }
   }
 }
