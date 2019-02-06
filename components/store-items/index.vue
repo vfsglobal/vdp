@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./assets/scss/globals/main";
 a.box {
   display: block;
 }

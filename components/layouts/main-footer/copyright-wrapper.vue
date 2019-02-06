@@ -64,32 +64,56 @@ export default {
       > * {
         direction: ltr;
         @include inline_valign();
+
+        @include media(Ltablet) {
+          display: block;
+        }
       }
 
-      > ul > li {
-        position: relative;
-        float: left;
-        @extend %padl_extra_small;
-        @extend %marl_extra_small;
-
-        &:before {
-          $seperator_height: 70%;
-
-          content: "";
-          display: block;
-          position: absolute;
-          left: 0%;
-          top: (100 - $seperator_height) / 2;
-          width: 1px;
-          height: $seperator_height;
-          background: $text_color;
+      > ul {
+        @include media(Ltablet) {
+          padding-bottom: 10px;
+          border-bottom: 1px solid rgba($text_color, 0.1);
+          margin-bottom: 10px;
         }
 
-        a {
-          transition: all 0.3s;
+        > li {
+          position: relative;
+          float: left;
 
-          &:hover {
-            color: #fff;
+          @extend %padl_extra_small;
+          @extend %marl_extra_small;
+
+          &:before {
+            $seperator_height: 70%;
+
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0%;
+            top: (100 - $seperator_height) / 2;
+            width: 1px;
+            height: $seperator_height;
+            background: $text_color;
+          }
+
+          @include media(Ltablet) {
+            &:first-child {
+              padding-left: 0px;
+              margin-left: 0px;
+
+              &:before {
+                display: none;
+              }
+            }
+          }
+
+          a {
+            transition: all 0.3s;
+
+            &:hover {
+              color: #fff;
+            }
           }
         }
       }
