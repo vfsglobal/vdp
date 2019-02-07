@@ -169,7 +169,7 @@ ul.accordion > li {
     }
     > .arrow {
       @include set_circle_arrow_color(unfilled, #fff);
-      transform: translateY(-50%) rotate(180deg);
+      transform: rotate(180deg);
     }
   }
   > .accordion_content > .main_content_container {
