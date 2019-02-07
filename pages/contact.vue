@@ -98,7 +98,6 @@ export default {
     align-items: center;
     box-sizing: border-box;
     @include media($first_break_point) {
-      flex: 1;
       width: auto;
       height: auto;
     }
