@@ -18,7 +18,7 @@
         <li>
           <div class="main_content_wrapper">
             <h3>Our Services</h3>
-            <div class="main_content">
+            <div class="main_content our_services">
               <list
                 :content="services"
                 class="link_list"
@@ -34,7 +34,7 @@
         <li>
           <div class="main_content_wrapper">
             <h3>Quick links</h3>
-            <div class="main_content">
+            <div class="main_content quick_links">
               <list
                 :content="topNav"
                 class="link_list"
@@ -112,6 +112,7 @@ footer {
   );
   ul.main_content_list {
     $col_type: 4_full;
+    $link_col_type: 2_small;
     @extend %col#{$col_type};
     @extend %marv_normal;
     > li {
@@ -126,7 +127,6 @@ footer {
         )
       );
       @include media($break_point) {
-        justify-content: center;
         text-align: center;
       }
       &:before {
@@ -169,6 +169,7 @@ footer {
         }
       }
       > .main_content_wrapper {
+        width: 100%;
         > h3,
         > img.main_image {
           @extend %marb_normal;
@@ -182,6 +183,25 @@ footer {
         > .main_content {
           @extend %XS_font_size;
           line-height: 1.5em;
+          &.our_services,
+          &.quick_links {
+            > ul.link_list {
+              width: 100%;
+              @extend %col#{$link_col_type};
+              > li {
+                @include media($break_point) {
+                  justify-content: center;
+                  padding: 0px 5px;
+                }
+                @include add_col_selector_css($link_col_type, last_column, true) {
+                  border-right: 1px solid $dark_background_color;
+                }
+                &:last-child {
+                  border-right: none;
+                }
+              }
+            }
+          }
         }
         ul.link_list > li:not(:last-child) {
           @extend %marb_extra_mini;
