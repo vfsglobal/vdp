@@ -24,15 +24,21 @@ export default {
   }
 
   > i {
-    font-size: 32px;
-    padding-right: 5px;
+    @include multi_media(
+      font-size,
+      (
+        default: 32px,
+        _onlySdesktop: 28px,
+        _onlymobile: 22px
+      )
+    );
+    @extend %padr_extra_mini;
   }
 
   > span {
-    font-size: 16px;
+    @extend %L_font_size;
   }
 }
-
 ul.box_list.statsShortListBig > li {
   text-align: center;
 }

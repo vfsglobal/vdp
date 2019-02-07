@@ -85,8 +85,7 @@ nav {
   %height_with_line_height {
     @include add_css_from_map(
       (
-        height: $height,
-        line-height: $height
+        (height line-height): $height,
       )
     );
   }

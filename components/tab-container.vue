@@ -91,7 +91,7 @@ export default {
 
       > .button_content {
         position: relative;
-        padding: 10px;
+        @extend %pad_extra_small;
         font-weight: bold;
         text-align: center;
         cursor: pointer;
@@ -149,11 +149,21 @@ export default {
 
   > .content_warpper {
     background: $light_background_color;
-    border-top: 3px solid $orange;
+    @include multi_media(
+      border-top,
+      (
+        default:3px,
+        _onlymobile: 2px
+      ),
+      (
+        suffix: " solid " + $orange
+      )
+    );
+    
   }
 
   &.simple_content_tab > .content_warpper {
-    padding: 15px;
+    @extend %pad_small;
   }
 }
 </style>

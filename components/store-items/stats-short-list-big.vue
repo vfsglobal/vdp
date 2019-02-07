@@ -96,8 +96,7 @@ $only_first_break_point: $first_break_point + "/" + $second_break_point;
             _onlymobile: 20px
           ),
           margin-top: $spacing,
-          width: $icon_size,
-          height: $icon_size
+          (width height): $icon_size
         )
       );
       @include media($first_break_point) {
@@ -127,8 +126,7 @@ $only_first_break_point: $first_break_point + "/" + $second_break_point;
         );
         @include add_css_from_map(
           (
-            font-size: $font_size,
-            line-height: $font_size
+            (font-size line-height): $font_size
           )
         );
         color: $purple;
