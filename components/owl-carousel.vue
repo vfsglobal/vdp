@@ -115,9 +115,12 @@ export default {
         @include inline_valign();
         @include add_css_from_map(
           (
-          (width height): $size
+            (
+                width height
+              ):
+              $size
           )
-          );
+        );
         border-radius: 50%;
         background: $dark_background_color;
         &:before {
@@ -173,9 +176,12 @@ export default {
     box-sizing: border-box;
     $break_point: ipad;
     > .owl-nav {
-      $size: 40px;
+      $size: (
+        default: 40px,
+        _onlySdesktop: 30px,
+        _onlymobile: 20px
+      );
       $border_width: 2px;
-
       $color: #fff;
       > * {
         position: absolute;
@@ -194,7 +200,7 @@ export default {
         }
       }
       > .owl-prev {
-        left: $size;
+        @include multi_media(left, $size);
         @include media($break_point) {
           left: 0%;
         }
@@ -210,7 +216,7 @@ export default {
         }
       }
       > .owl-next {
-        right: $size;
+        @include multi_media(right, $size);
         @include media($break_point) {
           right: 0%;
         }

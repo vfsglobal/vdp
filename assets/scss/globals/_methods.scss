@@ -38,6 +38,8 @@
       $value: $value + $option_value;
     } @else if $option_key == round {
       $value: round($value);
+    } @else if $option_key == ceil {
+      $value: ceil($value);
     } @else if $option_key == prefix {
       $value: $option_value + $value;
     } @else if $option_key == suffix {
@@ -72,26 +74,33 @@
 // );
 // //and
 // $key: default
-// //output 
+// //output
 // (
 //     multiply: 3,
 //     add: 1
 // );
 @function modify_map_value_options($modify_options, $key) {
-	@each $option_key, $option_val in $modify_options {
+  @each $option_key, $option_val in $modify_options {
     $new_option_val: $option_val;
 
-    @if(type-of($option_val) == map) {
+    @if (type-of($option_val) == map) {
       $new_option_val: map-get($option_val, $key);
-      $new_option_val: if($new_option_val == null, $option_val, $new_option_val);
+      $new_option_val: if(
+        $new_option_val == null,
+        $option_val,
+        $new_option_val
+      );
     }
 
-		$modify_options: map-merge($modify_options, (
-			$option_key: $new_option_val
-		));
-	}
+    $modify_options: map-merge(
+      $modify_options,
+      (
+        $option_key: $new_option_val
+      )
+    );
+  }
 
-	@return $modify_options;
+  @return $modify_options;
 }
 
 // //modify_options for basic map can be
@@ -130,25 +139,35 @@
 //     add: 1
 // );
 @function modify_map_value($map, $modify_options) {
-	@each $key, $value in $map {
-		$new_modify_options: modify_map_value_options($modify_options, $key);
+  @if (type-of($map) == map) {
+    @each $key, $value in $map {
+      $new_modify_options: modify_map_value_options($modify_options, $key);
 
-		@if type-of($value) == map {
-			$value: modify_map_value($value, $new_modify_options);
-		}
-		@else {
-			$value: generate_value($value, $new_modify_options);
-		}
+      @if type-of($value) == map {
+        $value: modify_map_value($value, $new_modify_options);
+      } @else {
+        $value: generate_value($value, $new_modify_options);
+      }
 
-		$map: map-merge($map, ($key: $value));
-	}
+      $map: map-merge(
+        $map,
+        (
+          $key: $value
+        )
+      );
+    }
+  } @else {
+    $map: generate_value($map, $modify_options);
+  }
 
-	@return $map;
+  @return $map;
 }
 
 @function autocorrect_options($options, $default_options, $default_key: false) {
-  @if($default_key != false) {
-    @if(type-of(map-get($default_options, $default_key)) == type-of($options)) {
+  @if ($default_key != false) {
+    @if (
+      type-of(map-get($default_options, $default_key)) == type-of($options)
+    ) {
       $options: (
         $default_key: $options
       );
@@ -164,7 +183,7 @@
 }
 
 @function strip_unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
+  @if type-of($number) == "number" and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }
 

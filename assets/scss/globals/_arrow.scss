@@ -9,14 +9,26 @@ $filled_arrow_direction_details: (
   $tip_length: map-get($options, tip_length);
   $broadness: map-get($options, broadness);
   $color: map-get($options, color);
-  $transparent_border: $broadness / 2 solid transparent;
-  border-#{get_position_opposite($direction)}: $tip_length solid $color;
+  @include multi_media(
+    "border-" + get_position_opposite($direction),
+    $tip_length,
+    (
+      suffix: " solid " + $color
+    )
+  );
   $transparent_border_directions: map-get(
     $basic_direction_details,
     map-get($filled_arrow_direction_details, $direction)
   );
   @each $border_direction in $transparent_border_directions {
-    border-#{$border_direction}: $transparent_border;
+    @include multi_media(
+      "border-" + $border_direction,
+      $broadness,
+      (
+        multiply: 0.5,
+        suffix: " solid transparent"
+      )
+    );
   }
 }
 @mixin set_filled_arrow_color($direction, $color) {
@@ -33,10 +45,23 @@ $unfilled_arrow_direction_details: (
   $size: map-get($options, size);
   $border_width: map-get($options, border_width);
   $color: map-get($options, color);
-  width: $size;
-  height: $size;
-  border-top: $border_width solid $color;
-  border-left: $border_width solid $color;
+  @include add_css_from_map(
+    (
+      (
+          width height
+        ):
+        $size,
+      (
+          border-top border-left
+        ):
+        modify_map_value(
+          $border_width,
+          (
+            suffix: " solid " + $color
+          )
+        )
+    )
+  );
   transform: rotate(
     #{map-get($unfilled_arrow_direction_details, $direction)}deg
   );
@@ -56,7 +81,10 @@ $circle_arrow_default_other_options: (
   $inner_arrow_options,
   $other_options: null
 ) {
-  $other_options: autocorrect_options($other_options, $circle_arrow_default_other_options);
+  $other_options: autocorrect_options(
+    $other_options,
+    $circle_arrow_default_other_options
+  );
   $circle_border_width: map-get($other_options, circle_border_width);
   $position: map-get($other_options, position);
   $circle_border_width: if(
@@ -66,9 +94,21 @@ $circle_arrow_default_other_options: (
   );
   display: flex;
   position: $position;
-  width: $circle_size;
-  height: $circle_size;
-  border: $circle_border_width solid map-get($inner_arrow_options, color);
+  @include add_css_from_map(
+    (
+      (
+          width height
+        ):
+        $circle_size,
+      border:
+        modify_map_value(
+          $circle_border_width,
+          (
+            suffix: " solid " + map-get($inner_arrow_options, color)
+          )
+        )
+    )
+  );
   border-radius: 50%;
   align-items: center;
   justify-content: center;
@@ -82,11 +122,13 @@ $circle_arrow_default_other_options: (
     content: "";
     display: block;
     position: relative;
-    #{get_position_opposite(map-get($inner_arrow_options, direction))}: ceil(
-      map-get(
-          $inner_arrow_options,
-          if($inner_arrow_type == filled, tip_length, size)
-        ) / if($inner_arrow_type == filled, 32, -6)
+    @include multi_media(
+      get_position_opposite(map-get($inner_arrow_options, direction)),
+      $inner_arrow_size,
+      (
+        multiply: 1 / if($inner_arrow_type == filled, 32, -6),
+        ceil: true
+      )
     );
     @if ($inner_arrow_type == filled) {
       @include create_filled_arrow($inner_arrow_options);
