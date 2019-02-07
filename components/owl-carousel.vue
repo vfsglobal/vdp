@@ -105,20 +105,17 @@ export default {
       @extend %mart_normal;
 
       > .owl-dot {
-        $size: (
-          default: 12px,
-          _onlySdesktop: 10px,
-          _onlymobile: 8px
-        );
-
         position: relative;
         @include inline_valign();
         @include add_css_from_map(
           (
             (
-                width height
-              ):
-              $size
+              width height
+            ): (
+              default: 12px,
+              _onlySdesktop: 10px,
+              _onlymobile: 8px
+            )
           )
         );
         border-radius: 50%;
