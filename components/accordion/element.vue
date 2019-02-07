@@ -80,7 +80,6 @@ ul.accordion > li {
       suffix: " solid " + $purple
     )
   );
-  
   &:not(:last-child) {
     @extend %marb_normal;
   }
@@ -110,9 +109,11 @@ ul.accordion > li {
     height: 100%;
   }
   > .accordion_button {
+    display: flex;
     position: relative;
     @extend %padv_extra_small;
     @include multi_media((padding-left padding-right), $accordion_hor_padding);
+    align-items: center;
     cursor: pointer;
     z-index: 1;
     transition: $transition;
@@ -128,28 +129,37 @@ ul.accordion > li {
       z-index: -1;
       transition: $transition;
     }
-    > .button_content > h4 {
-      @extend %L2_font_size;
+    > .button_content {
+      flex: 1;
+      @include multi_media(padding-right, $accordion_hor_padding);
+      > h4 {
+        @extend %L2_font_size;
+      }
     }
     > .arrow {
       @include create_circle_arrow(
         unfilled,
-        25px,
         (
-          direction: bottom,
-          size: 7px,
-          border_width: 2px,
-          color: $purple
+          default: 25px,
+          _onlySdesktop: 22px,
+          _onlymobile: 20px
         ),
         (
-          position: absolute
+          direction: bottom,
+          size: (
+            default: 7px,
+            _onlySdesktop: 6px,
+            _onlymobile: 6px
+          ),
+          border_width: (
+            default: 2px,
+            _onlymobile: 1px
+          ),
+          color: $purple
         )
       ) {
         transition: $transition;
       }
-      @include multi_media(right, $accordion_hor_padding);
-      top: 50%;
-      transform: translateY(-50%);
     }
   }
   &.active > .accordion_button {
