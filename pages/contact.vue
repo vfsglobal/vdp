@@ -73,16 +73,16 @@ export default {
   $second_break_point: Lmobile;
   $only_first_break_point: $first_break_point + "/" + $second_break_point;
   display: flex;
-  height: 280px;
   overflow: hidden;
   @include media($first_break_point) {
     flex-direction: column;
-    height: auto;
+  }
+  > * {
+    height: 280px;
   }
   > iframe {
     display: block;
     flex: 1;
-    height: inherit;
     border: 1px solid $light_border_color;
     border-right: none;
     box-sizing: border-box;
@@ -99,7 +99,8 @@ export default {
     box-sizing: border-box;
     @include media($first_break_point) {
       flex: 1;
-      width: 100%;
+      width: auto;
+      height: auto;
     }
     > .main_content {
       display: flex;
