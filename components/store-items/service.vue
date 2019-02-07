@@ -142,4 +142,8 @@ export default {
     }
   }
 }
+
+ul.box_list.services {
+  @extend %col6;
+}
 </style>

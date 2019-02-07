@@ -25,19 +25,9 @@ export default {
 
   ul > li {
     color: #fff;
-
-    &:not(:last-child) {
-      @include multi_media(
-          border-right,
-          (
-            default: 2px,
-            _onlySdesktop: 1px
-          ),
-          (
-            suffix: " solid " + #fff
-          )
-        );
-        
+    border-right-color: #FFF !important;
+    &:before {
+      background: #FFF !important;
     }
   }
 }

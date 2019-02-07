@@ -27,17 +27,5 @@ export default {
   > li > .box {
     width: 100%;
   }
-
-  &.services {
-    @extend %col6;
-  }
-
-  &.statsShortListBig {
-    @extend %col4_full_long;
-  }
-
-  &.statsShortListOneLine {
-    @extend %col4_full;
-  }
 }
 </style>

@@ -77,6 +77,7 @@ $basic_direction_details: (
   vertical: top bottom
 );
 $accordion_hor_padding: map-get($space_details, small);
+$box_bottom_space: map-get($space_details, small);
 $accordion_transition_duration: 0.7s;
 $page_transition_duration: 1000ms;
 $page_transition_delay: 300ms;

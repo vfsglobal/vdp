@@ -96,7 +96,10 @@ $only_first_break_point: $first_break_point + "/" + $second_break_point;
             _onlymobile: 20px
           ),
           margin-top: $spacing,
-          (width height): $icon_size
+          (
+              width height
+            ):
+            $icon_size
         )
       );
       @include media($first_break_point) {
@@ -126,7 +129,10 @@ $only_first_break_point: $first_break_point + "/" + $second_break_point;
         );
         @include add_css_from_map(
           (
-            (font-size line-height): $font_size
+            (
+                font-size line-height
+              ):
+              $font_size
           )
         );
         color: $purple;
@@ -150,71 +156,75 @@ $only_first_break_point: $first_break_point + "/" + $second_break_point;
     }
   }
 }
-ul.box_list.statsShortListBig > li {
-  margin-bottom: 0px;
-  @include media($only_first_break_point) {
-    border-bottom: $border;
-    #{get_column_selector(2, last_row)} {
-      border-bottom: none;
+ul.box_list.statsShortListBig {
+  @extend %col4_full_long;
+  
+  > li {
+    margin-bottom: 0px;
+    @include media($only_first_break_point) {
+      border-bottom: $border;
+      #{get_column_selector(2, last_row)} {
+        border-bottom: none;
+      }
+      #{get_column_selector(2, last_column, true)} {
+        border-right: $border;
+      }
     }
-    #{get_column_selector(2, last_column, true)} {
-      border-right: $border;
+    @include media($second_break_point) {
+      &:not(:last-child) #{$root_element_selector} > .inner_box {
+        margin-bottom: 15px;
+      }
     }
-  }
-  @include media($second_break_point) {
-    &:not(:last-child) #{$root_element_selector} > .inner_box {
-      margin-bottom: 15px;
-    }
-  }
-  #{$root_element_selector} {
-    position: relative;
-    &:before {
-      $border_pos: modify_map_value(
-        $icon_size,
-        (
-          multiply: 0.5,
-          add: $spacing
-        )
-      );
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0%;
-      @include multi_media(
-        bottom,
-        map-merge(
-          $border_pos,
+    #{$root_element_selector} {
+      position: relative;
+      &:before {
+        $border_pos: modify_map_value(
+          $icon_size,
           (
-            _onlymobile: auto
+            multiply: 0.5,
+            add: $spacing
           )
-        )
-      );
-      width: 100%;
-      height: 1px;
-      background: $border_color;
-      @include media($only_first_break_point) {
-        display: none;
+        );
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0%;
+        @include multi_media(
+          bottom,
+          map-merge(
+            $border_pos,
+            (
+              _onlymobile: auto
+            )
+          )
+        );
+        width: 100%;
+        height: 1px;
+        background: $border_color;
+        @include media($only_first_break_point) {
+          display: none;
+        }
+        @include media($second_break_point) {
+          left: map-get($border_pos, _onlymobile) !important;
+          width: 1px !important;
+          height: 100%;
+        }
       }
+    }
+    &:first-child #{$root_element_selector}:before {
+      left: 50%;
+      width: 50%;
       @include media($second_break_point) {
-        left: map-get($border_pos, _onlymobile) !important;
-        width: 1px !important;
-        height: 100%;
+        top: 50%;
+        height: 50%;
       }
     }
-  }
-  &:first-child #{$root_element_selector}:before {
-    left: 50%;
-    width: 50%;
-    @include media($second_break_point) {
-      top: 50%;
-      height: 50%;
-    }
-  }
-  &:last-child #{$root_element_selector}:before {
-    left: 0%;
-    width: 50%;
-    @include media($second_break_point) {
-      height: 50%;
+    &:last-child #{$root_element_selector}:before {
+      left: 0%;
+      width: 50%;
+      @include media($second_break_point) {
+        height: 50%;
+      }
     }
   }
 }
