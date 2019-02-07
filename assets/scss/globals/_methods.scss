@@ -38,6 +38,8 @@
       $value: $value + $option_value;
     } @else if $option_key == round {
       $value: round($value);
+    } @else if $option_key == floor {
+      $value: floor($value);
     } @else if $option_key == ceil {
       $value: ceil($value);
     } @else if $option_key == prefix {
