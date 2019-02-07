@@ -21,6 +21,12 @@ $predefined_media_type: (
   onlymobile: mobile
 );
 
+@mixin set_multi_prop_value($prop, $value, $value_options) {
+  @each $cur_prop in $prop {
+    #{$cur_prop}: generate_value($value, $value_options);
+  }
+}
+
 // $content will be
 // (
 // prop: ("padding" "margin"),
@@ -44,12 +50,10 @@ $predefined_media_type: (
     $prop: map-get($content, prop);
     $value: map-get($content, value);
     @if $prop and $value {
-      @each $cur_prop in $prop {
-        #{$cur_prop}: generate_value($value, $value_options);
-      }
+      @include set_multi_prop_value($prop, $value, $value_options);
     } @else {
       @each $prop, $value in $content {
-        #{$prop}: generate_value($value, $value_options);
+        @include set_multi_prop_value($prop, $value, $value_options);
       }
     }
   }

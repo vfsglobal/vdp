@@ -113,10 +113,12 @@ export default {
 
         position: relative;
         @include inline_valign();
-        @include add_css_from_map((
-          width:$size,
-          height:$size
-        ));
+        @include add_css_from_map(
+          (
+            width: $size,
+            height: $size
+          )
+        );
         border-radius: 50%;
         background: $dark_background_color;
         &:before {
@@ -142,7 +144,6 @@ export default {
         &:not(:last-child) {
           @extend %marr_normal;
         }
-
         &.active {
           background: $orange;
         }
@@ -171,11 +172,13 @@ export default {
     cursor: grab;
     @extend %padh_big;
     box-sizing: border-box;
-
     $break_point: ipad;
-
     > .owl-nav {
-      $size: 40px;
+      $size: (
+        default: 40px,
+        _onlySdesktop: 30px,
+        _onlymobile: 20px
+      );
       $border_width: 2px;
       $color: #fff;
       > * {
@@ -184,7 +187,7 @@ export default {
         transform: translateY(-50%);
         opacity: 0;
         visibility: hidden;
-        @include media($break_point){
+        @include media($break_point) {
           visibility: visible;
           opacity: 1;
         }
@@ -195,8 +198,8 @@ export default {
         }
       }
       > .owl-prev {
-        left: $size;
-        @include media($break_point){
+        @include multi_media(left, $size);
+        @include media($break_point) {
           left: 0%;
         }
         &:before {
@@ -211,8 +214,8 @@ export default {
         }
       }
       > .owl-next {
-        right: $size;
-        @include media($break_point){
+        @include multi_media(right, $size);
+        @include media($break_point) {
           right: 0%;
         }
         &:before {
