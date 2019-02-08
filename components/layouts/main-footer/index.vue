@@ -8,7 +8,7 @@
             <div class="main_content">
               <p><strong>Address:</strong> <span v-html="address" /></p>
               <br>
-              <p><strong>Ph:</strong> <span v-html="contactNoHTML" /></p>
+              <p><strong>Phone:</strong> <span v-html="contactNoHTML" /></p>
               <p><strong>Email:</strong>
                 <email-link :email="email" />
               </p>
