@@ -42,20 +42,24 @@ ul.box_list.statsShortListOneLine {
   $col_type: 4_full;
   $break_point: mobile;
   @extend %col#{$col_type};
+  @include media($break_point) {
+    display: table;
+    margin: 0 auto;
+  }
   > li {
     $border_color: $light_border_color;
-
     position: relative;
     text-align: center;
     @include add_col_selector_css($col_type, last_column, true) {
       border-right: 2px solid $border_color;
     }
-    &:not(:last-child) {
-      @include media($break_point) {
+    @include media($break_point) {
+      text-align: left;
+      
+      &:not(:last-child) {
         @include multi_media(padding-bottom, $box_bottom_space);
-
         &:before {
-          content: '';
+          content: "";
           display: block;
           position: absolute;
           left: 50%;
