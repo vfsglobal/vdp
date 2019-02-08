@@ -1,15 +1,23 @@
-@function get_position_opposite($position) {
-  $position_opposites: (
-    top: bottom,
-    right: left
-  );
-  @each $key, $value in $position_opposites {
-    @if ($key == $position) {
+@function get_opposite($data, $str) {
+  @each $key, $value in $data {
+    @if ($key == $str) {
       @return $value;
-    } @else if($value == $position) {
+    } @else if($value == $str) {
       @return $key;
     }
   }
+
+  @return null;
+}
+
+@function get_position_opposite($position) {
+  @return get_opposite(
+    (
+      top: bottom,
+      right: left
+    ),
+    $position
+  );
 }
 
 // $value_options will be

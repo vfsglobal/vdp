@@ -36,10 +36,17 @@ export default {
     slideDuration() {
       return this.$parent.mainSlideDuration;
     },
+    scrollToTop() {
+      return this.slideDuration ? {
+        on: 'show',
+        selector: 'li'
+      } : false;
+    },
     showBySlideOptions() {
       return {
         show: this.isOpen,
-        slideDuration: this.slideDuration
+        slideDuration: this.slideDuration,
+        scrollToTop: false
       };
     }
   },

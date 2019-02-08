@@ -38,7 +38,7 @@ export function htmlToText(html) {
   return replaceTags(html, "").replace(/\s+/g, " ");
 }
 
-export function capitalFirst(str) {
+export function upperFirst(str) {
   return str.charAt(0).toUpperCase() + str.substring(1);
 }
 
@@ -66,6 +66,16 @@ export function substringFromText(
         endIndex + (includeStrings ? endStr.length : 0)
       );
 }
+
+export const replaceHyphenToCamelcase = (function() {
+  var replaceHyphenCharToUppercase = function(str) {
+    return str.charAt(1).toUpperCase();
+  };
+
+  return function(str) {
+    return str.replace(/-./g, replaceHyphenCharToUppercase);
+  };
+})();
 
 /*array sort functions*/
 
@@ -259,7 +269,40 @@ export function isNumericKeysObject(obj) {
   return hasNumericKey;
 }
 
-export function createAdvancedAutocorrectOptions(defaultOptions, nonObjKey) {
+export function getKeyOfValue(obj, value) {
+  for (var key in obj) {
+    if (obj[key] == value) return key;
+  }
+
+  return null;
+}
+
+export function getSwapValue(swapObj, value) {
+  var strValue = String(value);
+
+  if (swapObj.hasOwnProperty(strValue)) return swapObj[strValue];
+  else return getKeyOfValue(swapObj, value);
+}
+
+export const objUpdateEachValue = (function() {
+  function defaultSetFn(obj, key, value) {
+    obj[key] = value;
+  }
+
+  return function(obj, value, setFn) {
+    setFn = setFn || defaultSetFn;
+
+    for (var key in obj) setFn(obj, key, value);
+
+    return obj;
+  };
+})();
+
+export function createAdvancedAutocorrectOptions(
+  defaultOptions,
+  nonObjKey,
+  additionalAutocorrectKeyFn
+) {
   var nonObjType = typeof defaultOptions[nonObjKey];
 
   return options => {
@@ -273,6 +316,9 @@ export function createAdvancedAutocorrectOptions(defaultOptions, nonObjKey) {
       ...defaultOptions,
       ...options
     };
+
+    for (var key in additionalAutocorrectKeyFn)
+      options[key] = additionalAutocorrectKeyFn[key](options[key], options);
 
     return options;
   };
@@ -454,19 +500,18 @@ export var generateNewArrData = (function() {
 
 export const animateHeight = (() => {
   var defaultOptions = {
-    toHeight: "auto",
-    duration: 700,
-    delay: 0,
-    hideOverflow: true,
-    removeHeightAfterAnimate: true,
-    removeOverflowAfterAnimate: true,
-    callback() {}
-  },
-  
-  autocorrectOptions = createAdvancedAutocorrectOptions(
-    defaultOptions,
-    "toHeight"
-  );
+      toHeight: "auto",
+      duration: 700,
+      delay: 0,
+      hideOverflow: true,
+      removeHeightAfterAnimate: true,
+      removeOverflowAfterAnimate: true,
+      callback() {}
+    },
+    autocorrectOptions = createAdvancedAutocorrectOptions(
+      defaultOptions,
+      "toHeight"
+    );
 
   return function($el, options) {
     options = autocorrectOptions(options);
@@ -531,5 +576,279 @@ export const getAllModules = (function() {
     });
 
     return modules;
+  };
+})();
+
+/*css operations*/
+
+export const getInlineCss = (function() {
+  var prefixes = ["", "Webkit", "ms", "Moz", "O"];
+
+  return function(el, cssName) {
+    var cssFirstCapitalName, cssStyleName, elCssValue;
+
+    cssName = replaceHyphenToCamelcase(cssName);
+
+    cssFirstCapitalName = upperFirst(cssName);
+
+    prefixes.every(prefix => {
+      if (prefix == "") cssStyleName = cssName;
+      else cssStyleName = prefix + cssFirstCapitalName;
+
+      elCssValue = el.style[cssStyleName];
+
+      if (elCssValue != "" && elCssValue != undefined) return false;
+
+      return true;
+    });
+
+    return elCssValue == undefined ? "" : elCssValue;
+  };
+})();
+
+/*other operations*/
+
+export const verticalScroll = (function() {
+  var getScrollTop = function(el) {
+      if (el.is("body")) return $(window).scrollTop();
+
+      return el.scrollTop();
+    },
+    getScrollableEl = (function() {
+      var getOverflow = function(el) {
+        if (el.is("body")) return "auto";
+
+        var overflow = el.css("overflow").toLowerCase();
+
+        if (overflow == "") return el.css("overflow-y").toLowerCase();
+
+        return overflow;
+      };
+
+      return function(el) {
+        var parentEl = el,
+          parentOverflow;
+
+        while (parentOverflow != "auto" && parentOverflow != "scroll") {
+          parentEl = parentEl.parent();
+          parentOverflow = getOverflow(parentEl);
+        }
+
+        return parentEl;
+      };
+    })(),
+    getAnimateTopOfEl = (function() {
+      var getData = (function() {
+          var dataPropsFn = [
+            {
+              prop: "elOffsetTop",
+              fn: function(elements) {
+                return elements.mainEl.offset().top;
+              }
+            },
+            {
+              prop: "scrollableElOffsetTop",
+              fn: function(elements) {
+                return elements.scrollableEl.offset().top;
+              }
+            },
+            {
+              prop: "elHeight",
+              fn: function(elements) {
+                return elements.mainEl.outerHeight();
+              }
+            },
+            {
+              prop: "scrollableElHeight",
+              fn: function(elements) {
+                return elements.scrollableEl.outerHeight();
+              }
+            },
+            {
+              prop: "scrollTop",
+              fn: function(elements) {
+                return getScrollTop(elements.scrollableEl);
+              }
+            },
+            {
+              prop: "elRelatedTop",
+              fn: function(elements, data) {
+                if (elements.scrollableEl.is("body")) return data.elOffsetTop;
+
+                return (
+                  data.elOffsetTop - data.scrollableElOffsetTop + data.scrollTop
+                );
+              }
+            },
+            {
+              prop: "maxScrollTop",
+              fn: (function() {
+                var setAutoHeightTemporary = function(
+                    scrollableEl,
+                    data,
+                    fn,
+                    fnParam
+                  ) {
+                    var height = getInlineCss(scrollableEl[0], "height") || "",
+                      maxHeight =
+                        getInlineCss(scrollableEl[0], "max-height") || "";
+
+                    scrollableEl.css({
+                      height: "auto",
+                      maxHeight: "none",
+                      overflowY: "scroll"
+                    });
+
+                    fn(fnParam);
+
+                    scrollableEl.css({
+                      height: height,
+                      maxHeight: maxHeight,
+                      overflowY: ""
+                    });
+
+                    scrollableEl.scrollTop(data.scrollTop);
+                  },
+                  setMaxScrollTop = function(param) {
+                    param.maxScrollTop =
+                      param.scrollableEl.outerHeight() - param.initialHeight;
+                  };
+
+                return function(elements, data) {
+                  if (elements.scrollableEl.is("body"))
+                    return data.scrollableElHeight - window.innerHeight;
+
+                  var param = {
+                    scrollableEl: elements.scrollableEl,
+                    initialHeight: data.scrollableElHeight
+                  };
+
+                  setAutoHeightTemporary(
+                    elements.scrollableEl,
+                    data,
+                    setMaxScrollTop,
+                    param
+                  );
+
+                  return param.maxScrollTop;
+                };
+              })()
+            }
+          ];
+
+          return function(elements) {
+            var data = {};
+
+            dataPropsFn.forEach(
+              ({ prop, fn }) => (data[prop] = fn(elements, data))
+            );
+
+            return data;
+          };
+        })(),
+        getAnimateTopFn = {
+          scrollToTop: function(elements, data) {
+            return data.elRelatedTop;
+          },
+          scrollToShow: function(elements, data) {
+            var scrollToTop = getAnimateTopFn.scrollToTop(elements, data),
+              matchOffsetTop = elements.scrollableEl.is("body")
+                ? data.scrollTop
+                : data.scrollableElOffsetTop,
+              matchHeight = elements.scrollableEl.is("body")
+                ? window.innerHeight
+                : data.scrollableElHeight;
+
+            if (data.elOffsetTop < matchOffsetTop) return scrollToTop;
+            else if (
+              data.elOffsetTop + data.elHeight >
+              matchOffsetTop + matchHeight
+            )
+              return scrollToTop - matchHeight + data.elHeight;
+            else return data.scrollTop;
+          }
+        };
+
+      return function(el, animateTopType) {
+        var elements = {
+            mainEl: el,
+            scrollableEl: getScrollableEl(el)
+          },
+          data = getData(elements),
+          animateTop;
+
+        animateTopType = animateTopType || "scrollToTop";
+
+        animateTop = getAnimateTopFn[animateTopType](elements, data);
+
+        animateTop = animateTop < 0 ? 0 : animateTop;
+        animateTop =
+          animateTop > data.maxScrollTop ? data.maxScrollTop : animateTop;
+
+        return animateTop;
+      };
+    })(),
+    animate = function(el, animateTop, duration, callback, behaviour) {
+      if (typeof el == "number") {
+        behaviour = callback;
+        callback = duration;
+        duration = animateTop;
+        animateTop = el;
+        el = undefined;
+      }
+
+      if (typeof callback == "string") {
+        behaviour = callback;
+        callback = undefined;
+      }
+
+      behaviour = behaviour || "normal";
+
+      var $htmlBody = $("html, body");
+
+      el = el || $htmlBody;
+
+      if (el.is($htmlBody)) el = $htmlBody;
+
+      if (behaviour == "preventIfAnimating" && el.is(":animated")) return false;
+
+      if (getScrollTop(el) != animateTop) {
+        if (behaviour == "jumpToEnd") el.stop(true, true);
+        else el.stop();
+
+        el.animate(
+          {
+            scrollTop: animateTop
+          },
+          duration,
+          callback
+        );
+      } else if (callback != undefined) {
+        callback();
+      }
+
+      return true;
+    },
+    animateToEl = function(el, duration, callback, options) {
+      if (typeof callback == "object") {
+        options = callback;
+        callback = undefined;
+      }
+
+      options = options || {};
+
+      return animate(
+        getScrollableEl(el),
+        getAnimateTopOfEl(el, options.animateTopType),
+        duration,
+        callback,
+        options.behaviour
+      );
+    };
+
+  return {
+    getAnimateTopOfEl: getAnimateTopOfEl,
+    animate: animate,
+    animateToEl: animateToEl
   };
 })();

@@ -1,5 +1,5 @@
 import {
-  capitalFirst,
+  upperFirst,
   isNumericKeysObject,
   checkAddSlashInPath,
   removeLastSlashFromPath,
@@ -45,7 +45,7 @@ export const generateTypeDetailsMixin = (function() {
     var { namePrefix, data, includeProp, includeBlankForNotFound } = options,
       typeName = namePrefix ? namePrefix + "Type" : "type",
       mainTypePropName = includeProp ? typeName : "type",
-      allTypeDetailsName = `all${capitalFirst(typeName)}Details`,
+      allTypeDetailsName = `all${upperFirst(typeName)}Details`,
       mixin = {
         data() {
           return {
@@ -161,7 +161,7 @@ export const generateVModelMixin = (function() {
 function generateMultiDataMixin(config) {
   var { dataName, _default, isCommon, isEach, getValueAtIndex } = config,
     defaultOptions = {
-      mainDataName: "main" + capitalFirst(dataName),
+      mainDataName: "main" + upperFirst(dataName),
       contentPropName: "content"
     };
 
