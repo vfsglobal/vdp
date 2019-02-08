@@ -76,22 +76,21 @@ export default {
   overflow: hidden;
   @include media($first_break_point) {
     flex-direction: column;
-    
   }
   > * {
     height: 280px;
   }
   > iframe {
+    $border: 1px solid $light_border_color;
     display: block;
     flex: 1;
-    border: 1px solid $light_border_color;
+    border: $border;
     border-right: none;
     box-sizing: border-box;
-     @include media($first_break_point) {
-    border-bottom: none;
-    border-right: 1px solid $light_border_color;
-  }
-   
+    @include media($first_break_point) {
+      border-bottom: none;
+      border-right: $border;
+    }
   }
   > .main_content_container {
     display: flex;
