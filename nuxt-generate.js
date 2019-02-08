@@ -64,14 +64,6 @@ var processArgsDetails = {
             remove(curZipFolder + "/");
           });
         }
-      },
-      modifyNuxtConfig() {
-        var { meta } = nuxtConfig.head,
-          index = meta.findIndex(
-            ({ name }) => name && name.toLowerCase() == "viewport"
-          );
-          
-        if (index != -1) meta.splice(index, 1);
       }
     };
 
@@ -114,6 +106,6 @@ var processArgsDetails = {
 
     generator.generate();
   } catch (e) {
-    console.log(e);
+    showErrorAndExit(e);
   }
 })();
