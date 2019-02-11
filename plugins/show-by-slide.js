@@ -6,7 +6,7 @@ import {
 } from "~/utils";
 
 var slideElement = (function() {
-  var slideType = {
+  var allSlideTypes = {
     swapProps: {
       show: "hide"
     },
@@ -53,142 +53,200 @@ var slideElement = (function() {
     }
   };
 
-  slideType.allClasses = Object.keys(slideType.details);
+  allSlideTypes.allClasses = Object.keys(allSlideTypes.details);
 
-  var checkAndSlide = (function() {
-      var animationCompleted = function($el, typeDetails, callbacks) {
+  var autocorrectConfig = (function() {
+      var checkSlidable = function({
+        $el,
+        slideType,
+        slideTypeDetails: { checkCondition }
+      }) {
+        if (
+          !($el instanceof jQuery) ||
+          $el.length == 0 ||
+          $el.hasClass(slideType) ||
+          (checkCondition && !checkCondition($el))
+        )
+          return false;
+
+        return true;
+      };
+
+      return function(curConfig) {
+        curConfig.slideTypeDetails = allSlideTypes.details[curConfig.slideType];
+        curConfig.isSlidable = checkSlidable(curConfig);
+
+        return curConfig;
+      };
+    })(),
+    checkAndSlide = (function() {
+      var animationCompleted = function($el, slideTypeDetails, callbacks) {
           $el.css({
             height: "",
             overflow: ""
           });
 
-          if (typeDetails.onComplete) typeDetails.onComplete($el);
+          if (slideTypeDetails.onComplete) slideTypeDetails.onComplete($el);
 
           callbacks.onComplete && callbacks.onComplete($el);
         },
         scrollTop = {
-          onBeforeStart: function($el, typeDetails, scrollToTop) {
-            var previousHeight = $el.css("height"),
-              previousScrollTop = $(window).scrollTop(),
-              $animateTopToEl =
+          onBeforeStart: function(scrollTopData) {
+            scrollTopData.previousScrollTop = $(window).scrollTop();
+          },
+          onEach: [
+            function(curConfig) {
+              var {
+                $el,
+                slideTypeDetails: { cssHeightForScrollTop }
+              } = curConfig;
+
+              curConfig.scrollTopPreviousHeight = $el.css("height");
+              $el.css("height", cssHeightForScrollTop);
+            },
+            function(curConfig, scrollTopData) {
+              var {
+                $el,
+                options: { scrollToTop, duration }
+              } = curConfig;
+
+              if (scrollToTop == false) return;
+
+              scrollTopData.animateTop = verticalScroll.getAnimateTopOfEl(
                 scrollToTop == "" || scrollToTop == true
                   ? $el
-                  : $el.closest(scrollToTop),
-              animateTop;
+                  : $el.closest(scrollToTop)
+              );
+              scrollTopData.animationDuration = duration;
+            },
+            function(curConfig) {
+              var { $el, scrollTopPreviousHeight } = curConfig;
 
-            $el.css("height", typeDetails.cssHeightForScrollTop);
+              $el.css("height", scrollTopPreviousHeight);
+            }
+          ],
+          onAfterStart: function({
+            previousScrollTop,
+            animateTop,
+            animationDuration
+          }) {
+            var $htmlBody = $("html, body");
 
-            animateTop = verticalScroll.getAnimateTopOfEl($animateTopToEl);
+            $htmlBody.scrollTop(previousScrollTop);
 
-            $el.css("height", previousHeight);
-            $("html, body").scrollTop(previousScrollTop);
+            if (animateTop == undefined) return;
 
-            return animateTop;
-          },
-          onAfterStart: function(animateTop, duration) {
-            if (duration) verticalScroll.animate(animateTop, duration);
-            else $("html, body").scrollTop(animateTop);
+            if (animationDuration)
+              verticalScroll.animate(animateTop, animationDuration);
+            else $htmlBody.scrollTop(animateTop);
           }
         },
-        scrollToTopDataTypes = ["boolean", "string"];
+        initAll = function(curConfig) {
+          var {
+            $el,
+            slideType,
+            slideTypeDetails: { getFromToHeightFn }
+          } = curConfig;
 
-      return function(
-        $el,
-        type,
-        typeDetails,
-        duration,
-        callbacks,
-        scrollToTop
-      ) {
-        if (!($el instanceof jQuery) || $el.length == 0) return false;
+          $el.css("display", "block");
 
-        if (
-          $el.hasClass(type) ||
-          (typeDetails.checkCondition && !typeDetails.checkCondition($el))
-        )
-          return false;
+          curConfig.elHeight = $el.height();
+          curConfig.animateObj = {
+            height: getFromToHeightFn.to($el, curConfig.elHeight)
+          };
+          curConfig.swappedSlideType = getSwapValue(
+            allSlideTypes.swapProps,
+            slideType
+          );
+        },
+        callBeforeAnimationCallback = function(curConfig) {
+          var {
+            $el,
+            options: {
+              callbacks: { beforeAnimation }
+            }
+          } = curConfig;
 
-        //autoset params
+          beforeAnimation && beforeAnimation($el);
+        },
+        animateAll = function(curConfig) {
+          var {
+            $el,
+            elHeight,
+            slideType,
+            swappedSlideType,
+            animateObj,
+            slideTypeDetails,
+            slideTypeDetails: { getFromToHeightFn },
+            options: { duration, callbacks }
+          } = curConfig;
 
-        if (scrollToTopDataTypes.indexOf(typeof callbacks) != -1) {
-          scrollToTop = callbacks;
-          callbacks = undefined;
-        }
+          $el.css("height", getFromToHeightFn.from($el, elHeight) + "px");
 
-        if (typeof duration == "object") {
-          callbacks = duration;
-          duration = undefined;
-        } else if (scrollToTopDataTypes.indexOf(typeof duration) != -1) {
-          scrollToTop = duration;
-          duration = undefined;
-        }
+          $el.removeClass(swappedSlideType).addClass(slideType);
 
-        duration = duration || 0;
-        callbacks = callbacks || {};
-        scrollToTop = scrollToTop == undefined ? false : scrollToTop;
+          if (duration) {
+            $el.stop().animate(animateObj, duration, function() {
+              animationCompleted($(this), slideTypeDetails, callbacks);
+            });
+          } else {
+            animationCompleted($el, slideTypeDetails, callbacks);
+          }
+        };
 
-        //end autoset params
+      return function(config) {
+        var mainConfig = [];
 
-        $el.css("display", "block");
+        config.forEach((curConfig, index) => {
+          curConfig = config[index] = autocorrectConfig(curConfig);
 
-        callbacks.beforeAnimation && callbacks.beforeAnimation($el);
+          if (curConfig.isSlidable) mainConfig.push(curConfig);
+        });
 
-        var elHeight = $el.height(),
-          animateObj = {
-            height: typeDetails.getFromToHeightFn.to($el, elHeight)
-          },
-          swappedType = getSwapValue(slideType.swapProps, type),
-          scrollTopReturnVal =
-            scrollToTop != false
-              ? scrollTop.onBeforeStart($el, typeDetails, scrollToTop)
-              : null;
+        if (!mainConfig.length) return false;
 
-        $el.css(
-          "height",
-          typeDetails.getFromToHeightFn.from($el, elHeight) + "px"
-        );
+        var scrollTopData = {};
 
-        $el.removeClass(swappedType).addClass(type);
+        scrollTop.onBeforeStart(scrollTopData);
 
-        if (duration) {
-          $el.stop().animate(animateObj, duration, function() {
-            animationCompleted($(this), typeDetails, callbacks);
+        mainConfig.forEach(initAll);
+
+        mainConfig.forEach(callBeforeAnimationCallback);
+
+        scrollTop.onEach.forEach(fn => {
+          mainConfig.forEach(curConfig => {
+            fn(curConfig, scrollTopData);
           });
-        } else {
-          animationCompleted($el, typeDetails, callbacks);
-        }
+        });
 
-        if (scrollToTop) scrollTop.onAfterStart(scrollTopReturnVal, duration);
+        mainConfig.forEach(animateAll);
+
+        scrollTop.onAfterStart(scrollTopData);
 
         return true;
       };
     })(),
-    getSlideFn = function(type) {
-      var typeDetails = slideType.details[type];
-
-      return function($el, duration, callbacks, scrollToTop) {
-        return checkAndSlide(
-          $el,
-          type,
-          typeDetails,
-          duration,
-          callbacks,
-          scrollToTop
-        );
+    getSlideFn = function(slideType) {
+      return function($el, options) {
+        return checkAndSlide([
+          {
+            $el,
+            slideType,
+            options
+          }
+        ]);
       };
-    },
-    mainFn = function(config) {
-      
     };
 
-  for (var type in slideType.details) mainFn[type] = getSlideFn(type);
+  for (var type in allSlideTypes.details)
+    checkAndSlide[type] = getSlideFn(type);
 
-  return mainFn;
+  return checkAndSlide;
 })();
 
 var defaultOptions = {
     show: false,
-    slideDuration: 700,
+    duration: 700,
     scrollToTop: false, //below are possible options
     //give true to scroll to top of current el on both show and hide;
     //give 'show' to scroll to top of current el on show only
@@ -202,39 +260,45 @@ var defaultOptions = {
     defaultOptions,
     "show",
     {
+      _slideType(slideType, { show }) {
+        return show ? "show" : "hide";
+      },
       scrollToTop: (function() {
         var defaultOptions = {
           on: "",
           selector: ""
         };
 
-        return function(scrollToTop) {
+        return function(scrollToTop, { _slideType }) {
           if (!scrollToTop) return scrollToTop;
 
           if (scrollToTop == true) {
-            return {
+            scrollToTop = {
               on: "",
               selector: ""
             };
           } else if (scrollToTop == "show" || scrollToTop == "hide") {
-            return {
+            scrollToTop = {
               on: scrollToTop,
               selector: ""
             };
           } else if (typeof scrollToTop == "string") {
-            return {
+            scrollToTop = {
               on: "",
               selector: scrollToTop
             };
           } else {
-            return {
+            scrollToTop = {
               ...defaultOptions,
               ...scrollToTop
             };
           }
+
+          var { on, selector } = scrollToTop;
+
+          return !on || _slideType == on ? selector : false;
         };
       })(),
-
       callbacks(callbacks) {
         return typeof callbacks == "function"
           ? {
@@ -244,6 +308,8 @@ var defaultOptions = {
       }
     }
   );
+
+var allElementToSlide = [];
 
 Vue.directive("show-by-slide", {
   bind(el, binding) {
@@ -261,27 +327,25 @@ Vue.directive("show-by-slide", {
     )
       return;
 
-    var options = autocorrectOptions(binding.value),
-      { show, slideDuration, callbacks, scrollToTop } = options,
-      slideFn = show ? "show" : "hide",
-      { on, selector } = scrollToTop;
+    var options = autocorrectOptions(binding.value);
 
-    slideElement[slideFn](
-      $(el),
-      slideDuration,
-      callbacks,
-      !on || slideFn == on ? selector : false
-    );
+    allElementToSlide.push({
+      $el: $(el),
+      slideType: options._slideType,
+      options
+    });
 
-    // var $root = vnode.context.$root;
+    var $root = vnode.context.$root;
 
-    // if($root.timerInited) return;
+    if ($root.timerInited) return;
 
-    // $root.timerInited = true;
-    
-    // setTimeout(function() {
-    //   delete $root.timerInited;
-    // });
+    $root.timerInited = true;
+
+    setTimeout(function() {
+      slideElement(allElementToSlide);
+      allElementToSlide = [];
+      delete $root.timerInited;
+    });
   }
 });
 

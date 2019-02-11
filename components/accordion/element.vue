@@ -43,11 +43,15 @@ export default {
       } : false;
     },
     showBySlideOptions() {
-      return {
+      var options = {
         show: this.isOpen,
-        slideDuration: this.slideDuration,
-        scrollToTop: false
+        scrollToTop: this.scrollToTop
       };
+
+      if (this.slideDuration != undefined)
+        options.duration = this.slideDuration;
+      
+      return options;
     }
   },
 

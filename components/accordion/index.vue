@@ -26,7 +26,8 @@ import { contentProp, generateVModelMixin } from '~/components/mixins/general';
 import accordionElement from './element.vue';
 
 import { autocorrectedIndexOfElements } from '~/utils';
-import { defaultOptions } from '~/plugins/show-by-slide';
+
+var { defaultOptions: { duration: defaultSlideDuration } } = require('~/plugins/show-by-slide');
 
 export default {
   name: 'accordion',
@@ -50,7 +51,7 @@ export default {
     },
     slideDuration: {
       type: Number,
-      default: () => defaultOptions.slideDuration
+      default: () => defaultSlideDuration
     },
     noSlideAnimationOnMount: {
       type: Boolean,
