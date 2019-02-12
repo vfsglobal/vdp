@@ -13,9 +13,25 @@ Vue.mixin({
       allOuterHooksInComponents[key] =
         allOuterHooksInComponents[key] || {};
 
+      var fn = outerHooks[key];
+
+      if(typeof fn == 'object') {
+        var {immediate} = fn;
+        fn = fn.handler;
+        
+        if(immediate) {
+          immediate = immediate == true ? 'created' : immediate;
+          this.$once('hook:' + immediate, () => {
+            setTimeout(() => {
+              fn.call(this);
+            });
+          });
+        }
+      }
+
       allOuterHooksInComponents[key][this._uid] = {
         component: this,
-        fn: outerHooks[key]
+        fn
       };
     }
   },
