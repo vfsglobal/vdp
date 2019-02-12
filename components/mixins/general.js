@@ -158,6 +158,21 @@ export const generateVModelMixin = (function() {
   };
 })();
 
+export const countrySelectionProps = {
+  mixins: [generateVModelMixin({
+    propName: 'activeIndex',
+    event: 'change',
+    type: Number,
+    _default: -1
+  })],
+  props: {
+    countries: {
+      type: Array,
+      required: true
+    }
+  }
+};
+
 function generateMultiDataMixin(config) {
   var { dataName, _default, isCommon, isEach, getValueAtIndex } = config,
     defaultOptions = {

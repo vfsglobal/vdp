@@ -60,6 +60,10 @@ var allTypeDetails = (() => {
     statsMainListBig: {
       itemComponent: 'stats-complete-list-big-item',
       getContent: getContent.statsMainList
+    },
+    countrypediaFlagItems: {
+      itemComponent: 'country-flag-item',
+      getContent: 'countrypedia'
     }
   };
 })();
@@ -102,14 +106,15 @@ export default {
     },
     mainContent() {
       var $store = this.$store,
-        getContent = this.typeDetails && this.typeDetails.getContent;
+        getContent = this.typeDetails && this.typeDetails.getContent,
+        storeModuleName = typeof getContent == 'string' ? getContent : this.type;
 
       return (
         this.content ||
-        (getContent
+        (typeof getContent == 'function'
           ? getContent($store)
-          : $store.getters[`${this.type}/correctedListContent`] ||
-          getStateFromStoreModuleName($store.state, this.type).list)
+          : $store.getters[`${storeModuleName}/correctedListContent`] ||
+          getStateFromStoreModuleName($store.state, storeModuleName).list)
       );
     }
   },

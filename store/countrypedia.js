@@ -9,7 +9,9 @@ export const state = () => ({
     {
       key: "au",
       title: "Australia",
-      labelPositionDY: -5,
+      labelDelta: {
+        latitude: 2
+      },
       mainInfo: {
         currency: "Australian Dollars (AUD)",
         fiscalYear: "1st July to 30th June"
@@ -26,7 +28,9 @@ export const state = () => ({
     {
       key: "in",
       title: "India",
-      labelPositionDX: -9,
+      labelDelta: {
+        longitude: -3
+      },
       mainInfo: {
         currency: "Indian rupee (INR)",
         fiscalYear: "1st April to 31st March"
@@ -71,8 +75,10 @@ export const state = () => ({
         currency: "United States Dollar (USD)",
         fiscalYear: "1st October to 30th September"
       },
-      labelPositionDX: 45,
-      labelPositionDY: 20
+      labelDelta: {
+        longitude: 15,
+        latitude: -5
+      }
     }
   ],
   mainInfoDetails: {
@@ -83,7 +89,9 @@ export const state = () => ({
     keyOrder: ["currency", "fiscalYear"]
   },
   pageLink: "/countrypedia",
-  linkType: "/"
+  linkType: "/",
+  flagResourceFolder: "country-flags/",
+  flagImageFormat: "png"
 });
 
 export const getters = {
@@ -92,11 +100,24 @@ export const getters = {
     mainInfoDetails,
     pageLink,
     linkType,
+    flagResourceFolder,
+    flagImageFormat
   }) {
+    var defaultLabelData = {
+      longitude: 0,
+      latitude: 0
+    };
+
     return list.map(element => ({
       ...element,
+      labelDelta: {
+        ...defaultLabelData,
+        ...element.labelDelta
+      },
       mainInfo: generateNewArrData(element.mainInfo, mainInfoDetails),
-      link: getLinkFromState({ pageLink, linkType }, element)
+      link: getLinkFromState({ pageLink, linkType }, element),
+      flagImage:
+        "images/" + flagResourceFolder + element.key + "." + flagImageFormat
     }));
   },
 

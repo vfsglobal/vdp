@@ -9,13 +9,10 @@
         }
       }"
     >
-      <div class="outer_map_container">
-        <svg-map
-          :countries="countryList"
-          v-model="activeCountryIndex"
-        />
-        <div class="info">This map is only for representation purpose.</div>
-      </div>
+      <countrypedia-map-container
+        :countries="countryList"
+        v-model="activeCountryIndex"
+      />
     </basic-section>
     <div v-animate-height="{duration: 1000}">
       <div class="wrapper purple_heading_container">
@@ -55,7 +52,7 @@
 import { pageDefault } from '~/components/mixins/page';
 import { generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
 
-import svgMap from '~/components/utils/svg-map.vue';
+import countrypediaMapContainer from '~/components/countrypedia-map-container.vue';
 import list from '~/components/utils/list.vue';
 import purpleHeadingWrapper from '~/components/purple-heading-wrapper.vue';
 
@@ -70,7 +67,7 @@ export default {
   })],
 
   components: {
-    svgMap,
+    countrypediaMapContainer,
     list,
     purpleHeadingWrapper
   },
@@ -89,25 +86,7 @@ export default {
 <style lang="scss">
 @import "./assets/scss/globals/main";
 
-.countrypedia {
-  .outer_map_container {
-    position: relative;
-
-    > .svg_map_container {
-      width: 100%;
-      height: 500px;
-    }
-
-    > .info {
-      position: absolute;
-      right: 0%;
-      bottom: 0%;
-      font-size: 12px;
-    }
-  }
-
-  .inner_page_container ul.heading_content_list {
-    @extend %col2;
-  }
+.countrypedia .inner_page_container ul.heading_content_list {
+  @extend %col2;
 }
 </style>

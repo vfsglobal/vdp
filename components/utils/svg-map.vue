@@ -1,9 +1,11 @@
 <template>
-  <div class="svg_map_container"></div>
+  <div class="svg_map_container">
+    <div class="main_map_wrapper" ref="main_svg_map" />
+  </div>
 </template>
 
 <script>
-import { generateVModelMixin } from '~/components/mixins/general';
+import { countrySelectionProps } from '~/components/mixins/general';
 
 if (process.browser) {
   var am4core = require('@amcharts/amcharts4/core'),
@@ -12,19 +14,7 @@ if (process.browser) {
 }
 
 export default {
-  mixins: [generateVModelMixin({
-    propName: 'activeIndex',
-    event: 'change',
-    type: Number,
-    _default: -1
-  })],
-
-  props: {
-    countries: {
-      type: Array,
-      required: true
-    }
-  },
+  mixins: [countrySelectionProps],
 
   data() {
     return {
@@ -108,7 +98,7 @@ export default {
                 this.polygons = [];
 
                 data.forEach((obj, index) => {
-                  var { id, title } = obj,
+                  var { id, title, labelDelta } = obj,
                     curPolygon = e.target.getPolygonById(id);
 
                   this.polygons.push(curPolygon);
@@ -119,8 +109,8 @@ export default {
                   curPolygon.events.on("hit", mapElementHitListener);
 
                   //set data object data
-                  obj.latitude = curPolygon.latitude;
-                  obj.longitude = curPolygon.longitude;
+                  obj.latitude = curPolygon.latitude + labelDelta.latitude;
+                  obj.longitude = curPolygon.longitude + labelDelta.longitude;
                 });
               },
 
@@ -134,9 +124,7 @@ export default {
                 mapImageTemplate.nonScaling = true;
                 mapImageTemplate.propertyFields = {
                   latitude: 'latitude',
-                  longitude: 'longitude',
-                  dx: 'labelPositionDX',
-                  dy: 'labelPositionDY'
+                  longitude: 'longitude'
                 };
                 mapImageTemplate.cursorOverStyle = am4core.MouseCursorStyle.pointer;
                 mapImageTemplate.events.on('hit', mapElementHitListener);
@@ -157,7 +145,7 @@ export default {
           })()
         }
       }]
-    }, this.$el, am4maps.MapChart);
+    }, this.$refs.main_svg_map, am4maps.MapChart);
   }
 }
 </script>
@@ -166,13 +154,24 @@ export default {
 @import "./assets/scss/globals/main";
 
 .svg_map_container {
-  width: 100%;
-  height: inherit;
+  $main_map_width_by_height: 1080 / 527.27;
 
-  .amcharts-MapImageSeries text {
-    font-size: 16px;
-    font-weight: bold;
-    @include repeat_css(text-shadow, 1px 1px 3px #000, 2);
+  position: relative;
+  width: 100%;
+  padding-top: ceil((1 / $main_map_width_by_height) * 100) * 1%;
+
+  > .main_map_wrapper {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+
+    .amcharts-MapImageSeries text {
+      @extend %L_font_size;
+      font-weight: bold;
+      @include repeat_css(text-shadow, 1px 1px 3px #000, 2);
+    }
   }
 }
 </style>

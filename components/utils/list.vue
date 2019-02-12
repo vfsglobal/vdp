@@ -6,6 +6,7 @@
       :key="index"
       :class="mainClass[index]"
       :style="mainStyle[index]"
+      @click="emitClick(item, index)"
     >
       <slot
         :item="item"
