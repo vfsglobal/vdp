@@ -26,8 +26,8 @@ export default {
 .purple_heading_wrapper {
   $spacing: (
     default: 40px,
-    _onlySdesktop: 35px,
-    _onlymobile: 30px
+    _onlySdesktop: 30px,
+    _onlymobile: 25px
   );
 
   position: relative;
