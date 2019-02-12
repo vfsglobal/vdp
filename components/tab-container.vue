@@ -1,5 +1,26 @@
 <template>
   <div class="tab_container">
+    <div class="responsive_button_select_wrapper">
+      <div
+        class="arrow left"
+        :class="{disabled: isFirstActive}"
+        @click="navigateActive(-1)"
+      />
+      <div class="selected_wrapper">
+        <div class="main_content">
+          <slot
+            name="buttonContent"
+            :item="activeContent"
+            :index="activeIndex"
+          />
+        </div>
+      </div>
+      <div
+        class="arrow right"
+        :class="{disabled: isLastActive}"
+        @click="navigateActive(1)"
+      />
+    </div>
     <list
       class="button_list clearfix"
       :content="content"
@@ -72,6 +93,26 @@ export default {
       return {
         [this.activeIndex]: 'active'
       };
+    },
+    isFirstActive() {
+      return this.activeIndex == 0;
+    },
+    isLastActive() {
+      return this.activeIndex == this.content.length - 1;
+    },
+    activeContent() {
+      return this.content[this.activeIndex];
+    }
+  },
+
+  methods: {
+    navigateActive(index) {
+      var newIndex = this.activeIndex + index;
+
+      if(newIndex < 0 || newIndex >= this.content.length) 
+        return;
+      
+      this.activeIndex = newIndex;
     }
   }
 }
@@ -81,14 +122,66 @@ export default {
 @import "./assets/scss/globals/main";
 
 .tab_container {
+  > .responsive_button_select_wrapper {
+    display: none;
+    background: $orange;
+    @extend %padv_extra_small;
+    color: #fff;
+    align-items: center;
+    
+    > .arrow {
+      @extend %padh_mini;
+      $options: (
+        tip_length: 15px,
+        broadness: 20px,
+        color: #fff
+      );
+      transition: all 0.3s;
+
+      &.left {
+        @include create_filled_arrow(
+          map-merge(
+            (
+              direction: left
+            ),
+            $options
+          )
+        );
+      }
+      &.right {
+        @include create_filled_arrow(
+          map-merge(
+            (
+              direction: right
+            ),
+            $options
+          )
+        );
+      }
+
+      &.disabled {
+        opacity: 0.3;
+      }
+    }
+    > .selected_wrapper {
+      flex: 1;
+      text-align: center;
+      > .main_content {
+        @include inline_valign();
+        @extend %L_font_size;
+        font-weight: bold;
+      }
+    }
+  }
+  &.show_responsive > .responsive_button_select_wrapper {
+    display: flex;
+  }
   > ul.button_list {
     width: 100%;
-
     > li {
       position: relative;
       float: left;
       background: $light_background_color;
-
       > .button_content {
         position: relative;
         @extend %pad_extra_small;
@@ -97,7 +190,6 @@ export default {
         cursor: pointer;
         z-index: 1;
         transition: all 0.3s;
-
         &:before {
           content: "";
           position: absolute;
@@ -111,23 +203,19 @@ export default {
           transition: all 0.3s;
         }
       }
-
       &:hover,
       &.active {
         > .button_content {
           color: #fff;
-
           &:before {
             height: 100%;
             opacity: 1;
           }
         }
       }
-
       &.active > .button_content:before {
         background: $orange;
       }
-
       &:not(:last-child) {
         > .button_content:after {
           $height: 60%;
@@ -146,22 +234,22 @@ export default {
       }
     }
   }
-
+  &.show_responsive > ul.button_list {
+    display: none;
+  }
   > .content_warpper {
     background: $light_background_color;
     @include multi_media(
       border-top,
       (
-        default:3px,
+        default: 3px,
         _onlymobile: 2px
       ),
       (
         suffix: " solid " + $orange
       )
     );
-    
   }
-
   &.simple_content_tab > .content_warpper {
     @extend %pad_small;
   }

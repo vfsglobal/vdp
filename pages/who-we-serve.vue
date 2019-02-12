@@ -21,6 +21,7 @@
               :content="item.content"
               :set-button-width="false"
               class="simple_content_tab"
+              :class="{show_responsive: showResponsive}"
             >
               <template
                 slot="buttonContent"
@@ -54,6 +55,21 @@ export default {
 
   computed: mapGetters({
     list: 'who-we-serve/correctedListContent'
-  })
+  }),
+
+  data() {
+    return {
+      showResponsive: false
+    };
+  },
+
+  outerHooks: {
+    windowResized: {
+      handler() {
+        this.showResponsive = window.innerWidth <= 900;
+      },
+      immediate: true
+    }
+  }
 }
 </script>
