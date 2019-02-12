@@ -236,6 +236,9 @@ nav {
           background: $light_border_color;
         }
       }
+      &:last-child > a:before {
+        display: none;
+      }
       #{$responsive_active_link_selector} {
         background: $orange;
         color: #fff;
