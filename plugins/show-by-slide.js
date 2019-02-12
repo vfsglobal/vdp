@@ -133,9 +133,9 @@ var slideElement = (function() {
             var $htmlBody = $("html, body");
 
             $htmlBody.scrollTop(previousScrollTop);
-
+            
             if (animateTop == undefined) return;
-
+            
             if (animationDuration)
               verticalScroll.animate(animateTop, animationDuration);
             else $htmlBody.scrollTop(animateTop);
@@ -213,11 +213,9 @@ var slideElement = (function() {
 
         mainConfig.forEach(callBeforeAnimationCallback);
 
-        scrollTop.onEach.forEach(fn => {
-          mainConfig.forEach(curConfig => {
-            fn(curConfig, scrollTopData);
-          });
-        });
+        scrollTop.onEach.forEach(fn =>
+          mainConfig.forEach(curConfig => fn(curConfig, scrollTopData))
+        );
 
         mainConfig.forEach(animateAll);
 
@@ -328,7 +326,7 @@ Vue.directive("show-by-slide", {
       return;
 
     var options = autocorrectOptions(binding.value);
-
+    
     allElementToSlide.push({
       $el: $(el),
       slideType: options._slideType,
