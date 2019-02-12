@@ -3,8 +3,12 @@ import {
   indexPathOfRoutePath,
   sortRoutePath,
   mergeTransition,
-  animateHeight
+  animateHeight,
+  verticalScroll
 } from "~/utils";
+
+import accordion from "~/components/accordion/index.vue";
+import accordionElement from "~/components/accordion/element.vue";
 
 var sitemapLinkKey = "link",
   sitemapTextKey = "text",
@@ -93,6 +97,13 @@ const transitionFunctions = {
         animateHeight($(pageContainerSelector), animationOptions);
       }
     };
+  },
+  createAnimateScrollBar(fn, args) {
+    return {
+      beforeEnter() {
+        verticalScroll[fn].apply(verticalScroll, args);
+      }
+    };
   }
 };
 
@@ -101,15 +112,14 @@ export const pageDefault = {
   transition: mergeTransition([
     transitionFunctions.rootPageTransitionName,
     transitionFunctions.hideBodyOverflow,
+    transitionFunctions.animateScrollToTop,
     transitionFunctions.createAnimateContainerHeight(".page_container", {
       duration: 1000,
-      delay: 300
-    })
+      delay: 500
+    }),
+    transitionFunctions.createAnimateScrollBar("animate", [0, 700])
   ])
 };
-
-import accordion from '~/components/accordion/index.vue';
-import accordionElement from '~/components/accordion/element.vue';
 
 export const countrypediaPage = {
   mixins: [pageTitle],
