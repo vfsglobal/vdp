@@ -4,6 +4,7 @@
 @import "arrow";
 @import "placeholder-selectors/main";
 @import "vue-transition-utils";
+@import "tab-container";
 
 @mixin inline_valign($valign: middle) {
   display: inline-block;

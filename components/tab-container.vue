@@ -173,9 +173,6 @@ export default {
       }
     }
   }
-  &.show_responsive > .responsive_button_select_wrapper {
-    display: flex;
-  }
   > ul.button_list {
     width: 100%;
     > li {
@@ -233,9 +230,6 @@ export default {
         }
       }
     }
-  }
-  &.show_responsive > ul.button_list {
-    display: none;
   }
   > .content_warpper {
     background: $light_background_color;

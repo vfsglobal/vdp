@@ -1,0 +1,10 @@
+@mixin set_tab_responsive($break_point) {
+  @include media($break_point) {
+    > .responsive_button_select_wrapper {
+      display: flex;
+    }
+    > ul.button_list {
+      display: none;
+    }
+  }
+}
