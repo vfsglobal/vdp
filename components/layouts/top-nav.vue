@@ -179,7 +179,7 @@ nav {
     width: 100%;
     color: #fff;
     @extend %height_with_line_height;
-    @extend %S_font_size;
+    @extend %L_font_size;
     font-weight: bold;
     outline: none;
     z-index: 1;
