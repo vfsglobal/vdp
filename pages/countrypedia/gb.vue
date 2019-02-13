@@ -12,14 +12,35 @@
           <h4>Minimum Wage</h4>
         </template>
         <p>These rates are for the National Living Wage and the National Minimum Wage. The rates change every April.</p>
-        <p class="small_space">As of April 2018</p>
-        <ul class="normal_list">
-          <li><strong>25 and over:</strong> £7.83</li>
-          <li><strong>21 to 24:</strong> £7.38</li>
-          <li><strong>18 to 20:</strong> £5.90</li>
-          <li><strong>Under 18:</strong> £4.20</li>
-          <li><strong>Apprentice:</strong> £3.70</li>
-        </ul>
+        <p class="small_space">Minimum Wage Rate as of April 2018</p>
+        <div class="table_wrapper">
+          <table>
+            <tr class="header">
+              <th>Age Group</th>
+              <th>Minimum Wage Rate</th>
+            </tr>
+            <tr>
+              <td>25 years and above</td>
+              <td>£7.83</td>
+            </tr>
+            <tr>
+              <td>21 years to 24 years</td>
+              <td>£7.38</td>
+            </tr>
+            <tr>
+              <td>18 years to 20 years</td>
+              <td>£5.90</td>
+            </tr>
+            <tr>
+              <td>Under 18 years</td>
+              <td>£4.20</td>
+            </tr>
+            <tr>
+              <td>Apprentice</td>
+              <td>£3.70</td>
+            </tr>
+          </table>
+        </div>
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">

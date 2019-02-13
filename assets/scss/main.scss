@@ -333,11 +333,25 @@ ul.heading_content_list {
 .main_content_container {
   p {
     line-height: $content_para_line_height;
+    $space_key: small;
+    $small_space_key: extra_small;
+
     &:not(:last-child) {
-      @extend %padb_small;
+      @extend %padb_#{$space_key};
     }
     &.small_space {
-      @extend %padb_extra_small;
+      @extend %padb_#{$space_key};
+    }
+    &.small {
+      @extend %S_font_size;
+      text-align: right;
+    }
+    &.top_space {
+      @extend %padt_#{$space_key};
+
+      &.small_space {
+        @extend %padt_#{$small_space_key};
+      }
     }
     img {
       vertical-align: middle;
@@ -381,6 +395,36 @@ ul.heading_content_list {
     }
     &.big_space > li:not(:last-child) {
       @extend %list_padb;
+    }
+  }
+  .table_wrapper {
+    word-break: normal;
+    overflow-x: auto;
+
+    > table {
+      border-collapse: collapse;
+
+      &, td, th {
+        border: 1px solid $light_border_color;
+      }
+
+      tr.header {
+        background: $dark_background_color2;
+      }
+
+      tr:nth-child(even) {
+        background: #FFF;
+      }
+
+      th {
+        @extend %pad_small;
+        color: $dark_content_color;
+        text-align: center;
+      }
+
+      td {
+        @extend %pad_extra_small;
+      }
     }
   }
 }

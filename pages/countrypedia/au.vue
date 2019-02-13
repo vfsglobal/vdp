@@ -84,13 +84,11 @@
               <p class="small_space">Below is the state wise leave entitlement for employees in Australia</p>
               <ul class="normal_list">
                 <li><strong>NSW:</strong> Entitlement is 8.67 weeks paid leave after 10 years service.</li>
-                <li><strong>ACT:
-                  </strong> Entitlement is 6.06 weeks paid leave after 7 years continuous service. ACT</li>
-                <li><strong>WA:</strong> Entitlement is 8.67 weeks paid leave after 10 years service. WA</li>
-                <li><strong>QLD:</strong> Entitlement is 8.67 weeks paid leave after 10 years service. QLD</li>
-                <li><strong>SA:</strong> Entitlement is 13 weeks paid leave after 10 years service. SA</li>
-                <li><strong>VIC:</strong> Entitlement is 13 weeks paid leave after 10 years service. VIC</li>
-
+                <li><strong>ACT:</strong> Entitlement is 6.06 weeks paid leave after 7 years continuous service.</li>
+                <li><strong>WA:</strong> Entitlement is 8.67 weeks paid leave after 10 years service.</li>
+                <li><strong>QLD:</strong> Entitlement is 8.67 weeks paid leave after 10 years service.</li>
+                <li><strong>SA:</strong> Entitlement is 13 weeks paid leave after 10 years service.</li>
+                <li><strong>VIC:</strong> Entitlement is 13 weeks paid leave after 10 years service.</li>
               </ul>
             </div>
           </li>
@@ -104,16 +102,32 @@
           <h4 class="normal">Notice Period</h4>
           <ul class="side_heading_content_list">
             <li>
-             
               <div class="main_content">
                 <p class="small_space">The length of the notice period should be according to the written contract or as per the tenure of service in the company.</p>
-                <ul class="normal_list">
-                  <li>1 year or less 1 week</li>
-                  <li>More than 1 year - 3 years 2 weeks</li>
-                  <li>More than 3 years - 5 years 3 weeks</li>
-                  <li>More than 5 years 4 weeks
-                  </li>
-                </ul>
+                <div class="table_wrapper">
+                  <table>
+                    <tr class="header">
+                      <th>Tenure</th>
+                      <th>Notice Period</th>
+                    </tr>
+                    <tr>
+                      <td>Less than 1 year</td>
+                      <td>1 week</td>
+                    </tr>
+                    <tr>
+                      <td>1 – 3 years</td>
+                      <td>2 weeks</td>
+                    </tr>
+                    <tr>
+                      <td>3 – 5 years</td>
+                      <td>3 weeks</td>
+                    </tr>
+                    <tr>
+                      <td>More than 5 years</td>
+                      <td>4 weeks</td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </li>
           </ul>
@@ -132,20 +146,20 @@
               <p>Mandate forms are Tax file number (TFN) form, Australian Federal Police (AFP) form, Australia Visa Form, Superannuation form.</p>
             </div>
           </li>
-           <li>
+          <li>
             <div class="heading_wrapper">
               <h5 class="normal">Document submission when joining new company:</h5>
             </div>
             <div class="main_content">
               <p class="small_space">Mandate documents required form government authorities for employer is</p>
-               <ul class="normal_list">
-                  <li>TAX file no </li>
-                  <li>Australian Federal Police verification (AFP) certificate</li>
-                  <li>Superannuation membership no</li>
-                </ul>
+              <ul class="normal_list">
+                <li>TAX file no </li>
+                <li>Australian Federal Police verification (AFP) certificate</li>
+                <li>Superannuation membership no</li>
+              </ul>
             </div>
           </li>
-           <li>
+          <li>
             <div class="heading_wrapper">
               <h5 class="normal">Intimation to authorities while leaving company:</h5>
             </div>
@@ -168,7 +182,10 @@
           <h4>Tax</h4>
         </template>
         <p>The following link provides detailed information on the tax rates for residents, non-residents, foreign Residents, etc. </p>
-        <p><a href="https://www.ato.gov.au/Rates/Individual-income-tax-rates/" target="_blank">https://www.ato.gov.au/Rates/Individual-income-tax-rates/</a></p>
+        <p><a
+            href="https://www.ato.gov.au/Rates/Individual-income-tax-rates/"
+            target="_blank"
+          >https://www.ato.gov.au/Rates/Individual-income-tax-rates/</a></p>
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">
@@ -192,7 +209,7 @@
               <p>Paid to recipients of the disability pension to assist with general living expenses, including utilities. If the assessed disability began before becoming an Australian resident, the person must reside in Australia at the time of the claim and have at least 10 years of residence, including at least five continuous years.</p>
             </div>
           </li>
-           <li>
+          <li>
             <div class="heading_wrapper">
               <h5 class="normal">Survivor pension:</h5>
             </div>
@@ -202,7 +219,7 @@
           </li>
         </ul>
       </accordion-element>
-       <accordion-element>
+      <accordion-element>
         <template slot="buttonContent">
           <h4>Social Security Benefits</h4>
         </template>

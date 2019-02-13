@@ -30,7 +30,6 @@
             :key="activeCountry.title"
             class="main_content_container"
           >
-            <p>This document may not be used as a guide for policy or regulation.</p>
             <list
               :content="activeCountry.mainInfo"
               class="heading_content_list"
@@ -41,6 +40,7 @@
               </template>
             </list>
             <nuxt-child />
+            <p class="small top_space"><sup>*</sup>This document may not be used as a guide for policy or regulation.</p>
           </basic-section>
         </transition>
       </div>
