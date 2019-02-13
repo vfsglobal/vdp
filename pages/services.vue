@@ -7,6 +7,7 @@
       <accordion
         class="services"
         :content="list"
+        id-key="key"
         v-model="activeServiceIndex"
       >
         <template

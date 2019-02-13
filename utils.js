@@ -1,4 +1,4 @@
-import routerBaseUrl from "~/router-base-url";
+import routerBaseUrl from "./router-base-url";
 
 /*defaults*/
 
@@ -511,46 +511,76 @@ export const animateHeight = (() => {
     autocorrectOptions = createAdvancedAutocorrectOptions(
       defaultOptions,
       "toHeight"
-    );
+    ),
+    animatedElements = [],
+    mainFn = function($el, options) {
+      options = autocorrectOptions(options);
 
-  return function($el, options) {
-    options = autocorrectOptions(options);
+      var {
+        toHeight,
+        duration,
+        delay,
+        hideOverflow,
+        removeHeightAfterAnimate,
+        removeOverflowAfterAnimate,
+        callback
+      } = options;
 
-    var {
-      toHeight,
-      duration,
-      delay,
-      hideOverflow,
-      removeHeightAfterAnimate,
-      removeOverflowAfterAnimate,
-      callback
-    } = options;
+      $el.data("animate-to-height", toHeight);
+      checkAndPush(animatedElements, $el);
 
-    setTimeout(() => {
-      var $htmlBody = $("html, body"),
-        curScrollTop = $htmlBody.scrollTop(),
-        curHeight = $el.stop().height();
+      setTimeout(() => {
+        var $htmlBody = $("html, body"),
+          curScrollTop = $htmlBody.scrollTop(),
+          curHeight = $el.stop().height();
 
-      $el.css("height", toHeight);
+        $el.css("height", toHeight);
 
-      var newHeight = $el.height();
+        var newHeight = $el.height();
 
-      $el.css("height", curHeight + "px");
-      $htmlBody.scrollTop(curScrollTop);
+        $el.css("height", curHeight + "px");
+        $htmlBody.scrollTop(curScrollTop);
 
-      if (hideOverflow) $el.css("overflow", "hidden");
+        if (hideOverflow) $el.css("overflow", "hidden");
 
-      $el.animate({ height: newHeight + "px" }, duration, function() {
-        var $this = $(this);
+        $el.animate({ height: newHeight + "px" }, duration, function() {
+          var $this = $(this);
 
-        $this.css("height", removeHeightAfterAnimate ? "" : toHeight);
+          $this.css("height", removeHeightAfterAnimate ? "" : toHeight);
 
-        if (removeOverflowAfterAnimate) $el.css("overflow", "");
+          if (removeOverflowAfterAnimate) $el.css("overflow", "");
 
-        callback.apply(this, arguments);
-      });
-    }, delay);
-  };
+          $el.removeData("animate-to-height");
+          checkAndRemove(animatedElements, $el);
+
+          callback.apply(this, arguments);
+        });
+      }, delay);
+    };
+
+  mainFn.temporaryJumpToEnd = (function() {
+    function jumpToEnd($el) {
+      $el.data("animate-temp-height", $el.css("height"));
+      $el.css("height", $el.data("animate-to-height"));
+    }
+
+    function rollbackHeight($el) {
+      $el.css("height", $el.data("animate-temp-height"));
+      $el.removeData("animate-temp-height");
+    }
+
+    return function(callback) {
+      var prevScrollTop = $(window).scrollTop();
+
+      animatedElements.forEach(jumpToEnd);
+      callback();
+      animatedElements.forEach(rollbackHeight);
+      
+      $("html, body").scrollTop(prevScrollTop);
+    };
+  })();
+
+  return mainFn;
 })();
 
 /*require operations*/
@@ -767,23 +797,34 @@ export const verticalScroll = (function() {
               return scrollToTop - matchHeight + data.elHeight;
             else return data.scrollTop;
           }
+        },
+        mainFn = function(el, animateTopType) {
+          var elements = {
+              mainEl: el,
+              scrollableEl: getScrollableEl(el)
+            },
+            data = getData(elements),
+            animateTop;
+
+          animateTopType = animateTopType || "scrollToTop";
+
+          animateTop = getAnimateTopFn[animateTopType](elements, data);
+
+          animateTop = animateTop < 0 ? 0 : animateTop;
+          animateTop =
+            animateTop > data.maxScrollTop ? data.maxScrollTop : animateTop;
+
+          return animateTop;
         };
 
-      return function(el, animateTopType) {
-        var elements = {
-            mainEl: el,
-            scrollableEl: getScrollableEl(el)
-          },
-          data = getData(elements),
+      return function() {
+        var _this = this,
+          _arguments = arguments,
           animateTop;
 
-        animateTopType = animateTopType || "scrollToTop";
-
-        animateTop = getAnimateTopFn[animateTopType](elements, data);
-
-        animateTop = animateTop < 0 ? 0 : animateTop;
-        animateTop =
-          animateTop > data.maxScrollTop ? data.maxScrollTop : animateTop;
+        animateHeight.temporaryJumpToEnd(function() {
+          animateTop = mainFn.apply(_this, _arguments);
+        });
 
         return animateTop;
       };

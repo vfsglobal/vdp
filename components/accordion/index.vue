@@ -1,6 +1,7 @@
 <template>
   <ul class="accordion">
     <accordion-element
+      :id="item[idKey]"
       v-for="(item, index) in forLoopContent"
       :key="index"
     >
@@ -45,6 +46,7 @@ export default {
   },
 
   props: {
+    idKey: String,
     allowMultiOpen: {
       type: Boolean,
       default: false

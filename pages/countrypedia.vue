@@ -14,7 +14,7 @@
         v-model="activeCountryIndex"
       />
     </basic-section>
-    <div v-animate-height="{duration: 1000}">
+    <div class="heading_page_container" v-animate-height="{duration: 1000}">
       <div class="wrapper purple_heading_container">
         <transition name="purple-heading">
           <purple-heading-wrapper

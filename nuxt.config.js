@@ -58,6 +58,10 @@ module.exports = {
     "~/plugins/html-entity-encode",
     "~/plugins/show-by-slide",
     {
+      src: "~/plugins/route-animate-scroll",
+      ssr: false
+    },
+    {
       src: "~/plugins/animate-height",
       ssr: false
     },

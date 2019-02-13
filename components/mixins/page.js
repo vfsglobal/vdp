@@ -3,8 +3,7 @@ import {
   indexPathOfRoutePath,
   sortRoutePath,
   mergeTransition,
-  animateHeight,
-  verticalScroll
+  animateHeight
 } from "~/utils";
 
 import accordion from "~/components/accordion/index.vue";
@@ -97,13 +96,6 @@ const transitionFunctions = {
         animateHeight($(pageContainerSelector), animationOptions);
       }
     };
-  },
-  createAnimateScrollBar(fn, args) {
-    return {
-      beforeEnter() {
-        verticalScroll[fn].apply(verticalScroll, args);
-      }
-    };
   }
 };
 
@@ -116,13 +108,17 @@ export const pageDefault = {
     transitionFunctions.createAnimateContainerHeight(".page_container", {
       duration: 1000,
       delay: 500
-    }),
-    transitionFunctions.createAnimateScrollBar("animate", [0, 700])
+    })
   ])
 };
 
 export const countrypediaPage = {
-  mixins: [pageTitle],
+  mixins: [pageTitle, {
+    routeAnimateScroll: true
+  }],
+  routeAnimateScroll: {
+    top: '.countrypedia .heading_page_container'
+  },
   components: {
     accordion,
     accordionElement
