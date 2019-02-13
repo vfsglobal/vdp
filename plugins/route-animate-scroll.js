@@ -5,8 +5,7 @@ var defaultOptions = {
     top: 0,
     duration: 700
   },
-  $router,
-  $vue_app;
+  $router;
 
 var checkAnimateScroll = (function() {
   var getRouteAnimateScroll = (function() {
@@ -70,7 +69,6 @@ Vue.mixin({
     if ($router) return;
 
     $router = this.$router;
-    $vue_app = $router.app;
     $router.afterEach(checkAnimateScroll);
   }
 });
