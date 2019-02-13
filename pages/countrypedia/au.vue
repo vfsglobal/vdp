@@ -11,7 +11,7 @@
         <template slot="buttonContent">
           <h4>Minimum Wage</h4>
         </template>
-        <p>The National Minimum wage is currently 18.93/hour or 719.20/week.</p>
+        <p>The National Minimum wage is currently AUD18.93/hour or AUD719.20/week.</p>
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">
@@ -83,32 +83,13 @@
             <div class="main_content">
               <p class="small_space">Below is the state wise leave entitlement for employees in Australia</p>
               <ul class="normal_list">
-                <li><strong>NSW:</strong> Entitlement is 8.67 weeks paid leave after 10 years service. <a
-                    href="http://www.industrialrelations.nsw.gov.au/oirwww/Employment_info/Leave/Long_service_leave.page"
-                    target="_blank"
-                  >http://www.industrialrelations.nsw.gov.au/oirwww/Employment_info/Leave/Long_service_leave.page</a></li>
+                <li><strong>NSW:</strong> Entitlement is 8.67 weeks paid leave after 10 years service.</li>
                 <li><strong>ACT:
-                  </strong> Entitlement is 6.06 weeks paid leave after 7 years continuous service. ACT – <a
-                    href="http://www.worksafe.act.gov.au/long_service_leave"
-                    target="_blank"
-                  >
-                    http://www.worksafe.act.gov.au/long_service_leave</a></li>
-                <li><strong>WA:</strong> Entitlement is 8.67 weeks paid leave after 10 years service. WA - <a
-                    href="https://www.commerce.wa.gov.au/labour-relations/long-service-leave-entitlements-employees"
-                    target="_blank"
-                  >https://www.commerce.wa.gov.au/labour-relations/long-service-leave-entitlements-employees</a></li>
-                <li><strong>QLD:</strong> Entitlement is 8.67 weeks paid leave after 10 years service. QLD - <a
-                    href="https://www.business.qld.gov.au/business/employing/employee-rights-awards-entitlements/long-service-leave"
-                    target="_blank"
-                  >https://www.business.qld.gov.au/business/employing/employee-rights-awards-entitlements/long-service-leave</a></li>
-                <li><strong>SA:</strong> Entitlement is 13 weeks paid leave after 10 years service. SA - <a
-                    href="http://www.safework.sa.gov.au/show_page.jsp?id=2477#.VuJqIPl95hE"
-                    target="_blank"
-                  >http://www.safework.sa.gov.au/show_page.jsp?id=2477#.VuJqIPl95hE</a></li>
-                <li><strong>VIC:</strong> Entitlement is 13 weeks paid leave after 10 years service. VIC - <a
-                    href="http://www.business.vic.gov.au/hiring-and-managing-staff/long-service-leave-victoria"
-                    target="_blank"
-                  >http://www.business.vic.gov.au/hiring-and-managing-staff/long-service-leave-victoria</a></li>
+                  </strong> Entitlement is 6.06 weeks paid leave after 7 years continuous service. ACT</li>
+                <li><strong>WA:</strong> Entitlement is 8.67 weeks paid leave after 10 years service. WA</li>
+                <li><strong>QLD:</strong> Entitlement is 8.67 weeks paid leave after 10 years service. QLD</li>
+                <li><strong>SA:</strong> Entitlement is 13 weeks paid leave after 10 years service. SA</li>
+                <li><strong>VIC:</strong> Entitlement is 13 weeks paid leave after 10 years service. VIC</li>
 
               </ul>
             </div>
@@ -123,9 +104,7 @@
           <h4 class="normal">Notice Period</h4>
           <ul class="side_heading_content_list">
             <li>
-              <div class="heading_wrapper">
-                <h5 class="normal">Standard Notice Period:</h5>
-              </div>
+             
               <div class="main_content">
                 <p class="small_space">The length of the notice period should be according to the written contract or as per the tenure of service in the company.</p>
                 <ul class="normal_list">

@@ -30,7 +30,7 @@
             :key="activeCountry.title"
             class="main_content_container"
           >
-            <p>All information in this document is as of November 2018. This information is only a reference paper through various website links which is not officially verified. This document may not be used as a guide for policy or regulation. The creator or sender bears no liability for the authentication of this data.</p>
+            <p>This document may not be used as a guide for policy or regulation.</p>
             <list
               :content="activeCountry.mainInfo"
               class="heading_content_list"

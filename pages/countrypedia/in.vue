@@ -17,7 +17,7 @@
         <template slot="buttonContent">
           <h4>Employee Retirement Benefits in India</h4>
         </template>
-        <p class="small_space">Each organisation has a distinctive method to treat their employees. There are several employee benefits that serve the purpose of financial comfort at the workplace to the employees. Following will help you to understand this :</p>
+       
         <section class="seperator">
           <h4 class="normal">Provident Fund [PF]</h4>
           <p>Provident Fund (PF) is one of the main employee benefits in India serving platform of savings for nearly all people working in any sector of organisations. It is a defined contribution plan for providing financial security and stability to the people at their retirement. Its purpose is to help employees save a fraction of their salary every month, to be used in an event that the employee is temporarily or no longer fit to work or at retirement.</p>
@@ -28,13 +28,13 @@
             <li>PF (3.67%)</li>
             <li>Employee Pension Scheme [EPS] (8.33%)</li>
           </ol>
-          <p>This way the total of employer’s contribution is divided (3.67 + 8.33 = 12%).</p>
+         
           <p>PF payment cycle should be completed by 15th of every month.</p>
         </section>
         <section class="top_space seperator">
           <h4 class="normal">Gratuity:</h4>
           <p>Gratuity is a defined benefit plan and an important form of social security employee benefits. It is one of the many retirement benefits offered by the employer to the employee upon leaving his job. Gratuity is a part of the salary that is received by an employee from his/her employer in gratitude for the services offered by the employee in the company. An employee may leave his job for various reasons such as retirement, by way of voluntary retirement, resignation or for a better job elsewhere. Every factory or establishment would pay gratuity to its employees if employees are more than 10; according to Payment of Gratuity Act, 1972.</p>
-          <p>Gratuity is calculated on Basic+DA. It is TAX FREE to 20 Lakhs.</p>
+          
           <ul class="side_heading_content_list">
             <li>
               <div class="heading_wrapper">
@@ -42,8 +42,9 @@
               </div>
               <div class="main_content">
                 <p class="small_space">An employee will be eligible for receiving gratuity:</p>
-                <p class="small_space">Only if he completes 4years 6months 1day when he/she resigns from the company for continuous service with a single employer</p>
+               
                 <ul class="normal_list">
+                  <li>Only if he completes 4years 6months 1day when he/she resigns from the company for continuous service with a single employer</li>
                   <li>When he/she retires from the company</li>
                   <li>When he/she dies or suffers disability due to illness or accident</li>
                 </ul>
@@ -184,7 +185,7 @@
               <h5 class="normal">Maternity Leave:</h5>
             </div>
             <div class="main_content">
-              <p>This leave is granted to female employees, up to 180 days during the pregnancy period. The leave can go up to 45 days during the entire service of the employee for cases of abortion or miscarriage. Maternity leave can be combined with any other leave without furnishing any medical certificate for up to 2 years. There have been demands to increase the maternity leave to 240 days with 100% pay, followed by 120 days with 50% pay. It is seen that maternity leave was increased from 135 days to 180 days under the 6th CPC. The ‘period in continuation’ was also increased from 1 year to 2 years. So, there will be no further changes in the duration of the leave.</p>
+              <p>This leave is granted to female employees, up to 180 days during the pregnancy period. The leave can go up to 45 days during the entire service of the employee for cases of abortion or miscarriage. Maternity leave can be combined with any other leave without furnishing any medical certificate for up to 2 years.</p>
             </div>
           </li>
           <li>

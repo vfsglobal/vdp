@@ -23,7 +23,7 @@
               <h5 class="normal">Working Hours:</h5>
             </div>
             <div class="main_content">
-              <p>The maximum working week is 40 hours for full time employees; & up to 30 hours for part time employees. </p>
+              <p>The maximum working week is 40 hours for full time employees; and up to 30 hours for part time employees. </p>
             </div>
           </li>
           <li>
@@ -31,7 +31,7 @@
               <h5 class="normal">Overtime Policy:</h5>
             </div>
             <div class="main_content">
-              <p>employees covered by the Fair Labour Standards Act (FLSA) should receive overtime pay for hours worked in excess of 40 in a workweek of at least one and one-half times their regular rates of pay i.e. @ 150% of base rate. The FLSA does not require overtime pay for work on Saturdays, Sundays, holidays, or regular days of rest, unless overtime hours are worked on such days.</p>
+              <p>employees covered by the Fair Labour Standards Act (FLSA) should receive overtime pay for hours worked in excess of 40 in a workweek of at least one and one-half times their regular rates of pay-i.e. @ 150% of base rate. The FLSA does not require overtime pay for work on Saturdays, Sundays, holidays, or regular days of rest, unless overtime hours are worked on such days.</p>
             </div>
           </li>
            <li>
@@ -61,7 +61,7 @@
               <h5 class="normal">Annual Leave:</h5>
             </div>
             <div class="main_content">
-              <p>As per Wikipedia, there is no statutory minimum paid vacation or paid public holidays. It is left to the employers to offer paid vacation. The average number of paid vacation days offered by private employers is 10 days after 1 year of service, 14 days after 5 years, 17 days after 10 years, and 20 days after 20 years.</p>
+              <p>There is no statutory minimum paid vacation or paid public holidays. It is left to the employers to offer paid vacation. The average number of paid vacation days offered by private employers is 10 days after 1 year of service, 14 days after 5 years, 17 days after 10 years, and 20 days after 20 years.</p>
             </div>
           </li>
           <li>
@@ -69,7 +69,7 @@
               <h5 class="normal">Sick Leave:</h5>
             </div>
             <div class="main_content">
-              <p>In most of the states employees earn 1 hour of sick leave for every 30-40 hours worked in a week. There are currently seven states, and Washington D.C., that have paid sick leave laws at the state levels. </p>
+              <p>In most states in the US, employees earn 1 hour of sick leave for every 30-40 hours worked in a week. There are currently seven states, and Washington D.C., that have paid sick leave laws at the state levels. </p>
             </div>
           </li>
            <li>

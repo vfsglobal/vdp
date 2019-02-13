@@ -7,12 +7,7 @@
         </template>
         <p>Employees working in Singapore must be paid at least monthly via bank transfer. Salaries are paid the end of the month.</p>
       </accordion-element>
-      <accordion-element>
-        <template slot="buttonContent">
-          <h4>Minimum Wage</h4>
-        </template>
-        <p>The National Minimum wage is currently NA/hour or NA/week. (MOM does not prescribe minimum wages for all workers in Singapore, whether local or foreign).</p>
-      </accordion-element>
+     
       <accordion-element>
         <template slot="buttonContent">
           <h4>HR & Labour</h4>
@@ -41,7 +36,7 @@
           <h4>Leave Entitlement</h4>
         </template>
         <p>There are different types of leave under Singapore Employment Act depend on the eligibility and entitlement.</p>
-        <p class="small_space">Following leaves are applicable in Singapore Example of Leave Types: (1 line mentioning the number of leaves applicable in each case)</p>
+        <p class="small_space">Following leaves are applicable in Singapore Example of Leave Types:</p>
         <ul class="side_heading_content_list">
           <li>
             <div class="heading_wrapper">
@@ -133,23 +128,7 @@
         <p>It is administered by the Central Provident Fund Board, a statutory board operating under the Ministry of Manpower which is responsible for investing contributions.</p>
         <p>CPF contributions are payable for Singapore citizens (SCs) and Singapore permanent residents (SPRs) who works in Singapore & are employed as Full time, part time or casual basis.</p>
         <p>Employee contributions range from 5% to 20% of the monthly salary, and employer contribution range from 6% to 15.5% of the employee’s salary. All payments and withdrawals are tax free, and only the first 4,500 SGD of every salary is liable to contributions.</p>
-        <p>Employee receives monthly pay-out from the CPF at eligible age of 64 through The CPF Lifelong Income for the Elderly (CPF LIFE) Scheme. You will be automatically included into CPF LIFE if you are a Singapore Citizen or Permanent Resident </p>
-        <p>If employee is not automatically included into CPF LIFE, they remain on the Retirement Sum Scheme and will still receive monthly payments from their pay-out eligibility age until their Retirement savings are fully paid out. </p>
-        <p class="small_space">Employees CPF contributions go to certain Self-Help Group (SHG) funds. These come in the form of small donations, which go into primarily the below funds.</p>
-        <ul class="normal_list">
-          <li><strong>CDAC :
-            </strong> Chinese Development Assistance Council.<a
-              href="https://www.cdac.org.sg/aboutus/contributor-information/"
-              target="_blank"
-            >
-              https://www.cdac.org.sg/aboutus/contributor-information/</a> </li>
-          <li><strong>EC :</strong> Eurasian Community Fund</li>
-          <li><strong>SINDA :</strong> Indians in Singapore who are Singaporeans, Permanent Residents, Employment Pass holders </li>
-          <li><strong>MBMF :</strong> Muslims in Singapore</li>
-          <li><strong>SDL :</strong>  The SDL collected are channelled to the Skills Development Fund (SDF), which is used to support workforce upgrading programmes and to provide training grants to you when you send your employees for training under the National Continuing Education Training system.
-         <br> Under the SDL Act, employees are required to contribute SDL for all your employees* up to the first $4,500 of each employee's total monthly wages at a levy rate of 0.25% or a minimum of $2 (for total wages of $800 or less), whichever is higher capped at $ 11.25.</li>
-        </ul>
-        <p>These contributions are deducted from an employee’s wages together with the employee’s share of CPF contribution.</p>
+        <p>Employee receives monthly pay-out from the CPF at eligible age of 64 through The CPF Lifelong Income for the Elderly (CPF LIFE) Scheme. Employee will be automatically included into CPF LIFE if he/she is a Singapore Citizen or Permanent Resident </p>
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">
@@ -175,9 +154,7 @@
         <p>The Social Security system for citizens and permanent residents working in Singapore is called the Central Provident Fund (CPF). </p>
         <p>Every CPF member has three accounts: the Ordinary Account with a 2.5% interest rate, the Special Account and the Medisave Account, both earning 4% interest. </p>
         <p>Funds in the Ordinary Account can be used for purchasing property and insurance, paying for education, etc. Funds in Special Account are reserved exclusively for retirement savings. The Medisave Account is every Singaporean’s basic medical insurance</p>
-        <p>Healthcare in Singapore is mainly under the responsibility of the Singapore Government's Ministry of Health. Singapore generally has an efficient and widespread system of healthcare</p>
-        <p>Through Medisave account majority of Singapore citizens have substantial savings in this scheme & is used at the time of Healthcare.</p>
-        <p>MediShield Life is a national health insurance scheme for all Singapore Citizens and Permanent Residents, providing better protection & is administered by the Central Provident Fund Board</p>
+      
       </accordion-element>
     </accordion>
   </div>

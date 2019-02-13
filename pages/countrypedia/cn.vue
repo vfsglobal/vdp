@@ -41,7 +41,7 @@
           <h4>Leave Entitlement</h4>
         </template>
         <p>There are different types of leave under China Employment Act depend on the eligibility and entitlement.</p>
-        <p class="small_space">Following leaves are applicable in China Example of Leave Types: (1 line mentioning the number of leaves applicable in each case)</p>
+        <p class="small_space">Following leaves are applicable in China Example of Leave Types:</p>
         <ul class="side_heading_content_list">
           <li>
             <div class="heading_wrapper">
@@ -80,7 +80,7 @@
               <h5 class="normal">Paternity Leave:</h5>
             </div>
             <div class="main_content">
-              <p>Paternity leave is now became law on January 1, 2016, if you are an employed new father; you are entitled to either one or two weeks' paternity leave. This is the same for multiple births. To be eligible, you must have a contract of employment and have been working for the same employer for 26 weeks by the end of the 15th week before the week your baby is due.</p>
+              <p>Paternity leave has become law on January 1, 2016, if you are an employed new father; you are entitled to either one or two weeks' paternity leave. This is the same for multiple births. To be eligible, you must have a contract of employment and have been working for the same employer for 26 weeks by the end of the 15th week before the week your baby is due.</p>
             </div>
           </li>
           <li>
@@ -142,15 +142,10 @@
         </template>
         <p>The basic principles of China's social security system, as outlined in the Social Insurance Law is All employees, including rural migrant workers, should be covered by the social insurance system.</p>
         <p>Both Employer & employee are required to make contribution at different rates to Pension fund, unemployment insurance fund, medical insurance fund, as well as the Housing Provident Fund. Employers are also required to contribute to work related injury & maternity Insurance fund.</p>
-        <p>The various insurance funds are managed by local governments and are pooled into provincial or municipal funds. Usually it is the local labour or human resources and social insurance departments that manage the social insurance funds, while the Housing Provident Fund is managed by the local government’s Housing Provident Fund Management Committee.</p>
-        <p>The pension and medical insurance funds are composed of pooled components, which can be used to benefit at the time of retirement.</p>
+       
         <p>For Unemployment insurance employee & employer contribute at 1% & 2 % respectively. Those who are covered are eligible for benefits including continuation of medical insurance even if they become unemployed.</p>
         <p>For Medical Insurance both employee & employer contribute. Employee contributes 2% of individual wages which directly goes in their account. Employer contributes between 6% to 12% of their workforce salary out of which 30% usually goes into employee account & balance goes to public fund.</p>
         <p>Contributions to the work-related injury insurance fund are paid solely by the employer at rates of between 0.5 % and 2% % of payroll; varying according to the health and safety risks of specific industries and locations.</p>
-        <p>Employees are not required to contribute to the maternity insurance fund, while employers make contributions at rates determined by individual local governments. In the city of Beijing, for example, employers contribute 0.8% of total wages paid to eligible employees. </p>
-        <p>Maternity insurance covers all maternity-related medical costs, including birth control, prenatal check-ups, delivery and antenatal care, as well as allowances to be paid during maternity leave</p>
-        <p>The Housing Fund, also known as the Housing Provident Fund, is not officially part of China’s social insurance system: It is administered by the Ministry of Housing and Urban-Rural Development, but since both contribute &  it is functioned in similar manner. </p>
-        <p>Contributors to the housing fund can apply for preferential rate mortgages, cover housing repair and maintenance costs and get rent subsidies. If unused, the fund can be redeemed upon retirement, and as such it actually functions more as a secondary pension.</p>
         <p>Employee and Employer contribution rates are determined by the local government but is not than 5% of the average wage at the enterprise.</p>
       </accordion-element>
       <accordion-element>
@@ -158,6 +153,7 @@
           <h4>Tax</h4>
         </template>
         <p>The following link provides detailed information on the tax rates for residents, non- residents, foreign Residents, etc.</p>
+        <p><a href="http://www.chinatax.gov.cn/n810341/n810755/c3722680/content.html" target="_blank">http://www.chinatax.gov.cn/n810341/n810755/c3722680/content.html</a></p>
       </accordion-element>
     </accordion>
   </div>
