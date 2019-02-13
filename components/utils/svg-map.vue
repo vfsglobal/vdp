@@ -1,6 +1,9 @@
 <template>
   <div class="svg_map_container">
-    <div class="main_map_wrapper" ref="main_svg_map" />
+    <div
+      class="main_map_wrapper"
+      ref="main_svg_map"
+    />
   </div>
 </template>
 
