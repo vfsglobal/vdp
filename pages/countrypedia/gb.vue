@@ -31,7 +31,7 @@
               <h5 class="normal">Working Hours:</h5>
             </div>
             <div class="main_content">
-              <p>The maximum working week is 40 hours for full time employees; & up to 30 hours for part time employees. </p>
+              <p>The maximum working week is 40 hours for full time employees and  up to 30 hours a week for part time employees.</p>
             </div>
           </li>
           <li>
@@ -71,8 +71,8 @@
               <h5 class="normal">Maternity Leave:</h5>
             </div>
             <div class="main_content">
-              <p> Eligible employees can take up to 52 weeks’ maternity leave. The first 26 weeks is known as ‘Ordinary Maternity Leave’, the last 26 weeks as ‘Additional Maternity Leave’.<br>
-                The earliest that leave can be taken is 11 weeks before the expected week of childbirth, unless the baby is born early. Employees must take at least 2 weeks after the birth (or 4 weeks if they’re a factory worker).</p>
+              <p>Eligible employees can take up to 52 weeks  maternity leave. The first 26 weeks are  known as ‘Ordinary Maternity Leave, the last 26 weeks are known as as ‘Additional Maternity Leave’.<br>
+               The earliest that leave can be taken is 11 weeks before the expected week of childbirth , unless the baby is born early. Employees must take at least 2 weeks off after the birth (or 4 weeks if they’re a factory worker).</p>
             </div>
           </li>
           <li>
@@ -109,11 +109,9 @@
           <h4 class="normal">Notice Period</h4>
           <ul class="side_heading_content_list">
             <li>
-              <div class="heading_wrapper">
-                <h5 class="normal">Standard Notice Period:</h5>
-              </div>
+              
               <div class="main_content">
-                <p>There is also no statutory requirement; however most of the employer’s include the notice period from the range of 2 weeks to 1 to 3 months as per the grade of employees. </p>
+                <p>There is also no statutory requirement of a notice period; however most employers include the notice period range from 2 weeks 1 to 3 months as per the grade of employees.</p>
               </div>
             </li>
           </ul>

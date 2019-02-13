@@ -48,7 +48,7 @@
             </div>
             <div class="main_content">
               <p>The Act entitles the pregnant woman employee to four months unpaid maternity leave. It further stipulates that the maternity leave must commence not later than four weeks before the expected date of birth of the child and of the employee may not return to work for six weeks after the birth of the child. Of these stipulations may be changed with the prior written approval of the employee’s medical practitioner or midwife. </p>
-              <p>When an employee is on maternity leave, the employment contract is not changed in any way at all - the employee is merely exercising her legal entitlement to four months unpaid leave (whether the employer pays a salary for the duration of, or for part of, the maternity leave, is of no consequence)</p>
+              
             </div>
           </li>
           <li>
@@ -59,10 +59,7 @@
               <p>A sick leave cycle is a period of 36 months employment with the same employer immediately following the date of commencement of employment, or the completion of the prior sick leave cycle. During the first 6 months of employment, the employee is entitled to 1 day sick leave for every 26 days worked. On the first working day of month number 7, the balance of the 30 days becomes available to the employee, less any days taken sick during the first 6 months of employment.</p>
               <p>The amount of the sick leave entitlement is a number of days that the employee would ordinarily have worked during a six-week period. In other words, if the employee works a 5-day week then it is 30 days sick leave in each leave cycle or every 3 years, or a 6-day week would result in 36 days sick leave a every 3 years.</p>
               <p>At the end of every 3-year cycle, any sick leave remaining untaken or unused is forfeited, and the next cycle begins with a fresh balance of 30 days or 36 days as the case may be. In instances where the employee is absent for more than 2 consecutive working days, meaning absent on 3 consecutive days or more, the employer is entitled to require proof of the illness or incapacity which caused the employees absence from work</p>
-              <p>Note that absent on a Friday and a Monday is not “consecutive days”. It is 2 separate occasions, and the employer cannot demand proof of incapacity in such circumstances. Likewise, if an employee is off sick on the day before or the day after a public holiday, the employer is not entitled to request proof of incapacity.</p>
-              <p>If the employee is absent on 3 consecutive working days or more, or is absent on more than 2 occasions (remember a Friday and a Monday is 2 separate occasions) during the same 8 week period, then the employer is entitled to demand proof of incapacity. If such proof is not produced on demand by the employer, then the employer is entitled to treat the days absent as unpaid leave. </p>
-              <p>The proof of incapacity may take the form of a medical certificate issued and signed by a medical practitioner or any other person who is entitled to diagnose and treat patients and who is registered with a professional council established by an Act of Parliament. </p>
-              <p>Annual leave may not be substituted for sick leave and sick leave is in addition to any other leave entitlement. Sick leave, however, is not in addition to a period of notice of termination of the employment contract.</p>
+            
             </div>
           </li>
           <li>
@@ -122,20 +119,7 @@
         <template slot="buttonContent">
           <h4>Leave / Leave Encashment</h4>
         </template>
-        <p>Leave will be based on the calendar year. (January to December). You will be entitled to
-          Leave Benefits from the date of joining.
-        </p>
-        <p>You will be granted Annual leave days prescribed in the employee handbook (excluding casual leaves and public holidays) annually.</p>
-        <p>You can enjoy Casual/Privilege/Family responsibility/Compassionate and leaves as prescribed in the local employee handbook. All leaves will require the approval of your reporting manager.</p>
-        <p>You will be able to carry forward 10 days of annual leave to the next calendar year up to a maximum accumulation of 10 days. Any excess leave over and above 10 days will lapse at the end of the year.</p>
-        <p>Normally prior sanction must be obtained for casual absence. However, in case of an emergency, you must call your Manager and inform him of your absence. If you do not call by lunchtime of the day, you will be marked absent for the day.</p>
-        <p>If you take 2 days consecutive leave due to sickness, a doctor’s certificate must be attached to your leave form, which you must complete when you return.</p>
-        <p>Annual leave must be applied for in the beginning of the year i.e. for the whole year and must be approved by your Manager.</p>
-        <p>Absence without leave and without permission will be unauthorized absence, which amounts to misconduct, for which disciplinary action can be taken by the management.</p>
-        <p>Female employees covered by local Law will get Maternity Benefits as per the Law.</p>
-        <p>At the time of separation from the organisation, you can en cash balance of earned annual
-Encashment will be calculated based on the last drawn basic monthly salary.
-</p>
+        <p>Leave will be based on the calendar year. (January to December).</p>
        
       </accordion-element>
       <accordion-element>
@@ -149,7 +133,7 @@ Encashment will be calculated based on the last drawn basic monthly salary.
             </div>
             <div class="main_content">
                <p>This bonus is normally classed as a gratuity - in other words, a payment of gratitude by the employer to the employee in recognition of a job well done, or if you like, going the extra mile.</p>
-        <p>However, over the years most employees have come to expect the payment of the 13th cheque as a right or entitlement, or as a condition of employment.  This is evidenced by the fact that at job application interviews most applicants will ask "do you pay a 13th Cheque?”. In other words, they expect to be paid a 13th cheque irrespective of whether the job is well done or irrespective of whether they go the extra mile. They want the payment of a 13th cheque to be incorporated as a condition of employment.</p>
+        
             </div>
           </li>
           </ul>

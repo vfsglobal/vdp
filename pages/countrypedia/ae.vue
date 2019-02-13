@@ -26,14 +26,7 @@
               <p>The maximum working week is 48 hours for full time employees.</p>
             </div>
           </li>
-          <li>
-            <div class="heading_wrapper">
-              <h5 class="normal">Overtime Policy:</h5>
-            </div>
-            <div class="main_content">
-              <p>Overtime will be paid to the employee if he/ she work for at least 60 mins after 9 working hours per day (including break). Overtime amount = Number of overtime hours X Per hour salary X 1.5 (weekdays) or 2.0 (on public holidays and weekends.</p>
-            </div>
-          </li>
+        
         </ul>
       </accordion-element>
       <accordion-element>
@@ -41,7 +34,7 @@
           <h4>Leave Entitlement</h4>
         </template>
         <p>There are different types of leave under UAE Employment Act depend on the eligibility and entitlement.</p>
-        <p class="small_space">Following leaves are applicable in UAE Example of Leave Types: (1 line mentioning the number of leaves applicable in each case)</p>
+        <p class="small_space">Following leaves are applicable in UAE Example of Leave Types:</p>
         <ul class="side_heading_content_list">
           <li>
             <div class="heading_wrapper">
@@ -59,22 +52,8 @@
               <p>All confirmed employee is eligible for Sick Leave up to 7 days a year. Employee will receive full pay for the first 15 days, half pay for the next 30 days and no pay for the rest 45 days.</p>
             </div>
           </li>
-          <li>
-            <div class="heading_wrapper">
-              <h5 class="normal">Hospitalization Leave:</h5>
-            </div>
-            <div class="main_content">
-              <p>No leave</p>
-            </div>
-          </li>
-          <li>
-            <div class="heading_wrapper">
-              <h5 class="normal">Childcare Leave:</h5>
-            </div>
-            <div class="main_content">
-              <p>No leave</p>
-            </div>
-          </li>
+         
+        
           <li>
             <div class="heading_wrapper">
               <h5 class="normal"> Maternity Leave:</h5>
@@ -90,27 +69,8 @@
             </div>
             <div class="main_content">
               <p>Working fathers are not provided paternity leave under the law.</p>
-
             </div>
           </li>
-          <li>
-            <div class="heading_wrapper">
-              <h5 class="normal">Unpaid Infant Care Leave :</h5>
-            </div>
-            <div class="main_content">
-              <p>No leave</p>
-
-            </div>
-          </li>
-          <li>
-            <div class="heading_wrapper">
-              <h5 class="normal">Adoption Leave:</h5>
-            </div>
-            <div class="main_content">
-              <p>No leave</p>
-            </div>
-          </li>
-
         </ul>
       </accordion-element>
       <accordion-element>
@@ -125,7 +85,7 @@
                 <h5 class="normal">Limited Contract:</h5>
               </div>
               <div class="main_content">
-                <p>A limited contract cannot exceed two years' term and it must mention the notice period ranging from a minimum of one month to a maximum of three months.</p>
+                <p>A limited contract cannot exceed a 2 year term and it must mention the notice period ranging from a minimum of one month to a maximum of three months.</p>
               </div>
             </li>
             <li>
