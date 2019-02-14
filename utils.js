@@ -506,7 +506,7 @@ export const animateHeight = (() => {
       hideOverflow: true,
       removeHeightAfterAnimate: true,
       removeOverflowAfterAnimate: true,
-      callback() {}
+      callbacks: {}
     },
     autocorrectOptions = createAdvancedAutocorrectOptions(
       defaultOptions,
@@ -523,11 +523,13 @@ export const animateHeight = (() => {
         hideOverflow,
         removeHeightAfterAnimate,
         removeOverflowAfterAnimate,
-        callback
+        callbacks
       } = options;
 
       $el.data("animate-to-height", toHeight);
       checkAndPush(animatedElements, $el);
+
+      callbacks.beforeAnimate && callbacks.beforeAnimate($el);
 
       setTimeout(() => {
         var $htmlBody = $("html, body"),
@@ -537,7 +539,7 @@ export const animateHeight = (() => {
         $el.css("height", toHeight);
 
         var newHeight = $el.height();
-
+        
         $el.css("height", curHeight + "px");
         $htmlBody.scrollTop(curScrollTop);
 
@@ -553,7 +555,7 @@ export const animateHeight = (() => {
           $el.removeData("animate-to-height");
           checkAndRemove(animatedElements, $el);
 
-          callback.apply(this, arguments);
+          callbacks.animateComplete && callbacks.animateComplete($this);
         });
       }, delay);
     };

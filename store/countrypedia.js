@@ -91,7 +91,8 @@ export const state = () => ({
   pageLink: "/countrypedia",
   linkType: "/",
   flagResourceFolder: "country-flags/",
-  flagImageFormat: "png"
+  flagImageFormat: "png",
+  animateHeightDuration: 1000
 });
 
 export const getters = {
