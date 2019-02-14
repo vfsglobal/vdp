@@ -55,7 +55,11 @@
               class="main_image"
             />
             <div class="main_content">
-              VDP Global Services is a registered trademark of VFS Data Processing Pvt. Ltd.
+              <p>VDP Global Services is a registered trademark of VFS Data Processing Pvt. Ltd.</p>
+              <div class="social_wrapper">
+                <span>Follow us on:</span>
+                <icon-list :content="socialLinks" />
+              </div>
             </div>
           </div>
         </li>
@@ -67,6 +71,7 @@
 
 <script>
 import list from '~/components/utils/list.vue';
+import iconList from '~/components/utils/icon-list.vue';
 import copyrightWrapper from './copyright-wrapper.vue';
 
 import { mapState, mapGetters } from 'vuex';
@@ -76,6 +81,7 @@ export default {
 
   components: {
     list,
+    iconList,
     copyrightWrapper
   },
 
@@ -87,7 +93,8 @@ export default {
     ...mapGetters({
       services: 'services/linkList',
       address: 'contact-details/addressText',
-      contactNoHTML: 'contact-details/contactNoHTML'
+      contactNoHTML: 'contact-details/contactNoHTML',
+      socialLinks: 'social-links/correctedListContent'
     })
   }
 }
@@ -193,7 +200,11 @@ footer {
                   justify-content: center;
                   padding: 0px 5px;
                 }
-                @include add_col_selector_css($link_col_type, last_column, true) {
+                @include add_col_selector_css(
+                  $link_col_type,
+                  last_column,
+                  true
+                ) {
                   border-right: 1px solid $dark_background_color;
                 }
                 &:last-child {
@@ -203,14 +214,25 @@ footer {
             }
           }
         }
-        ul.link_list > li:not(:last-child) {
-          @extend %marb_extra_mini;
-        }
         a {
           color: inherit;
           transition: all 0.3s;
           &:hover {
             color: $orange;
+          }
+        }
+        ul.link_list > li:not(:last-child) {
+          @extend %marb_extra_mini;
+        }
+        .social_wrapper {
+          @extend %mart_normal;
+
+          > * {
+            @include inline_valign();
+          }
+          > span {
+            font-weight: bold;
+            @extend %padr_extra_mini;
           }
         }
       }

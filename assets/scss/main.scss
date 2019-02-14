@@ -428,6 +428,21 @@ ul.heading_content_list {
     }
   }
 }
+i.icon-linkedin.brand {
+  $size: 18px;
+
+  display: block;
+  font-size: $size;
+  width: $size;
+  height: $size;
+  padding: 0.25 * $size;
+  border-radius: 0.2 * $size;
+  background: #007bb5;
+  color: #FFF;
+  &:before {
+    display: block;
+  }
+}
 .page_container {
   position: relative;
   overflow: hidden;
