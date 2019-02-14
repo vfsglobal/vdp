@@ -70,6 +70,7 @@ export default {
   background: $transparent_purple;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   z-index: 99;
   &:before {
     $size: modify_map_value($button_size, (
