@@ -71,7 +71,7 @@
       }
     }
   }
-  @return unquote($value + "");
+  @return if(type-of($value) == string, unquote($value), $value);
 }
 
 // //if
