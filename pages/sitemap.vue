@@ -4,7 +4,11 @@
     purple-heading-text="Sitemap"
   >
     <basic-section>
-      <menu-nav :content="mainLinkList" :submenu-key="submenuKey" class="sitemap" />
+      <menu-nav
+        :content="mainLinkList"
+        :submenu-key="submenuKey"
+        class="sitemap"
+      />
     </basic-section>
   </master-page>
 </template>
@@ -42,49 +46,50 @@ export default {
 @import "./assets/scss/globals/main";
 
 ul.sitemap > li {
-  $vertical_space: 15px;
+  $vertical_space: map-get($space_details, small);
+  $hor_padding: 15px;
 
   position: relative;
-  padding: $vertical_space 15px;
+  @include multi_media((padding-top padding-bottom), $vertical_space);
+
+  padding-left: $hor_padding;
+  padding-right: $hor_padding;
 
   &:not(:last-child) {
     border-bottom: 1px solid $light_border_color;
   }
 
   &:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     left: 0%;
-    top: $vertical_space;
     margin-top: 5px;
-    @include create_filled_arrow((
-      direction: right,
-      tip_length: 7px,
-      broadness: 7px,
-      color: $content_color
-    ));
+    @include multi_media(top, $vertical_space);
+    @include create_filled_arrow(
+      (
+        direction: right,
+        tip_length: 7px,
+        broadness: 7px,
+        color: $content_color
+      )
+    );
   }
-
-  a { 
+  a {
     color: inherit;
     transition: all 0.5s;
-
     &:hover {
       color: $orange;
     }
   }
-
   > a {
-    font-size: 16px;
+    @extend %L_font_size;
   }
-
   ul {
-    padding-top: 7px;
-    padding-left: 10px;
-
+    @extend %padt_mini;
+    @extend %padl_extra_small;
     > li:not(:last-child) {
-      padding-bottom: 5px;
+      @extend %padb_mini;
     }
   }
 }
