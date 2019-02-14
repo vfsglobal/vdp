@@ -6,6 +6,7 @@
       <nuxt />
     </div>
     <main-footer />
+    <move-top-button />
   </div>
 </template>
 
@@ -13,12 +14,14 @@
 import topHeader from '~/components/layouts/top-header.vue';
 import topNav from '~/components/layouts/top-nav.vue';
 import mainFooter from '~/components/layouts/main-footer/index.vue';
+import moveTopButton from '~/components/layouts/move-top-button.vue';
 
 export default {
   components: {
     topHeader,
     topNav,
-    mainFooter
+    mainFooter,
+    moveTopButton
   }
 }
 </script>
