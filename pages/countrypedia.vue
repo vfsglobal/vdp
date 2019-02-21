@@ -14,11 +14,8 @@
         v-model="activeCountryIndex"
       />
     </basic-section>
-    <div
-      class="heading_page_container"
-      v-animate-height="mainAnimateHeightOptions"
-    >
-      <div class="wrapper purple_heading_container">
+    <div class="heading_page_container" ref="headingPageContainer">
+      <div class="wrapper purple_heading_container" ref="purpleHeadingContainer">
         <transition name="purple-heading">
           <purple-heading-wrapper
             v-if="activeCountry"
@@ -53,7 +50,7 @@
 
 <script>
 import { pageDefault } from '~/components/mixins/page';
-import { generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
+import { jQueryRefs, generateURLAndListIndexSyncMixin } from '~/components/mixins/general';
 
 import countrypediaMapContainer from '~/components/countrypedia-map-container.vue';
 import list from '~/components/utils/list.vue';
@@ -61,8 +58,10 @@ import purpleHeadingWrapper from '~/components/purple-heading-wrapper.vue';
 
 import { mapState, mapGetters } from 'vuex';
 
+import { animateHeight } from '~/utils';
+
 export default {
-  mixins: [pageDefault, generateURLAndListIndexSyncMixin({
+  mixins: [pageDefault, jQueryRefs, generateURLAndListIndexSyncMixin({
     listName: 'countryList',
     activeIndexName: 'activeCountryIndex',
     linkType: '/',
@@ -111,11 +110,14 @@ export default {
       if (val) return;
 
       this.$purpleHeadingContainer.css('height', this.$purpleHeadingContainer.height() + 'px');
+    },
+    $route() {
+      this.$headingPageContainer.css('height', this.$headingPageContainer.height() + 'px');
+      
+      setTimeout(() => {
+        animateHeight(this.$headingPageContainer, this.mainAnimateHeightOptions);
+      });
     }
-  },
-
-  mounted() {
-    this.$purpleHeadingContainer = $('.purple_heading_container');
   }
 }
 </script>
