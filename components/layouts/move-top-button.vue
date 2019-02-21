@@ -99,7 +99,9 @@ export default {
   }
 
   &.move-top-button-enter, &.move-top-button-leave-to {
-      right: -50px;
+      @include multi_media(right, $button_size, (
+        prefix: "-"
+      ));
   }
 }
 </style>
