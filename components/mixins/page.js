@@ -9,7 +9,7 @@ import {
 import accordion from "~/components/accordion/index.vue";
 import accordionElement from "~/components/accordion/element.vue";
 
-import {state} from '~/store/countrypedia';
+import { state } from "~/store/countrypedia";
 var countrypediaState = state();
 
 var sitemapLinkKey = "link",
@@ -80,7 +80,7 @@ const transitionFunctions = {
       mode: ""
     };
   },
-  hideBodyOverflow: {
+  hideBodyOverflowX: {
     beforeEnter() {
       $("body").css("overflow-x", "hidden");
     },
@@ -106,7 +106,7 @@ export const pageDefault = {
   mixins: [pageTitle],
   transition: mergeTransition([
     transitionFunctions.rootPageTransitionName,
-    transitionFunctions.hideBodyOverflow,
+    transitionFunctions.hideBodyOverflowX,
     transitionFunctions.animateScrollToTop,
     transitionFunctions.createAnimateContainerHeight(".page_container", {
       duration: 1000,
@@ -118,7 +118,7 @@ export const pageDefault = {
 export const countrypediaPage = {
   mixins: [pageTitle],
   routeAnimateScroll: {
-    top: '.countrypedia .heading_page_container',
+    top: ".countrypedia .heading_page_container",
     duration: countrypediaState.animateHeightDuration
   },
   components: {

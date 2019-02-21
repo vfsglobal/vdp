@@ -111,6 +111,12 @@ export const jQueryEl = {
   }
 };
 
+export const jQueryRefs = {
+  mounted() {
+    for (var key in this.$refs) this["$" + key] = $(this.$refs[key]);
+  }
+};
+
 export const generateVModelMixin = (function() {
   var defaultOptions = {
     event: "input",
@@ -159,12 +165,14 @@ export const generateVModelMixin = (function() {
 })();
 
 export const countrySelectionProps = {
-  mixins: [generateVModelMixin({
-    propName: 'activeIndex',
-    event: 'change',
-    type: Number,
-    _default: -1
-  })],
+  mixins: [
+    generateVModelMixin({
+      propName: "activeIndex",
+      event: "change",
+      type: Number,
+      _default: -1
+    })
+  ],
   props: {
     countries: {
       type: Array,

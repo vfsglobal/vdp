@@ -62,10 +62,6 @@ module.exports = {
       ssr: false
     },
     {
-      src: "~/plugins/animate-height",
-      ssr: false
-    },
-    {
       src: "~/plugins/outer-hooks",
       ssr: false
     }
