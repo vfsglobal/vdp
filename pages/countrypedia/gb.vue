@@ -92,7 +92,7 @@
               <h5 class="normal">Maternity Leave:</h5>
             </div>
             <div class="main_content">
-              <p>Eligible employees can take up to 52 weeks  maternity leave. The first 26 weeks are  known as ‘Ordinary Maternity Leave, the last 26 weeks are known as as ‘Additional Maternity Leave’.<br>
+              <p>Eligible employees can take up to 52 weeks  maternity leave. The first 26 weeks are known as ‘Ordinary Maternity Leave’-, the last 26 weeks are known as as ‘Additional Maternity Leave’.<br>
                The earliest that leave can be taken is 11 weeks before the expected week of childbirth , unless the baby is born early. Employees must take at least 2 weeks off after the birth (or 4 weeks if they’re a factory worker).</p>
             </div>
           </li>

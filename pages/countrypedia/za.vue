@@ -5,7 +5,10 @@
         <template slot="buttonContent">
           <h4>Employment & Payroll</h4>
         </template>
-        <p>Employees working in South Africa must be paid at least monthly via EFT or bank transfer. Salaries are paid the 25th of the month.</p>
+        <p>According to Basic Condition of Employment Act (BCEA), Ordinary hours of work may not be more than 45 hours in a week or 9 hours in a day.</p>
+        <p>For employees who work a 6-day week, it is 8 hours per day.
+          Employees working in South Africa must be paid at least monthly via EFT or bank transfer. Salaries must be paid at least on monthly basis.
+        </p>
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">
@@ -23,7 +26,7 @@
               <h5 class="normal">Working Hours:</h5>
             </div>
             <div class="main_content">
-              <p>The maximum working week is 45 hours for full time employees. </p>
+              <p>The maximum working week is 45 hours in a week or 9 hours in a day for full time employees. </p>
             </div>
           </li>
           <li>
@@ -31,7 +34,7 @@
               <h5 class="normal">Overtime Policy:</h5>
             </div>
             <div class="main_content">
-              <p>Overtime is the amount of time someone works beyond normal working hours; these may be determined or mentioned under various Acts which are applicable for the functioning of that organisation. </p>
+              <p>Overtime is the amount of time someone works beyond normal working hours. Overtime is limited to a total of 10 hours per week and then too, may not exceed 3 hours of overtime per day. Overtime work must be paid at no less than 1.5 times the normal hourly rate, or time off (equivalent to 1.5 times), or partially paid and partially paid time off. A meal interval of at least one hour is compulsory for employees who work more than 5 continuous hours. The meal interval can be reduced to 30 minutes by written agreement.</p>
             </div>
           </li>
         </ul>
@@ -47,8 +50,12 @@
               <h5 class="normal"> Maternity Leave:</h5>
             </div>
             <div class="main_content">
-              <p>The Act entitles the pregnant woman employee to four months unpaid maternity leave. It further stipulates that the maternity leave must commence not later than four weeks before the expected date of birth of the child and of the employee may not return to work for six weeks after the birth of the child. Of these stipulations may be changed with the prior written approval of the employee’s medical practitioner or midwife. </p>
-              
+              <p>Maternity leave is provided and regulated under the Basic Conditions of Employment Act.
+                Female workers are entitled to at least four consecutive months of maternity leave (17.32 weeks). The worker may commence maternity leave four weeks prior to the expected date of confinement or earlier if a medical practitioner certifies that it is necessary for the health of worker or her child. Also, a worker is not allowed to work within six weeks of child's birth unless a medical practitioner certifies her to do so.</p>
+              <p>In the event of a miscarriage in the third trimester of pregnancy or a stillbirth, the woman is entitled to six weeks of leave from the date of the miscarriage or stillbirth whether or not she has commenced maternity leave at the time of miscarriage or stillbirth.</p>
+              <p>Maternity leave is paid leave. These benefits are paid under Unemployment Insurance Act. A worker, contributing to UIF, is eligible for a maternity benefit of 38% to 60% of average earnings in the last six months, depending on the insured person's level of income. Maternity benefit is paid for a total of 17.32 weeks.
+              </p>
+
             </div>
           </li>
           <li>
@@ -56,10 +63,8 @@
               <h5 class="normal">Sick Leave:</h5>
             </div>
             <div class="main_content">
-              <p>A sick leave cycle is a period of 36 months employment with the same employer immediately following the date of commencement of employment, or the completion of the prior sick leave cycle. During the first 6 months of employment, the employee is entitled to 1 day sick leave for every 26 days worked. On the first working day of month number 7, the balance of the 30 days becomes available to the employee, less any days taken sick during the first 6 months of employment.</p>
-              <p>The amount of the sick leave entitlement is a number of days that the employee would ordinarily have worked during a six-week period. In other words, if the employee works a 5-day week then it is 30 days sick leave in each leave cycle or every 3 years, or a 6-day week would result in 36 days sick leave a every 3 years.</p>
-              <p>At the end of every 3-year cycle, any sick leave remaining untaken or unused is forfeited, and the next cycle begins with a fresh balance of 30 days or 36 days as the case may be. In instances where the employee is absent for more than 2 consecutive working days, meaning absent on 3 consecutive days or more, the employer is entitled to require proof of the illness or incapacity which caused the employees absence from work</p>
-            
+              <p>An employee is entitle to one day’s paid sick leave for every 26 days worked during the first four months of employment, and thereafter to 30 days paid sick leave for every 36 months worked (the leave cycle). An employer will only be obligated to grant paid sick leave of longer than two days or for longer than one day when more than two absences occurred in a space of eight weeks, if the employee produces a valid medical certificate which has been issued by a medical practitioner. </p>
+
             </div>
           </li>
           <li>
@@ -67,32 +72,29 @@
               <h5 class="normal">Family Responsibility Leave:</h5>
             </div>
             <div class="main_content">
-              <p>Employees who have been in employment with the same employer for more than 4 months and who work for the same employer for at least 4 days per week is entitled to 3 days Family Responsibility Leave full pay per annum, with the exception of Domestic employees whose entitlement is 5 days.</p>
-              <p>Family Responsibility Leave is in addition to any other leave entitlement and any unused portion lapses at the end of each year and is not accumulative. Family Responsibility Leave applies when the employees child is born, when the employees child is sick, or in the event of the death of the employee’s spouse or life partner, or the employee’s parent, adoptive parent, grandparent, child, adopted child, grandchild or sibling. </p>
-              <p>The employee may take Family Responsibility Leave as a part of a day or a whole day. The employer is entitled to demand proof of the event in respect of which the Family Responsibility Leave is requested, such as a death certificate or medical certificate or certificate issued by the hospital.</p>
+              <p class="small_space">Employees are also entitled to take family responsibility leave. An employee who has been employed for longer than four months and who works four days or more for the employer is entitled to three days paid leave during each twelve month leave cycle to discharge family responsibilities in the following circumstances: </p>
+              <ul class="normal_list">
+                <li>When the employee’s child is born or falls ill;</li>
+                <li>In the event of the death of the employee’s spouse or life partner, parent, adoptive parent, grandparent, child, adopted child, grandchild or sibling.
+                </li>
+              </ul>
+
             </div>
           </li>
           <li>
             <div class="heading_wrapper">
-              <h5 class="normal">Study Leave:</h5>
+              <h5 class="normal">Paid Leaves:</h5>
             </div>
             <div class="main_content">
-              <p>Labour legislation is silent on the matter of study leave, and therefore in the purpose of Labour Law, study leave does not exist. This is a matter for arrangement entirely between the employer and the employee, and is the employer stipulates that study leave must be deducted from the employees annual leave entitlement or be taken as unpaid leave, then that decision must apply. </p>
+              <p>The BCEA prescribes a leave period of no less than 21 consecutive days per completed year of employment on full pay. Public holidays are not part of annual leave, and may not be ‘encashed’. Leave can also not be accumulated form one year to the next. It is important to note that an employer is compelled to ensure that statutory leave is taken within a period of 6 months of the end of the annual leave cycle. </p>
             </div>
           </li>
-          <li>
-            <div class="heading_wrapper">
-              <h5 class="normal">Leave for religious holidays:</h5>
-            </div>
-            <div class="main_content">
-              <p>Labour Law does not to regulate leave for religious holidays. At present the situation is that should an employee wish to take leave for the purpose of religious holidays other than an official public holiday, then the employee must take paid annual leave or unpaid leave. Any paid annual leave taken will be deductible from the employees annual leave entitlement.</p>
-            </div>
-          </li>
+
         </ul>
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">
-          <h4>Insurance</h4>
+          <h4>Social Security</h4>
         </template>
 
         <ul class="side_heading_content_list">
@@ -101,15 +103,17 @@
               <h5 class="normal">Pension Fund:</h5>
             </div>
             <div class="main_content">
-              <p>All employees are covered under Pension Fund policy with standard coverage. The insurance coverage amount is graded and as per company policy. The annual premium for this coverage is paid by the company.</p>
+              <p>Law provides for means tested old age grant for a permanent resident of South Africa aged 60 and over. A worker is entitled to old age grant (means-tested) if his/her annual income is below a certain amount. The old age pension is <strong>1,600 Rand</strong> for pensioners aged 60-74 and <strong>1,620 Rand</strong> for pensioners aged 75 or older. If the pensioner resides in a care facility under contract to the state for more than three months, the pension is reduced to 25% of the maximum amount. </p>
             </div>
           </li>
           <li>
             <div class="heading_wrapper">
-              <h5 class="normal">Health Insurance:</h5>
+              <h5 class="normal">Unemployment Benefits:</h5>
             </div>
             <div class="main_content">
-              <p>All employees are covered under Discover Medical Aid policy for self and between two and 4 dependents depending on contract of employment. It covers the hospitalization expenses as stipulated in the scheme policy for respective country.</p>
+              <p>In the case of involuntary unemployment, worker contributing to the Unemployment Insurance Fund and having accumulated sufficient credits before becoming unemployed, is entitled to unemployment benefits for up to 34 weeks. The application for unemployment benefit must be made within 12 months of the termination of the contract of employment.</p>
+              <p>Unemployment benefit of 38% to 60% of average earnings in the last six months, depending on the insured's period of service and level of income, is paid for up to one year.
+              </p>
             </div>
           </li>
         </ul>
@@ -120,33 +124,28 @@
           <h4>Leave / Leave Encashment</h4>
         </template>
         <p>Leave will be based on the calendar year. (January to December).</p>
-       
+        <p>The BCEA states that the provisions for annual leave do not apply to an employee who works less than 24 hours per month for an employer, and also these provisions do not apply to leave granted to an employee in excess of the entitlement allowed in terms of the BCEA.</p>
+        <p>The employer may not force and employee to take annual leave during any period of notice, and the employee is prohibited from taking annual leave during any period of notice</p>
+        <p>The employer is prohibited by section 20(11) from paying an employee for annual leave except upon termination of employment. The only exception here would be if the employer allows more than minimum statutory annual leave per cycle. If the employee that only works 5 days a week is granted 20 paid days’ leave per cycle, then the 5 days in addition to the 15 paid days’ may be regulated by a policy and either be forfeited or paid out to the employee.
+        </p>
+
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">
           <h4>Statutory Bonus</h4>
         </template>
-         <ul class="side_heading_content_list">
-          <li>
-            <div class="heading_wrapper">
-              <h5 class="normal">The 13th cheque or Christmas bonus:</h5>
-            </div>
-            <div class="main_content">
-               <p>This bonus is normally classed as a gratuity - in other words, a payment of gratitude by the employer to the employee in recognition of a job well done, or if you like, going the extra mile.</p>
-        
-            </div>
-          </li>
-          </ul>
-        <p></p>
-       
-       
+
+        <p>Both contractual and discretionary bonuses are a common feature of employment contracts in South Africa. While an employer may exercise discretion when granting a bonus, that discretion must be exercised fairly.</p>
+        <p>South Africa deals with the three common types of bonus, namely the Christmas bonus or 13th cheque as it is known, the performance bonus and the production bonus.
+        </p>
+
       </accordion-element>
       <accordion-element>
         <template slot="buttonContent">
           <h4>Welfare Fund (WF)</h4>
         </template>
         <p>Welfare fund is a statutory contribution managed by individual state authorities. The state labour welfare board determines the rate of the contribution and frequency of the contribution.</p>
-       <p>The contribution and periodicity of paying fund to employees differ with every state. In some states, the periodicity is annual and in some states, it is to be contributed half-yearly.</p>
+        <p>The contribution and periodicity of paying fund to employees differ with every state. In some states, the periodicity is annual and in some states, it is to be contributed half-yearly.</p>
         <p>These employee benefits may be statutory or non-statutory are generally provided by many organised sectors and when employees are provided such benefits they feel satisfied to work in your organisation.</p>
       </accordion-element>
     </accordion>
