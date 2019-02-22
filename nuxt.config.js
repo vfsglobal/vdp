@@ -11,7 +11,8 @@ module.exports = {
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "keywords", name: "keywords", content: "" },
-      { hid: "description", name: "description", content: "" }
+      { hid: "description", name: "description", content: "" },
+      { name: "theme-color", content: "#172272" }
     ],
     link: [
       {
